@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
+@extends('file-man::layouts.base')
+
+@section('content')
     <div>
-        @include('file-man::_components.path-display', ['folder' => $parent])
+        @include('file-man::components.path-display', ['folder' => $parent])
         <form action="{{ $action }}"
               method="post"
               enctype="multipart/form-data">
@@ -19,5 +15,4 @@
             <input type="submit">
         </form>
     </div>
-</body>
-</html>
+@endsection
