@@ -1,0 +1,52 @@
+
+
+        <?php
+
+        use Illuminate\Database\Migrations\Migration;
+        use Illuminate\Database\Schema\Blueprint;
+        use Illuminate\Support\Facades\Schema;
+
+        class CreateFileManagerTables extends Migration
+        {
+            public function up()
+            {
+                Schema::create('fm_folders', function (Blueprint $table) {
+                    $table->bigIncrements('id');
+                    $table->unsignedBigInteger('parent_id')->nullable();
+                    $table->string('name');
+                    $table->softDeletes();
+                    $table->timestamps();
+                    $table->foreign('parent_id')->references('id')->on('fm_folders');
+                });
+
+                Schema::create('fm_files', function (Blueprint $table) {
+                    $table->bigIncrements('id');
+                    $table->unsignedBigInteger('folder_id');
+                    $table->string('name');
+                    $table->string('source');
+                    $table->string('type');
+                    $table->unsignedInteger('size');
+                    $table->softDeletes();
+                    $table->timestamps();
+                    $table->foreign('folder_id')->references('id')->on('fm_folders');
+                });
+
+                Schema::create('fm_thumbs', function (Blueprint $table) {
+                    $table->bigIncrements('id');
+                    $table->unsignedBigInteger('file_id')->nullable();
+                    $table->string('source');
+                    $table->string('type');
+                    $table->unsignedInteger('size');
+                    $table->softDeletes();
+                    $table->timestamps();
+                    $table->foreign('file_id')->references('id')->on('fm_files');
+                });
+            }
+
+            public function down()
+            {
+                Schema::drop('fm_folders');
+                Schema::drop('fm_files');
+                Schema::drop('fm_thumbs');
+            }
+        }

@@ -1,0 +1,32 @@
+{
+    "name": "dcodegroup/laravel-file-man",
+    "description": "Laravel package for managing files.",
+    "authors": [
+        {
+            "name": "Alex M",
+            "email": "alexm@dcode.com.au"
+        }
+    ],
+    "require": {
+        "php" : "^7.2",
+        "league/flysystem": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DcodeGroup\\FileMan\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DcodeGroup\\FileMan\\FileManServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
