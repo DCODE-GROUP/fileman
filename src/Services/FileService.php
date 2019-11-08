@@ -22,15 +22,16 @@ class FileService
             ]);
         }
 
-        $folder = Folder::find(request('folder_id'));
-
-        $fileData = Storage::disk('s3')->put($folder->realPath.'/'.$saveData['name'], $saveData['file']);
+        $path = 'file-man';
+        $filename = uniqid().'-'.$saveData['name'];
+        $source = Storage::disk('s3')->putFileAs($path, $saveData['file'], $filename);
 
         $file->name = $saveData['name'];
-        $file->source = $fileData;
+        $file->source = $source;
         $file->type = $saveData['file']->getMimeType();
         $file->size = $saveData['file']->getSize();
         $file->save();
+
 
         return $file;
     }

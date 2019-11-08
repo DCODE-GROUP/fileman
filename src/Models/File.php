@@ -13,18 +13,18 @@ class File extends Model
 
     protected $table = 'fm_files';
 
-    // Belongs to
-    public function folder () {
+    public function folder()
+    {
         return $this->belongsTo(Folder::class);
     }
 
-    // Has one
-    public function thumb () {
+    public function thumb()
+    {
         return $this->hasOne(Thumb::class);
     }
 
-    //Attributes
-    public function getUrlAttribute() {
-        return env('AWS_URL') . $this->source;
+    public function getUrlAttribute()
+    {
+        return env('AWS_URL').$this->source;
     }
 }

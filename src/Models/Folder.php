@@ -12,23 +12,24 @@ class Folder extends Model
     protected $guarded = ['id'];
 
     protected $table = 'fm_folders';
-    
-    // Belongs to
-    public function parent () {
+
+    public function parent()
+    {
         return $this->belongsTo(Folder::class, 'parent_id');
     }
 
-    // Has many
-    public function children () {
+    public function children()
+    {
         return $this->hasMany(Folder::class, 'parent_id');
     }
 
-    public function files () {
+    public function files()
+    {
         return $this->hasMany(File::class);
     }
 
-    // Attributes
-    public function getPathAttribute() {
+    public function getPathAttribute()
+    {
         $path = '';
         $folder = $this;
         $array = [];
@@ -40,21 +41,8 @@ class Folder extends Model
         return implode('/', array_reverse($array));
     }
 
-    public function getRealPathAttribute() {
-        $path = '';
-        $folder = $this;
-        $array = [];
-        while ($folder) {
-            if ($folder->parent_id){
-                $array[] = $folder->name;
-            }
-            $folder = $folder->parent;
-        }
-
-        return implode('/', array_reverse($array));
-    }
-
-    public function getPathArrayAttribute() {
+    public function getPathArrayAttribute()
+    {
         $path = '';
         $folder = $this;
         $array = [];
@@ -69,8 +57,8 @@ class Folder extends Model
         return array_reverse($array);
     }
 
-    // Other
-    public function getChild ($name) {
-        return $this->children()->where('name', 'LIKE', '%' . $name . '%')->first();
+    public function getChild($name)
+    {
+        return $this->children()->where('name', 'LIKE', '%'.$name.'%')->first();
     }
 }

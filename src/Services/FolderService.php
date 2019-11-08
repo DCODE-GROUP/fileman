@@ -20,11 +20,12 @@ class FolderService
 
         $folder = null;
         $folderNames = explode('/', $path);
+
         if (count($folderNames) > 0) {
             $folder = Folder::where('name', 'LIKE', '%'.$folderNames[0].'%')->first();
 
             foreach ($folderNames as $index => $folderName) {
-                if ($index != 0) {
+                if ($index !== 0) {
                     $folder = $folder->getChild($folderName);
                 }
             }
@@ -59,6 +60,7 @@ class FolderService
     public static function sync()
     {
         $folderPaths = Storage::disk('s3')->allDirectories();
+
         $root = Folder::firstOrCreate([
             'parent_id' => null,
             'name' => '_root',
@@ -66,13 +68,14 @@ class FolderService
 
         foreach ($folderPaths as $folderPath) {
             $folderNames = explode('/', $folderPath);
+
             $folder = Folder::firstOrCreate([
                 'parent_id' => $root->id,
                 'name' => $folderNames[0],
             ]);
 
             foreach ($folderNames as $index => $folderName) {
-                if ($index != 0) {
+                if ($index !== 0) {
                     $folder = Folder::firstOrCreate([
                         'parent_id' => $folder->id,
                         'name' => $folderName,
@@ -80,6 +83,7 @@ class FolderService
                 }
 
                 $filePaths = Storage::disk('s3')->files($folderPath);
+
                 foreach ($filePaths as $filePath) {
                     $file = File::firstOrNew([
                         'folder_id' => $folder->id,
