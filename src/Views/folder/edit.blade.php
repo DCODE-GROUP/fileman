@@ -6,22 +6,18 @@
 </head>
 <body>
     <div>
-        @include('_components.path-display', ['folder' => $parent])
-    </div>
-    <div>
-        @if (isset($record))
-            <h1>Edit Folder</h1>
-            {!! Form::model($record, ['route' => ['admin.folder.update', $record->id], 'method' => 'PUT']) !!}
-        @else
-            <h1>Create Folder</h1>
-            {!! Form::open(['route' => 'admin.folder.store', 'method' => 'POST']) !!}
-        @endif
-
-        <input type="hidden" name="parent_id" value="{{$parent->id}}">
-        <input type="text" name="name" placeholder="Enter Folder Name" value="{{$record->name ?? ''}}">
-        <input type="submit">
-
-        {!! Form::close() !!}
+        @include('laravel-file-man::_components.path-display', ['folder' => $parent])
+        <form action="{{ $action }}"
+              method="post"
+              enctype="multipart/form-data">
+            @if (strtolower($method) !== 'post')
+                @method($method)
+            @endif
+            @csrf
+            <input type="hidden" name="parent_id" value="{{ $parent->id }} ">
+            <input type="text" name="name" placeholder="Enter Folder Name" value="{{ old('name') ?? $folder->name ?? '' }}">
+            <input type="submit">
+        </form>
     </div>
 </body>
 </html>

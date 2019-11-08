@@ -6,7 +6,6 @@ use DcodeGroup\FileMan\Http\Requests\FileRequest;
 use DcodeGroup\FileMan\Models\File;
 use DcodeGroup\FileMan\Models\Folder;
 use DcodeGroup\FileMan\Services\FileService;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class FileController extends BaseController
@@ -16,8 +15,16 @@ class FileController extends BaseController
      */
     public function create()
     {
-        return view('file-man::file.edit')
-            ->with('parent', Folder::find(request('parent')));
+        $method = 'post';
+        $action = route('file-man.file.store');
+        $folder = Folder::find(request()->query('folder'));
+
+        return view('laravel-file-man::file.edit')
+            ->with([
+                'action' => $action,
+                'method' => $method,
+                'folder' => $folder,
+            ]);
     }
 
     /**
@@ -26,12 +33,15 @@ class FileController extends BaseController
      */
     public function store(FileRequest $request)
     {
+        $path = Folder::find(request()->input('folder_id'))->path;
+
         FileService::save(null, $request->all());
-        $path = Folder::find(request('folder_id'))->path;
 
         return redirect()
             ->route('file-man.folder.index')
-            ->with(['path' => $path]);
+            ->with([
+                'path' => $path,
+            ]);
     }
 
     /**
@@ -40,9 +50,18 @@ class FileController extends BaseController
      */
     public function edit(File $file)
     {
-        return view('file-man::file.edit')
-            ->with('parent', Folder::find(request('parent')))
-            ->with('file', $file);
+        $method = 'put';
+        $action = route('file-man.file.update', $file->id);
+        $folder = Folder::find(request()->query('folder'));
+
+        return view('laravel-file-man::file.edit')
+            ->with([
+                'action' => $action,
+                'method' => $method,
+                'folder' =>  $folder,
+                'file' =>  $file,
+            ]);
+
     }
 
     /**
@@ -52,11 +71,15 @@ class FileController extends BaseController
      */
     public function update(FileRequest $request, File $file)
     {
+        $path = Folder::find(request()->input('folder_id'))->path;
+
         FileService::save($file, $request->all());
-        $path = Folder::find(request('folder_id'))->path;
 
         return redirect()
-            ->route('file-man.folder.index', ['path' => $path]);
+            ->route('file-man.folder.index')
+            ->with([
+                'path' => $path,
+            ]);
     }
 
     /**
@@ -69,6 +92,6 @@ class FileController extends BaseController
         $file->delete();
 
         return redirect()
-            ->route('file-man::file.index');
+            ->route('laravel-file-man::file.index');
     }
 }

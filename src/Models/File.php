@@ -11,6 +11,8 @@ class File extends Model
 
     protected $guarded = ['id'];
 
+    protected $table = 'fm_files';
+
     // Belongs to
     public function folder () {
         return $this->belongsTo(Folder::class);

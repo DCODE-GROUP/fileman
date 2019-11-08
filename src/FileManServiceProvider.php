@@ -19,7 +19,6 @@ class FileManServiceProvider extends ServiceProvider
                 __DIR__.'/../config/filemanager.php' => config_path('filemanager.php'),
             ], 'config');
 
-
             if (!class_exists('CreateFileManagerTables')) {
                 $timestamp = date('Y_m_d_His', time());
                 $this->publishes([
@@ -27,8 +26,9 @@ class FileManServiceProvider extends ServiceProvider
                 ], 'migrations');
             }
 
-            $this->loadViewsFrom(__DIR__ . '/Views', 'file-man');
         }
+
+        $this->loadViewsFrom(__DIR__ . '/Views', 'laravel-file-man');
     }
 
     /**

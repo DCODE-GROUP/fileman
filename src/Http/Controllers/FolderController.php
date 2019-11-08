@@ -17,9 +17,11 @@ class FolderController extends BaseController
         $folder = FolderService::getFolder(request('path'));
         $path = request('path') ?? '_root';
 
-        return view('file-man::folder')
-            ->with('path', $path)
-            ->with('folder', $folder);
+        return view('laravel-file-man::index')
+            ->with([
+                'path' => $path,
+                'folder' => $folder,
+            ]);
     }
 
     /**
@@ -27,8 +29,16 @@ class FolderController extends BaseController
      */
     public function create()
     {
-        return view('file-man::folder.edit')
-            ->with('parent', Folder::find(request('parent')));
+        $method = 'post';
+        $action = route('file-man.folder.store');
+        $parent = Folder::find(request()->query('folder'));
+
+        return view('laravel-file-man::folder.edit')
+            ->with([
+                'method' => $method,
+                'action' => $action,
+                'parent' => $parent,
+            ]);
     }
 
     /**
@@ -37,13 +47,15 @@ class FolderController extends BaseController
      */
     public function store(FolderRequest $request)
     {
+        $path = Folder::find(request()->input('parent_id'))->path;
+
         FolderService::save(null, $request->all());
 
-        $path = Folder::find(request('parent_id'))->path;
-
         return redirect()
-            ->route('file-man.folder.index', ['path' => $path])
-            ->with('flashNotice', 'Folder saved.');
+            ->route('file-man.folder.index')
+            ->with([
+                'path' => $path,
+            ]);
     }
 
     /**
@@ -52,9 +64,17 @@ class FolderController extends BaseController
      */
     public function edit(Folder $folder)
     {
-        return view('file-man::folder.edit')
-            ->with('parent', Folder::find(request('parent')))
-            ->with('record', $folder);
+        $method = 'put';
+        $action = route('file-man.folder.update', $folder->id);
+        $parent = Folder::find(request()->query('folder'));
+
+        return view('laravel-file-man::folder.edit')
+            ->with([
+                'method' => $method,
+                'action' => $action,
+                'parent' => $parent,
+                'folder' => $folder,
+            ]);
     }
 
     /**
@@ -64,12 +84,15 @@ class FolderController extends BaseController
      */
     public function update(FolderRequest $request, Folder $folder)
     {
+        $path = Folder::find(request()->input('parent_id'))->path;
+
         FolderService::save($folder, $request->all());
-        $path = Folder::find(request('parent_id'))->path;
 
         return redirect()
-            ->route('file-man.folder.index', ['path' => $path])
-            ->with('flashNotice', 'Folder saved.');
+            ->route('file-man.folder.index')
+            ->with([
+                'path' => $path,
+            ]);
     }
 
     /**
@@ -79,12 +102,15 @@ class FolderController extends BaseController
      */
     public function destroy(Folder $folder)
     {
+        $path = Folder::find(request()->input('parent_id'))->path;
+
         $folder->delete();
-        $path = Folder::find(request('parent_id'))->path;
 
         return redirect()
-            ->route('file-man.folder.index', ['path' => $path])
-            ->with('flashNotice', 'Folder deleted.');
+            ->route('file-man.folder.index')
+            ->with([
+                'path' => $path,
+            ]);
     }
 
     /**
@@ -95,7 +121,9 @@ class FolderController extends BaseController
         FolderService::sync();
 
         return redirect()
-            ->route('file-man.folder.index', ['path' => ''])
-            ->with('flashNotice', 'Folders synced.');
+            ->route('file-man.folder.index')
+            ->with([
+                'path' => '',
+            ]);
     }
 }

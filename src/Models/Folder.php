@@ -11,6 +11,8 @@ class Folder extends Model
 
     protected $guarded = ['id'];
 
+    protected $table = 'fm_folders';
+    
     // Belongs to
     public function parent () {
         return $this->belongsTo(Folder::class, 'parent_id');
