@@ -2,8 +2,8 @@
 
 namespace DcodeGroup\FileMan\Services;
 
-use App\Models\File;
-use App\Models\Folder;
+use DcodeGroup\FileMan\Models\File;
+use DcodeGroup\FileMan\Models\Folder;
 use Illuminate\Support\Facades\Storage;
 
 class FolderService
