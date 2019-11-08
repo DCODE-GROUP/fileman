@@ -19,7 +19,7 @@ class FileController extends BaseController
         $action = route('file-man.file.store');
         $folder = Folder::find(request()->query('folder'));
 
-        return view('laravel-file-man::file.edit')
+        return view('file-man::file.edit')
             ->with([
                 'action' => $action,
                 'method' => $method,
@@ -54,7 +54,7 @@ class FileController extends BaseController
         $action = route('file-man.file.update', $file->id);
         $folder = Folder::find(request()->query('folder'));
 
-        return view('laravel-file-man::file.edit')
+        return view('file-man::file.edit')
             ->with([
                 'action' => $action,
                 'method' => $method,
@@ -92,6 +92,6 @@ class FileController extends BaseController
         $file->delete();
 
         return redirect()
-            ->route('laravel-file-man::file.index');
+            ->route('file-man::file.index');
     }
 }

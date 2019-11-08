@@ -17,7 +17,7 @@ class FolderController extends BaseController
         $folder = FolderService::getFolder(request('path'));
         $path = request('path') ?? '_root';
 
-        return view('laravel-file-man::index')
+        return view('file-man::index')
             ->with([
                 'path' => $path,
                 'folder' => $folder,
@@ -33,7 +33,7 @@ class FolderController extends BaseController
         $action = route('file-man.folder.store');
         $parent = Folder::find(request()->query('folder'));
 
-        return view('laravel-file-man::folder.edit')
+        return view('file-man::folder.edit')
             ->with([
                 'method' => $method,
                 'action' => $action,
@@ -68,7 +68,7 @@ class FolderController extends BaseController
         $action = route('file-man.folder.update', $folder->id);
         $parent = Folder::find(request()->query('folder'));
 
-        return view('laravel-file-man::folder.edit')
+        return view('file-man::folder.edit')
             ->with([
                 'method' => $method,
                 'action' => $action,

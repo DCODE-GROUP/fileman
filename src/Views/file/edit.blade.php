@@ -6,7 +6,7 @@
 </head>
 <body>
     <div>
-        @include('laravel-file-man::_components.path-display', ['folder' => $folder])
+        @include('file-man::_components.path-display', ['folder' => $folder])
         <form action="{{ $action }}"
               method="post"
               enctype="multipart/form-data">

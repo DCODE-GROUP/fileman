@@ -6,9 +6,9 @@
 </head>
 <body>
     <div>
-        @include('laravel-file-man::_components.path-display', ['folder' => $folder])<br>
-        @include('laravel-file-man::_components.folders-display', ['folder' => $folder])
-        @include('laravel-file-man::_components.files-display', ['folder' => $folder])
+        @include('file-man::_components.path-display', ['folder' => $folder])<br>
+        @include('file-man::_components.folders-display', ['folder' => $folder])
+        @include('file-man::_components.files-display', ['folder' => $folder])
         <a href="{{ route('file-man.folder.create', ['folder' => $folder]) }}">+Add Folder</a><br>
         <a href="{{ route('file-man.file.create', ['folder' => $folder]) }}">+Upload File</a>
     </div>
