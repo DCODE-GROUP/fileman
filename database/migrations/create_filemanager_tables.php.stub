@@ -45,8 +45,8 @@
 
             public function down()
             {
-                Schema::drop('fm_folders');
-                Schema::drop('fm_files');
                 Schema::drop('fm_thumbs');
+                Schema::drop('fm_files');
+                Schema::drop('fm_folders');
             }
         }
