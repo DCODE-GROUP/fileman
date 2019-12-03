@@ -16,10 +16,10 @@ class FileController extends BaseController
     public function create()
     {
         $method = 'post';
-        $action = route('file-man.file.store');
+        $action = route('fileman.file.store');
         $folder = Folder::find(request()->query('folder'));
 
-        return view('file-man::file.edit')
+        return view('fileman::file.edit')
             ->with([
                 'action' => $action,
                 'method' => $method,
@@ -38,7 +38,7 @@ class FileController extends BaseController
         FileService::save(null, $request->all());
 
         return redirect()
-            ->route('file-man.folder.index')
+            ->route('fileman.folder.index')
             ->with([
                 'path' => $path,
             ]);
@@ -51,10 +51,10 @@ class FileController extends BaseController
     public function edit(File $file)
     {
         $method = 'put';
-        $action = route('file-man.file.update', $file->id);
+        $action = route('fileman.file.update', $file->id);
         $folder = Folder::find(request()->query('folder'));
 
-        return view('file-man::file.edit')
+        return view('fileman::file.edit')
             ->with([
                 'action' => $action,
                 'method' => $method,
@@ -76,7 +76,7 @@ class FileController extends BaseController
         FileService::save($file, $request->all());
 
         return redirect()
-            ->route('file-man.folder.index')
+            ->route('fileman.folder.index')
             ->with([
                 'path' => $path,
             ]);
@@ -92,6 +92,6 @@ class FileController extends BaseController
         $file->delete();
 
         return redirect()
-            ->route('file-man::file.index');
+            ->route('fileman::file.index');
     }
 }

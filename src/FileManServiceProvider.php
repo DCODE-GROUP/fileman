@@ -2,6 +2,7 @@
 
 namespace DcodeGroup\FileMan;
 
+use DcodeGroup\FileMan\Commands\SyncFiles;
 use Illuminate\Support\ServiceProvider;
 
 class FileManServiceProvider extends ServiceProvider
@@ -15,8 +16,12 @@ class FileManServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
 
+            $this->commands([
+                SyncFiles::class,
+            ]);
+
             $this->publishes([
-                __DIR__.'/../config/filemanager.php' => config_path('filemanager.php'),
+                __DIR__.'/../config/fileman.php' => config_path('fileman.php'),
             ], 'config');
 
             if (!class_exists('CreateFileManagerTables')) {
@@ -28,7 +33,7 @@ class FileManServiceProvider extends ServiceProvider
 
         }
 
-        $this->loadViewsFrom(__DIR__ . '/views', 'file-man');
+        $this->loadViewsFrom(__DIR__ . '/views', 'fileman');
     }
 
     /**

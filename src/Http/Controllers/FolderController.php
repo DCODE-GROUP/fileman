@@ -17,7 +17,7 @@ class FolderController extends BaseController
         $folder = FolderService::getFolder(request('path'));
         $path = request('path') ?? '_root';
 
-        return view('file-man::index')
+        return view('fileman::index')
             ->with([
                 'path' => $path,
                 'folder' => $folder,
@@ -30,10 +30,10 @@ class FolderController extends BaseController
     public function create()
     {
         $method = 'post';
-        $action = route('file-man.folder.store');
+        $action = route('fileman.folder.store');
         $parent = Folder::find(request()->query('folder'));
 
-        return view('file-man::folder.edit')
+        return view('fileman::folder.edit')
             ->with([
                 'method' => $method,
                 'action' => $action,
@@ -52,7 +52,7 @@ class FolderController extends BaseController
         FolderService::save(null, $request->all());
 
         return redirect()
-            ->route('file-man.folder.index')
+            ->route('fileman.folder.index')
             ->with([
                 'path' => $path,
             ]);
@@ -65,10 +65,10 @@ class FolderController extends BaseController
     public function edit(Folder $folder)
     {
         $method = 'put';
-        $action = route('file-man.folder.update', $folder->id);
+        $action = route('fileman.folder.update', $folder->id);
         $parent = Folder::find(request()->query('folder'));
 
-        return view('file-man::folder.edit')
+        return view('fileman::folder.edit')
             ->with([
                 'method' => $method,
                 'action' => $action,
@@ -89,7 +89,7 @@ class FolderController extends BaseController
         FolderService::save($folder, $request->all());
 
         return redirect()
-            ->route('file-man.folder.index')
+            ->route('fileman.folder.index')
             ->with([
                 'path' => $path,
             ]);
@@ -107,23 +107,9 @@ class FolderController extends BaseController
         $folder->delete();
 
         return redirect()
-            ->route('file-man.folder.index')
+            ->route('fileman.folder.index')
             ->with([
                 'path' => $path,
-            ]);
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function sync()
-    {
-        FolderService::sync();
-
-        return redirect()
-            ->route('file-man.folder.index')
-            ->with([
-                'path' => '',
             ]);
     }
 }

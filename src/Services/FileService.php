@@ -22,7 +22,7 @@ class FileService
             ]);
         }
 
-        $path = 'file-man';
+        $path = 'fileman';
         $filename = uniqid().'-'.$saveData['name'];
         $source = Storage::disk('s3')->putFileAs($path, $saveData['file'], $filename);
 

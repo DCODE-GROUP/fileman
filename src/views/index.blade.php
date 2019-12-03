@@ -1,16 +1,13 @@
-@extends('file-man::layouts.base')
+@extends('fileman::layouts.base')
 
 @section('content')
     <div>
-        <a class="fm-action" href="{{ route('file-man.folder.sync') }}">Sync</a><br>
+        @include('fileman::components.path-display', ['folder' => $folder])<br>
+        @include('fileman::components.folders-display', ['folder' => $folder])
+        @include('fileman::components.files-display', ['folder' => $folder])
     </div>
     <div>
-        @include('file-man::components.path-display', ['folder' => $folder])<br>
-        @include('file-man::components.folders-display', ['folder' => $folder])
-        @include('file-man::components.files-display', ['folder' => $folder])
-    </div>
-    <div>
-        <a class="fm-action" href="{{ route('file-man.folder.create', ['folder' => $folder]) }}">+Add Folder</a><br>
-        <a class="fm-action" href="{{ route('file-man.file.create', ['folder' => $folder]) }}">+Add File</a>
+        <a class="fm-action" href="{{ route('fileman.folder.create', ['folder' => $folder]) }}">+Add Folder</a><br>
+        <a class="fm-action" href="{{ route('fileman.file.create', ['folder' => $folder]) }}">+Add File</a>
     </div>
 @endsection

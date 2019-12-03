@@ -1,8 +1,8 @@
-@extends('file-man::layouts.base')
+@extends('fileman::layouts.base')
 
 @section('content')
     <div>
-        @include('file-man::components.path-display', ['folder' => $folder])
+        @include('fileman::components.path-display', ['folder' => $folder])
         <form action="{{ $action }}"
               method="post"
               enctype="multipart/form-data">
