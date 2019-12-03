@@ -1,10 +1,10 @@
 <?php
 
-namespace DcodeGroup\FileMan\Http\Controllers;
+namespace DcodeGroup\Fileman\Http\Controllers;
 
-use DcodeGroup\FileMan\Http\Requests\FolderRequest;
-use DcodeGroup\FileMan\Models\Folder;
-use DcodeGroup\FileMan\Services\FolderService;
+use DcodeGroup\Fileman\Http\Requests\FolderRequest;
+use DcodeGroup\Fileman\Models\Folder;
+use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Routing\Controller as BaseController;
 
 class FolderController extends BaseController

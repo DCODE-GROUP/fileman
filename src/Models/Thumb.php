@@ -1,6 +1,6 @@
 <?php
 
-namespace DcodeGroup\FileMan\Models;
+namespace DcodeGroup\Fileman\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

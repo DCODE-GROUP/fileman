@@ -1,11 +1,11 @@
 <?php
 
-namespace DcodeGroup\FileMan;
+namespace DcodeGroup\Fileman;
 
-use DcodeGroup\FileMan\Commands\SyncFiles;
+use DcodeGroup\Fileman\Commands\SyncFiles;
 use Illuminate\Support\ServiceProvider;
 
-class FileManServiceProvider extends ServiceProvider
+class FilemanServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
@@ -24,7 +24,7 @@ class FileManServiceProvider extends ServiceProvider
                 __DIR__.'/../config/fileman.php' => config_path('fileman.php'),
             ], 'config');
 
-            if (!class_exists('CreateFileManagerTables')) {
+            if (!class_exists('CreateFilemanagerTables')) {
                 $timestamp = date('Y_m_d_His', time());
                 $this->publishes([
                     __DIR__.'/../database/migrations/create_filemanager_tables.php.stub' => database_path('migrations/'.$timestamp.'_create_filemanager_tables.php'),

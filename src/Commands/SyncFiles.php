@@ -1,8 +1,8 @@
 <?php
 
-namespace DcodeGroup\FileMan\Commands;
+namespace DcodeGroup\Fileman\Commands;
 
-use DcodeGroup\FileMan\Services\FolderService;
+use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Console\Command;
 
 class SyncFiles extends Command

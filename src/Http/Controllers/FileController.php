@@ -1,11 +1,11 @@
 <?php
 
-namespace DcodeGroup\FileMan\Http\Controllers;
+namespace DcodeGroup\Fileman\Http\Controllers;
 
-use DcodeGroup\FileMan\Http\Requests\FileRequest;
-use DcodeGroup\FileMan\Models\File;
-use DcodeGroup\FileMan\Models\Folder;
-use DcodeGroup\FileMan\Services\FileService;
+use DcodeGroup\Fileman\Http\Requests\FileRequest;
+use DcodeGroup\Fileman\Models\File;
+use DcodeGroup\Fileman\Models\Folder;
+use DcodeGroup\Fileman\Services\FileService;
 use Illuminate\Routing\Controller as BaseController;
 
 class FileController extends BaseController

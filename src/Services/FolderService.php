@@ -1,9 +1,9 @@
 <?php
 
-namespace DcodeGroup\FileMan\Services;
+namespace DcodeGroup\Fileman\Services;
 
-use DcodeGroup\FileMan\Models\File;
-use DcodeGroup\FileMan\Models\Folder;
+use DcodeGroup\Fileman\Models\File;
+use DcodeGroup\Fileman\Models\Folder;
 use Illuminate\Support\Facades\Storage;
 
 class FolderService
