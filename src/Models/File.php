@@ -23,8 +23,15 @@ class File extends Model
         return $this->hasOne(Thumb::class);
     }
 
-    public function getUrlAttribute()
+    public function getPreview()
     {
-        return env('AWS_URL').$this->source;
+        if (in_array($this->type, ['png', 'jpg', 'jpeg'])) {
+            return $this->getUrl();
+        }
+    }
+
+    public function getUrl()
+    {
+        return env('AWS_URL', '//d3k6t6l60lmqbi.cloudfront.net/').$this->source;
     }
 }

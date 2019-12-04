@@ -5,6 +5,7 @@ namespace DcodeGroup\FileMan\Services;
 use DcodeGroup\FileMan\Models\File;
 use DcodeGroup\FileMan\Models\Folder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Collection;
 
 class FolderService
 {
@@ -32,6 +33,22 @@ class FolderService
         }
 
         return $folder;
+    }
+
+    public static function getDirectoryStructure(Collection $folders, $parent_id = null)
+    {
+        $tree = [];
+        foreach ($folders as $index => $folder) {
+            if ($folder->parent_id === $parent_id) {
+                $folders->pull($index);
+                $tree[] = [
+                    'name' => $folder->name,
+                    'url' => route('fileman.folder.index', $folder->id),
+                    'children' => self::getDirectoryStructure($folders, $folder->id),
+                ];
+            }
+        }
+        return $tree;
     }
 
     /**

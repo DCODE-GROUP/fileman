@@ -33,7 +33,7 @@ class FileManServiceProvider extends ServiceProvider
 
         }
 
-        $this->loadViewsFrom(__DIR__ . '/views', 'fileman');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'fileman');
     }
 
     /**

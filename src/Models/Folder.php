@@ -9,9 +9,15 @@ class Folder extends Model
 {
     use SoftDeletes;
 
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id'
+    ];
 
     protected $table = 'fm_folders';
+
+    /*
+     * Relationships
+     */
 
     public function parent()
     {
@@ -28,37 +34,27 @@ class Folder extends Model
         return $this->hasMany(File::class);
     }
 
-    public function getPathAttribute()
-    {
-        $path = '';
-        $folder = $this;
-        $array = [];
-        while ($folder) {
-            $array[] = $folder->name;
-            $folder = $folder->parent;
-        }
+    /*
+     * Methods
+     */
 
-        return implode('/', array_reverse($array));
-    }
-
-    public function getPathArrayAttribute()
+    public function getPath()
     {
-        $path = '';
         $folder = $this;
         $array = [];
         while ($folder) {
             $array[] = [
                 'name' => $folder->name,
-                'path' => $folder->path,
+                'url' => route('fileman.folder.index', $folder->id),
             ];
             $folder = $folder->parent;
         }
-
         return array_reverse($array);
     }
 
-    public function getChild($name)
+    public static function getRoot()
     {
-        return $this->children()->where('name', 'LIKE', '%'.$name.'%')->first();
+        return Folder::whereNull('parent_id')->first();
     }
+
 }

@@ -12,7 +12,9 @@ class Routes
             'as' => 'fileman.',
             'namespace' => '\DcodeGroup\FileMan\Http\Controllers',
         ], function () {
-            Route::resource('folder', 'FolderController');
+            Route::get('folder/{folder?}', 'FolderController@index')->name('folder.index');
+            
+//            Route::resource('folder', 'FolderController');
             Route::resource('file', 'FileController')->except('index');
         });
     }

@@ -4,6 +4,7 @@ namespace DcodeGroup\FileMan\Http\Controllers;
 
 use DcodeGroup\FileMan\Http\Requests\FolderRequest;
 use DcodeGroup\FileMan\Models\Folder;
+use DcodeGroup\FileMan\Services\FileService;
 use DcodeGroup\FileMan\Services\FolderService;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -12,15 +13,23 @@ class FolderController extends BaseController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Folder $folder = null)
     {
-        $folder = FolderService::getFolder(request('path'));
-        $path = request('path') ?? '_root';
+        if (!$folder) {
+            $folder = Folder::getRoot();
+        }
+
+        $folders = Folder::with('children')->get();
+        $directory = FolderService::getDirectoryStructure($folders)[0];
+        $path = $folder->getPath();
+        $files = $folder->files;
 
         return view('fileman::index')
             ->with([
-                'path' => $path,
                 'folder' => $folder,
+                'directory' => $directory,
+                'path' => $path,
+                'files' => $files
             ]);
     }
 
