@@ -1,5 +1,5 @@
 ## Installation
 
-- \DcodeGroup\FileMan\Routes::get();
+- \DcodeGroup\Fileman\Routes::get();
 - Publish migrations
 - php artisan fileman:sync

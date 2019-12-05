@@ -1,11 +1,11 @@
 <?php
 
-namespace DcodeGroup\FileMan;
+namespace DcodeGroup\Fileman;
 
-use DcodeGroup\FileMan\Commands\SyncFiles;
+use DcodeGroup\Fileman\Commands\SyncFiles;
 use Illuminate\Support\ServiceProvider;
 
-class FileManServiceProvider extends ServiceProvider
+class FilemanServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.

@@ -14,13 +14,13 @@
     },
     "autoload": {
         "psr-4": {
-            "DcodeGroup\\FileMan\\": "src/"
+            "DcodeGroup\\Fileman\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "DcodeGroup\\FileMan\\FileManServiceProvider"
+                "DcodeGroup\\Fileman\\FilemanServiceProvider"
             ]
         }
     },

@@ -1,6 +1,6 @@
 <?php
 
-namespace DcodeGroup\FileMan\Http\Controllers;
+namespace DcodeGroup\Fileman\Http\Controllers;
 
 use DcodeGroup\FileMan\Http\Requests\FolderRequest;
 use DcodeGroup\FileMan\Models\Folder;

@@ -1,6 +1,6 @@
 <?php
 
-namespace DcodeGroup\FileMan\Http\Requests;
+namespace DcodeGroup\Fileman\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
