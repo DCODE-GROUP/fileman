@@ -60,6 +60,18 @@ body {
         }
     }
 
+    .path,
+    .directory,
+    .action,
+    .grid {
+        padding: 8px;
+    }
+
+    .side,
+    .main {
+        min-height: 100vh;
+    }
+
     .main {
         display: flex;
         flex-direction: column;
@@ -71,24 +83,13 @@ body {
         flex: 0 0 auto;
         width: 300px;
         border-right: 2px solid #c4c4c4;
-
-        .path,
-        .directory {
-            margin-bottom: 8px;
-        }
-        .path {
-            border-bottom: 2px solid #c4c4c4;
-        }
     }
 
-    .side .path,
-    .side .directory,
-    .main {
-        padding: 8px;
+    .path,
+    .actions {
+        height: 36px;
+        border-bottom: 2px solid #c4c4c4;
+        margin-bottom: 8px;
     }
 
-    .side,
-    .main {
-        min-height: 100vh;
-    }
 }
