@@ -15,6 +15,14 @@
             </div>
         </div>
         <div class="main">
+            <div class="actions">
+                <a href="{{ route('fileman.folder.create', ['folder' => $folder]) }}">
+                    +Add Folder
+                </a>
+                <a href="{{ route('fileman.file.create', ['folder' => $folder]) }}">
+                    +Add File
+                </a>
+            </div>
             <div class="grid">
                 @foreach ($folder->files as $file)
                     <div class="cell">
@@ -26,8 +34,4 @@
             </div>
         </div>
     </div>
-{{--    <div>--}}
-{{--        <a class="fm-action" href="{{ route('fileman.folder.create', ['folder' => $folder]) }}">+Add Folder</a><br>--}}
-{{--        <a class="fm-action" href="{{ route('fileman.file.create', ['folder' => $folder]) }}">+Add File</a>--}}
-{{--    </div>--}}
 @endsection
