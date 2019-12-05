@@ -4,7 +4,6 @@ namespace DcodeGroup\Fileman\Http\Controllers;
 
 use DcodeGroup\Fileman\Http\Requests\FolderRequest;
 use DcodeGroup\Fileman\Models\Folder;
-use DcodeGroup\Fileman\Services\FileService;
 use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -19,8 +18,7 @@ class FolderController extends BaseController
             $folder = Folder::getRoot();
         }
 
-        $folders = Folder::with('children')->get();
-        $directory = FolderService::getDirectoryStructure($folders)[0];
+        $directory = FolderService::getDirectoryStructure(Folder::with('children')->get())[0]; // The [0] is a bit of a hack but it's currently nessisary.
         $path = $folder->getPath();
         $files = $folder->files;
 
@@ -36,14 +34,17 @@ class FolderController extends BaseController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Folder $parent)
     {
         $method = 'post';
-        $action = route('fileman.folder.store');
-        $parent = Folder::find(request()->query('folder'));
+        $action = route('fileman.folder.store', $parent);
+        $directory = FolderService::getDirectoryStructure(Folder::with('children')->get())[0];
+        $path = $parent->getPath();
 
         return view('fileman::folder.edit')
             ->with([
+                'directory' => $directory,
+                'path' => $path,
                 'method' => $method,
                 'action' => $action,
                 'parent' => $parent,
@@ -54,71 +55,14 @@ class FolderController extends BaseController
      * @param  FolderRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(FolderRequest $request)
+    public function store(FolderRequest $request, Folder $parent)
     {
-        $path = Folder::find(request()->input('parent_id'))->path;
-
-        FolderService::save(null, $request->all());
+        $folder = Folder::create([
+            'name' => request()->input('name'),
+            'parent_id' => $parent->id,
+        ]);
 
         return redirect()
-            ->route('fileman.folder.index')
-            ->with([
-                'path' => $path,
-            ]);
-    }
-
-    /**
-     * @param  Folder  $folder
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit(Folder $folder)
-    {
-        $method = 'put';
-        $action = route('fileman.folder.update', $folder->id);
-        $parent = Folder::find(request()->query('folder'));
-
-        return view('fileman::folder.edit')
-            ->with([
-                'method' => $method,
-                'action' => $action,
-                'parent' => $parent,
-                'folder' => $folder,
-            ]);
-    }
-
-    /**
-     * @param  FolderRequest  $request
-     * @param  Folder  $folder
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(FolderRequest $request, Folder $folder)
-    {
-        $path = Folder::find(request()->input('parent_id'))->path;
-
-        FolderService::save($folder, $request->all());
-
-        return redirect()
-            ->route('fileman.folder.index')
-            ->with([
-                'path' => $path,
-            ]);
-    }
-
-    /**
-     * @param  Folder  $folder
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function destroy(Folder $folder)
-    {
-        $path = Folder::find(request()->input('parent_id'))->path;
-
-        $folder->delete();
-
-        return redirect()
-            ->route('fileman.folder.index')
-            ->with([
-                'path' => $path,
-            ]);
+            ->route('fileman.folder.index', $folder);
     }
 }

@@ -6,6 +6,7 @@ use DcodeGroup\Fileman\Http\Requests\FileRequest;
 use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
 use DcodeGroup\Fileman\Services\FileService;
+use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Routing\Controller as BaseController;
 
 class FileController extends BaseController
@@ -13,17 +14,20 @@ class FileController extends BaseController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Folder $parent)
     {
         $method = 'post';
-        $action = route('fileman.file.store');
-        $folder = Folder::find(request()->query('folder'));
+        $action = route('fileman.file.store', $parent);
+        $directory = FolderService::getDirectoryStructure(Folder::with('children')->get())[0];
+        $path = $parent->getPath();
 
         return view('fileman::file.edit')
             ->with([
+                'directory' => $directory,
+                'path' => $path,
+                'parent' => $parent,
                 'action' => $action,
                 'method' => $method,
-                'folder' => $folder,
             ]);
     }
 
@@ -42,56 +46,5 @@ class FileController extends BaseController
             ->with([
                 'path' => $path,
             ]);
-    }
-
-    /**
-     * @param  File  $file
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit(File $file)
-    {
-        $method = 'put';
-        $action = route('fileman.file.update', $file->id);
-        $folder = Folder::find(request()->query('folder'));
-
-        return view('fileman::file.edit')
-            ->with([
-                'action' => $action,
-                'method' => $method,
-                'folder' =>  $folder,
-                'file' =>  $file,
-            ]);
-
-    }
-
-    /**
-     * @param  FileRequest  $request
-     * @param  File  $file
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(FileRequest $request, File $file)
-    {
-        $path = Folder::find(request()->input('folder_id'))->path;
-
-        FileService::save($file, $request->all());
-
-        return redirect()
-            ->route('fileman.folder.index')
-            ->with([
-                'path' => $path,
-            ]);
-    }
-
-    /**
-     * @param  File  $file
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function destroy(File $file)
-    {
-        $file->delete();
-
-        return redirect()
-            ->route('fileman::file.index');
     }
 }

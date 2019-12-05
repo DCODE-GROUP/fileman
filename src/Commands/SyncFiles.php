@@ -2,6 +2,7 @@
 
 namespace DcodeGroup\Fileman\Commands;
 
+use DcodeGroup\Fileman\Services\FilemanService;
 use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Console\Command;
 
@@ -40,7 +41,7 @@ class SyncFiles extends Command
     {
         $bucketName = config('filesystems.disks.s3.bucket');
         $this->info("Please wait indexing bucket {$bucketName}...");
-        FolderService::sync();
+        FilemanService::sync();
         $this->info("Sync complete.");
     }
 }

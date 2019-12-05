@@ -16,22 +16,21 @@ class FileService
     public static function save(File $file = null, $saveData = [])
     {
         if (!$file) {
-            $file = File::firstOrNew([
-                'folder_id' => $saveData['folder_id'],
-                'name' => $saveData['name'],
-            ]);
+            $file = new File();
         }
 
+        $name = isset($saveData['name']) ? $saveData['name'] : $saveData['file']->getClientOriginalName();
+
         $path = 'fileman';
-        $filename = uniqid().'-'.$saveData['name'];
+        $filename = uniqid().'-'.$name;
         $source = Storage::disk('s3')->putFileAs($path, $saveData['file'], $filename);
 
-        $file->name = $saveData['name'];
         $file->source = $source;
+        $file->name = $name;
+        $file->folder_id = $saveData['folder_id'];
         $file->type = $saveData['file']->getMimeType();
         $file->size = $saveData['file']->getSize();
         $file->save();
-
 
         return $file;
     }

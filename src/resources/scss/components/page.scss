@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    * {
+        box-sizing: border-box;
+    }
+}
+
+.page {
+    display: flex;
+    justify-content: flex-start;
+
+    .path,
+    .directory,
+    .action,
+    .grid {
+        padding: 8px;
+    }
+
+    .side,
+    .main {
+        min-height: 100vh;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        flex: 0 1 auto;
+        width: 100%;
+    }
+
+    .side {
+        flex: 0 0 auto;
+        width: 300px;
+        border-right: 2px solid #c4c4c4;
+    }
+
+    .path,
+    .actions {
+        height: 36px;
+        border-bottom: 2px solid #c4c4c4;
+        margin-bottom: 8px;
+    }
+}

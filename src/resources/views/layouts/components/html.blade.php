@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="{{ asset('vendor/fileman/css/fileman.css') }}"/>
 </head>
 <body>
-    @yield('content')
+    {{ $body }}
 </body>
+    <script src="{{ asset('vendor/fileman/js/vendor.js') }}"></script>
     <script src="{{ asset('vendor/fileman/js/fileman.js') }}"></script>
 </html>
