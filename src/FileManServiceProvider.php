@@ -24,6 +24,10 @@ class FileManServiceProvider extends ServiceProvider
                 __DIR__.'/../config/fileman.php' => config_path('fileman.php'),
             ], 'config');
 
+            $this->publishes([
+                __DIR__.'/../dist/' => public_path('vendor/fileman'),
+            ], 'styles');
+
             if (!class_exists('CreateFileManagerTables')) {
                 $timestamp = date('Y_m_d_His', time());
                 $this->publishes([

@@ -1,6 +1,9 @@
-<a href="{{ isset($folder['url']) ? $folder['url'] : '' }}">{{ isset($folder['name']) ? $folder['name'] : '' }}</a>
-<ul>
-    @if (isset($folder['children']) && count($folder['children']) > 0)
+<a href="{{ isset($folder['url']) ? $folder['url'] : '' }}">
+    <i class="far fa-folder"></i>
+    <span>{{ isset($folder['name']) ? $folder['name'] : '' }}</span>
+</a>
+@if (isset($folder['children']) && count($folder['children']) > 0)
+    <ul>
         @foreach ($folder['children'] as $child)
             <li>
                 @include('fileman::components.folder', [
@@ -8,5 +11,5 @@
                 ])
             </li>
         @endforeach
-    @endif
-</ul>
+    </ul>
+@endif

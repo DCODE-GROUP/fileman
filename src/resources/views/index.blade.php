@@ -15,14 +15,15 @@
             </div>
         </div>
         <div class="main">
+            <div class="grid">
                 @foreach ($folder->files as $file)
-                    <div>
-                        <a href="{{ $file->getUrl() }}">
-                            <div style="background-image: url({{ $file->getPreview() }})"></div>
-                            <span>{{ $file->name }}</span>
-                        </a>
+                    <div class="cell">
+                        @include('fileman::components.file', [
+                            'file' => $file,
+                        ])
                     </div>
                 @endforeach
+            </div>
         </div>
     </div>
 {{--    <div>--}}
