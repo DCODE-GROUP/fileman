@@ -1,4 +1,3 @@
-@dd($file->getUrl())
 <a class="file"
    data-file="{{ json_encode($file) }}"
    href="{{ $file->onClick() }}"
