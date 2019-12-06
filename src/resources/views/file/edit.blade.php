@@ -1,6 +1,6 @@
 @extends('fileman::layouts.page')
 
-@section('content')
+@section('main')
     <form action="{{ $action }}"
           method="post"
           enctype="multipart/form-data">

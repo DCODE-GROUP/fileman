@@ -12,12 +12,7 @@
                 </div>
             </div>
             <div class="main">
-                <div class="actions">
-                    @yield('actions')
-                </div>
-                <div class="content">
-                    @yield('content')
-                </div>
+                @yield('main')
             </div>
         </div>
     @endslot
