@@ -10884,7 +10884,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faPlus"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faFile"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faFolder"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faTrashAlt"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["library"].add(_fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faFile"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faFolder"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faFileImport"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faFolderPlus"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faTrashAlt"]);
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["dom"].watch();
 
 /***/ }),
@@ -10901,15 +10901,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _default = function _default($el) {
-  _classCallCheck(this, _default);
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  this.$ = $el;
-  this.$.on('click', function (event) {
-    event.preventDefault();
-    console.log('click');
-  });
-};
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default(el) {
+    var _this = this;
+
+    _classCallCheck(this, _default);
+
+    this.$ = $(el);
+    this.selected = false;
+    this.url = this.$.attr('href');
+    this.filename = this.$.find('.filename').text();
+    this.$.on('click', function (event) {
+      _this.onClick();
+    });
+  }
+
+  _createClass(_default, [{
+    key: "onClick",
+    value: function onClick() {
+      if (window.opener && typeof window.opener.selectItems === "function") {
+        event.preventDefault();
+        window.opener.selectItems({
+          url: this.url,
+          filename: this.filename
+        });
+      }
+    }
+  }, {
+    key: "select",
+    value: function select() {
+      this.selected = !this.selected;
+
+      if (this.selected) {
+        this.$.addClass('selected');
+      } else {
+        this.$.removeClass('selected');
+      }
+    }
+  }]);
+
+  return _default;
+}();
 
 
 

@@ -1,0 +1,36 @@
+$white: #fff;
+$black: #0a0a0a;
+
+$primary: #1779ba;
+$fade: 0.2s;
+
+.button {
+    line-height: 1;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid;
+    padding: 6px 9px;
+    border-radius: 99px;
+    text-decoration: none;
+    color: $white;
+    background-color: $primary;
+    transition: all $fade;
+    &:hover {
+        background-color: darken($primary, 7%);
+        border-color: darken($primary, 7%);
+    }
+    &.hollow {
+        border-color: $primary;
+        color: $primary;
+        background-color: transparent;
+        transition: all $fade;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+            border-color: darken($primary, 7%);
+        }
+    }
+    svg + span {
+        margin-left: 3px;
+    }
+}

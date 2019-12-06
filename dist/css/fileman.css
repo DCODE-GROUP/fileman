@@ -1,4 +1,42 @@
+.button {
+  line-height: 1;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid;
+  padding: 6px 9px;
+  border-radius: 99px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #1779ba;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  background-color: #13649a;
+  border-color: #13649a;
+}
+
+.button.hollow {
+  border-color: #1779ba;
+  color: #1779ba;
+  background-color: transparent;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.button.hollow:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: #13649a;
+}
+
+.button svg + span {
+  margin-left: 3px;
+}
+
 body {
+  font-family: "Lato", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", sans-serif;
   margin: 0;
   padding: 0;
 }
