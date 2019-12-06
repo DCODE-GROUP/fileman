@@ -8,10 +8,12 @@
     }
     ul {
         margin: 0;
+        padding-left: 0;
         list-style: none;
         li {
             padding-top: 4px;
             padding-bottom: 4px;
+            padding-left: 16px;
         }
     }
 }
