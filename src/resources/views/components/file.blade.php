@@ -1,4 +1,5 @@
 <a class="file"
+   data-file="{{ json_encode($file) }}"
    href="{{ $file->onClick() }}"
 >
     @if ($file->hasPreview())

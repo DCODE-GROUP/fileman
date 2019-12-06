@@ -2,8 +2,8 @@ export default class {
     constructor(el) {
         this.$ = $(el);
         this.selected = false;
+        this.file = this.$.data('file');
         this.url = this.$.attr('href');
-        this.filename = this.$.find('.filename').text();
         this.$.on('click', event => {
              this.onClick();
         });
@@ -12,8 +12,11 @@ export default class {
         if (window.opener && typeof window.opener.selectItems === "function") {
             event.preventDefault();
             window.opener.selectItems({
+                filename: this.file.name,
+                source: this.file.source,
+                size: this.file.size,
+                type: this.file.type,
                 url: this.url,
-                filename: this.filename,
             });
         }
     }

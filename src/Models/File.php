@@ -31,7 +31,7 @@ class File extends Model
 
     public function onClick()
     {
-        return $this->getUrl();
+        return $this->getSignedUrl();
     }
 
     public function hasPreview()
@@ -42,19 +42,26 @@ class File extends Model
     public function getPreview()
     {
         if ($this->hasPreview()) {
-            return $this->getUrl();
+            return $this->getSignedUrl();
         }
     }
 
     public function getUrl()
     {
+        if (\Config::get('filesystems.disks.s3.url')) {
+            return \Config::get('filesystems.disks.s3.url').$this->source;
+        }
+        return Storage::disk('s3')->url($this->source);
+    }
+
+    public function getSignedUrl()
+    {
         $client = Storage::disk('s3')->getDriver()->getAdapter()->getClient();
         $expiry = "+10 minutes";
         $command = $client->getCommand('GetObject', [
             'Bucket' => \Config::get('filesystems.disks.s3.bucket'),
-            'Key'    => $this->source,
+            'Key' => $this->source,
         ]);
-
         return $client->createPresignedRequest($command, $expiry)->getUri();
     }
 }
