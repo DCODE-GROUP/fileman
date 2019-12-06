@@ -1,6 +1,7 @@
 {
     "name": "dcodegroup/fileman",
     "description": "Laravel package for managing files.",
+    "version": "1.0",
     "authors": [
         {
             "name": "Alex M",
