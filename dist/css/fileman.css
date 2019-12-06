@@ -89,6 +89,10 @@ body * {
   margin-bottom: 8px;
 }
 
+.page .actions {
+  padding: 2px 0 0 2px;
+}
+
 .grid {
   display: -webkit-box;
   display: flex;
