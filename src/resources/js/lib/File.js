@@ -3,7 +3,7 @@ export default class {
         this.$ = $(el);
         this.selected = false;
         this.file = this.$.data('file');
-        this.url = this.$.attr('href');
+        this.url = this.$.data('url');
         this.$.on('click', event => {
              this.onClick();
         });

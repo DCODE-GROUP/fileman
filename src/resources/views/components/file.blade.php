@@ -1,5 +1,6 @@
 <a class="file"
    data-file="{{ json_encode($file) }}"
+   data-url="{{ $file->getUrl() }}"
    href="{{ route('fileman.file.show', [$file->folder, $file->id]) }}"
 >
     @if ($file->hasPreview())
