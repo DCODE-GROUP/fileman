@@ -9,15 +9,16 @@ export default class {
         });
     }
     onClick() {
-        if (window.opener && typeof window.opener.selectItems === "function") {
+        if (window.opener && typeof window.opener.fileman_callback === "function") {
             event.preventDefault();
-            window.opener.selectItems({
+            window.opener.fileman_callback({
                 filename: this.file.name,
                 source: this.file.source,
                 size: this.file.size,
                 type: this.file.type,
                 url: this.url,
             });
+            window.close();
         }
     }
     select() {
