@@ -11,7 +11,7 @@ class FilemanService
     /**
      * @return bool
      */
-    public static function sync()
+    public static function import()
     {
         $folderPaths = Storage::disk('s3')->allDirectories();
 
@@ -39,14 +39,7 @@ class FilemanService
                 $filePaths = Storage::disk('s3')->files($folderPath);
 
                 foreach ($filePaths as $filePath) {
-                    $file = File::firstOrNew([
-                        'folder_id' => $folder->id,
-                        'name' => substr($filePath, strrpos($filePath, '/') + 1),
-                    ]);
-                    $file->source = $filePath;
-                    $file->size = Storage::disk('s3')->size($filePath);
-                    $file->type = substr($filePath, strpos($filePath, '.') + 1);
-                    $file->save();
+                    FileService::newFileFromS3($folder, Storage::getMetaData($filePath));
                 }
             }
         }

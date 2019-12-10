@@ -25,5 +25,5 @@ Add the package routes to your web.php file:
 
 Fileman will connect to the applications S3 bucket automatically. You'll need to have fileman index the bucket first before it can be used. To index the S3 bucket run:
 ```php
-php artisan fileman:sync
+php artisan fileman:import
 ```

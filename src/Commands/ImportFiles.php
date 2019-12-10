@@ -6,21 +6,21 @@ use DcodeGroup\Fileman\Services\FilemanService;
 use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Console\Command;
 
-class SyncFiles extends Command
+class ImportFiles extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'fileman:sync';
+    protected $signature = 'fileman:import';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Sync your files with an S3 Bucket';
+    protected $description = 'Import your files from an S3 Bucket';
 
     /**
      * Create a new command instance.
@@ -41,7 +41,7 @@ class SyncFiles extends Command
     {
         $bucketName = config('filesystems.disks.s3.bucket');
         $this->info("Please wait indexing bucket {$bucketName}...");
-        FilemanService::sync();
-        $this->info("Sync complete.");
+        FilemanService::import();
+        $this->info("Import complete.");
     }
 }

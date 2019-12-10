@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
-class File extends Model
+class File extends Node
 {
     use SoftDeletes;
 
@@ -31,12 +31,12 @@ class File extends Model
 
     public function onClick()
     {
-        return $this->getSignedUrl();
+        return route('fileman.file.show', [$this->folder, $this->id]);
     }
 
     public function hasPreview()
     {
-        return (in_array($this->type, ['png', 'jpg', 'jpeg']) && $this->source);
+        return self::getImageMimes()->contains($this->type) && $this->source;
     }
 
     public function getPreview()
@@ -44,6 +44,7 @@ class File extends Model
         if ($this->hasPreview()) {
             return $this->getSignedUrl();
         }
+        return null;
     }
 
     public function getUrl()
@@ -63,5 +64,22 @@ class File extends Model
             'Key' => $this->source,
         ]);
         return $client->createPresignedRequest($command, $expiry)->getUri();
+    }
+
+    private static function getImageMimes()
+    {
+        return collect([
+            '.bm' => 'image/bmp',
+            '.bmp' => 'image/bmp',
+            '.bmp' => 'image/x-windows-bmp',
+            '.gif' => 'image/gif',
+            '.ico' => 'image/x-icon',
+            '.jpe' => 'image/jpeg',
+            '.jpe' => 'image/pjpeg',
+            '.jpeg' => 'image/jpeg',
+            '.jpg' => 'image/jpeg',
+            '.png' => 'image/png',
+            '.x-png' => 'image/png',
+        ]);
     }
 }

@@ -18,7 +18,7 @@ class FolderController extends BaseController
             $folder = Folder::getRoot();
         }
 
-        $directory = FolderService::getDirectoryStructure(Folder::with('children')->get())[0]; // The [0] is a bit of a hack but it's currently nessisary.
+        $directory = FolderService::getDirectoryStructure();
         $path = $folder->getPath();
         $files = $folder->files;
 
@@ -38,7 +38,7 @@ class FolderController extends BaseController
     {
         $method = 'post';
         $action = route('fileman.folder.store', $parent);
-        $directory = FolderService::getDirectoryStructure(Folder::with('children')->get())[0];
+        $directory = FolderService::getDirectoryStructure();
         $path = $parent->getPath();
 
         return view('fileman::folder.edit')

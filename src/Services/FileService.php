@@ -4,6 +4,7 @@ namespace DcodeGroup\Fileman\Services;
 
 use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class FileService
@@ -13,25 +14,32 @@ class FileService
      * @param  array  $saveData
      * @return File
      */
-    public static function save(File $file = null, $saveData = [])
+    public static function newFile(Folder $parent, UploadedFile $file, String $name = null)
     {
-        if (!$file) {
-            $file = new File();
-        }
-
-        $name = isset($saveData['name']) ? $saveData['name'] : $saveData['file']->getClientOriginalName();
-
         $path = 'fileman';
+        $name = $name ?: $file->getClientOriginalName();
         $filename = uniqid().'-'.$name;
-        $source = Storage::disk('s3')->putFileAs($path, $saveData['file'], $filename);
+        $source = Storage::disk('s3')->putFileAs($path, $file, $filename);
 
-        $file->source = $source;
-        $file->name = $name;
-        $file->folder_id = $saveData['folder_id'];
-        $file->type = $saveData['file']->getMimeType();
-        $file->size = $saveData['file']->getSize();
-        $file->save();
+        return File::updateOrCreate([
+            'folder_id' => $parent->id,
+            'name' => $name,
+        ], [
+            'source' => $source,
+            'type' => $file->getMimeType(),
+            'size' => $file->getSize(),
+        ]);
+    }
 
-        return $file;
+    public static function newFileFromS3(Folder $parent, Array $metaData)
+    {
+        $file = File::updateOrCreate([
+            'folder_id' => $parent->id,
+            'name' => $metaData['filename'],
+        ], [
+            'source' => $metaData['path'],
+            'type' => $metaData['mimetype'],
+            'size' => $metaData['size'],
+        ]);
     }
 }

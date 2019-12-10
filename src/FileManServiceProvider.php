@@ -2,7 +2,7 @@
 
 namespace DcodeGroup\Fileman;
 
-use DcodeGroup\Fileman\Commands\SyncFiles;
+use DcodeGroup\Fileman\Commands\ImportFiles;
 use Illuminate\Support\ServiceProvider;
 
 class FilemanServiceProvider extends ServiceProvider
@@ -17,7 +17,7 @@ class FilemanServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 
             $this->commands([
-                SyncFiles::class,
+                ImportFiles::class,
             ]);
 
             $this->publishes([
@@ -37,7 +37,7 @@ class FilemanServiceProvider extends ServiceProvider
 
         }
 
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'fileman');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'fileman');
     }
 
     /**

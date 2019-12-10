@@ -30,6 +30,9 @@ $fade: 0.2s;
             border-color: darken($primary, 7%);
         }
     }
+    &.danger {
+        background: red;
+    }
     svg + span {
         margin-left: 3px;
     }

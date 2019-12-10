@@ -8,8 +8,10 @@
             @method($method)
         @endif
         @csrf
-        <input type="hidden" name="folder_id" value="{{ $parent->id }}">
-        <input type="file" name="file">
+        <input type="text" name="name" value="{{ old('name') ?? $file->name ?? null }}" placeholder="{{ $method === 'post' ? 'Optional' : null }}">
+        @if ($method === 'post')
+            <input type="file" name="file">
+        @endif
         <input type="submit">
     </form>
 @endsection

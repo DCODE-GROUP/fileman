@@ -5,7 +5,7 @@ namespace DcodeGroup\Fileman\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Folder extends Model
+class Folder extends Node
 {
     use SoftDeletes;
 
@@ -51,6 +51,10 @@ class Folder extends Model
         }
         return array_reverse($array);
     }
+
+    /*
+     * Static Methods
+     */
 
     public static function getRoot()
     {

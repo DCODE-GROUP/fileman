@@ -2,11 +2,18 @@
 
 namespace DcodeGroup\Fileman\Services;
 
+use DcodeGroup\Fileman\Models\Folder;
 use Illuminate\Database\Eloquent\Collection;
 
 class FolderService
 {
-    public static function getDirectoryStructure(Collection $folders, $parent_id = null)
+    public static function getDirectoryStructure()
+    {
+        $folders = Folder::with('children')->get();
+        return self::buildTree($folders)[0]; // The [0] is a bit of a hack but it's currently nessisary.
+    }
+
+    private static function buildTree(Collection $folders, $parent_id = null)
     {
         $tree = [];
         foreach ($folders as $index => $folder) {
@@ -15,7 +22,7 @@ class FolderService
                 $tree[] = [
                     'name' => $folder->name,
                     'url' => route('fileman.folder.index', $folder->id),
-                    'children' => self::getDirectoryStructure($folders, $folder->id),
+                    'children' => self::buildTree($folders, $folder->id),
                 ];
             }
         }
