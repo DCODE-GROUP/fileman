@@ -45,7 +45,7 @@ class File extends Node
     public function getUrl()
     {
         if (\Config::get('filesystems.disks.s3.url')) {
-            return \Config::get('filesystems.disks.s3.url').$this->source;
+            return \Config::get('filesystems.disks.s3.url').'/'.$this->source;
         }
         return Storage::disk('s3')->url($this->source);
     }
