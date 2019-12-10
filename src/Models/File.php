@@ -29,11 +29,6 @@ class File extends Node
      * Methods
      */
 
-    public function onClick()
-    {
-        return route('fileman.file.show', [$this->folder, $this->id]);
-    }
-
     public function hasPreview()
     {
         return self::getImageMimes()->contains($this->type) && $this->source;
@@ -69,17 +64,14 @@ class File extends Node
     private static function getImageMimes()
     {
         return collect([
-            '.bm' => 'image/bmp',
-            '.bmp' => 'image/bmp',
-            '.bmp' => 'image/x-windows-bmp',
-            '.gif' => 'image/gif',
-            '.ico' => 'image/x-icon',
-            '.jpe' => 'image/jpeg',
-            '.jpe' => 'image/pjpeg',
-            '.jpeg' => 'image/jpeg',
-            '.jpg' => 'image/jpeg',
-            '.png' => 'image/png',
-            '.x-png' => 'image/png',
+            'image/bmp',
+            'image/x-windows-bmp',
+            'image/gif',
+            'image/x-icon',
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+            'image/svg',
         ]);
     }
 }
