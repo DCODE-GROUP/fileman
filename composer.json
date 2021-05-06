@@ -3,8 +3,8 @@
     "description": "Laravel package for managing files.",
     "authors": [
         {
-            "name": "Alex M",
-            "email": "alexm@dcode.com.au"
+            "name": "Dcode",
+            "email": "admin@dcode.com.au"
         }
     ],
     "require": {
@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DcodeGroup\\Fileman\\FilemanServiceProvider"
+                "DcodeGroup\\Fileman\\FileManServiceProvider"
             ]
         }
     },

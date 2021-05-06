@@ -5,7 +5,7 @@ namespace DcodeGroup\Fileman;
 use DcodeGroup\Fileman\Commands\ImportFiles;
 use Illuminate\Support\ServiceProvider;
 
-class FilemanServiceProvider extends ServiceProvider
+class FileManServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
