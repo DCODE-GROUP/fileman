@@ -1,3 +1,9 @@
+## Versions
+
+* Legacy branch is for the pre php 8 and pre laravel 8 applications  - maintain 1.4.x on packagist
+* master is for php 8+ and laravel 8 plus. use version 2.0.x on packagist
+
+
 ## Installation
 
 Install the package via composer:
