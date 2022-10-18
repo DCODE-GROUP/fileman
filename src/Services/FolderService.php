@@ -9,7 +9,7 @@ class FolderService
 {
     public static function getDirectoryStructure()
     {
-        $folders = Folder::with('children')->get();
+        $folders = Folder::query()->with('children')->get();
         return self::buildTree($folders)[0]; // The [0] is a bit of a hack but it's currently nessisary.
     }
 

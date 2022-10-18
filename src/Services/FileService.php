@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class FileService
 {
-    /**
-     * @param  File|null  $file
-     * @param  array  $saveData
-     * @return File
-     */
     public static function newFile(Folder $parent, UploadedFile $file, String $name = null)
     {
         $path = 'fileman';
@@ -33,7 +28,7 @@ class FileService
 
     public static function newFileFromS3(Folder $parent, Array $metaData)
     {
-        $file = File::updateOrCreate([
+        File::updateOrCreate([
             'folder_id' => $parent->id,
             'name' => $metaData['filename'],
         ], [

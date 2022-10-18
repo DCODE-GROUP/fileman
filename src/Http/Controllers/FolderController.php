@@ -42,7 +42,7 @@ class FolderController extends BaseController
     {
         return redirect()
             ->route('fileman.folder.index', Folder::create([
-                'name' => request()->input('name'),
+                'name' => $request->input('name'),
                 'parent_id' => $parent->id,
             ]));
     }

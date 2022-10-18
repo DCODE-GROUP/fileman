@@ -40,7 +40,7 @@ class ImportFiles extends Command
     public function handle()
     {
         $bucketName = config('filesystems.disks.s3.bucket');
-        $this->info("Please wait indexing bucket {$bucketName}...");
+        $this->info("Please wait indexing bucket $bucketName...");
         FilemanService::import();
         $this->info("Import complete.");
     }

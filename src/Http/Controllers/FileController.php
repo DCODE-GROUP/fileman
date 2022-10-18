@@ -7,79 +7,61 @@ use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
 use DcodeGroup\Fileman\Services\FileService;
 use DcodeGroup\Fileman\Services\FolderService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller as BaseController;
 
 class FileController extends BaseController
 {
-    public function show(Folder $parent, File $file)
+    public function show(Folder $parent, File $file): View
     {
-        $directory = FolderService::getDirectoryStructure();
-        $path = $parent->getPath();
-
-        return view('fileman::file.show')
+          return view('fileman::file.show')
             ->with([
                 'file' => $file,
                 'parent' => $parent,
-                'directory' => $directory,
-                'path' => $path,
+                'directory' => FolderService::getDirectoryStructure(),
+                'path' => $parent->getPath(),
             ]);
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function create(Folder $parent)
+    public function create(Folder $parent): View
     {
-        $method = 'post';
-        $action = route('fileman.file.store', $parent->id);
-        $directory = FolderService::getDirectoryStructure();
-        $path = $parent->getPath();
-
         return view('fileman::file.edit')
             ->with([
                 'parent' => $parent,
-                'directory' => $directory,
-                'path' => $path,
-                'action' => $action,
-                'method' => $method,
+                'directory' => FolderService::getDirectoryStructure(),
+                'path' =>  $parent->getPath(),
+                'action' => route('fileman.file.store', $parent->id),
+                'method' => 'post',
             ]);
     }
 
-    /**
-     * @param  FileRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(FileRequest $request, Folder $parent)
+    public function store(FileRequest $request, Folder $parent): RedirectResponse
     {
         FileService::newFile(
             $parent,
-            request()->file('file'),
-            request()->input('name')
+            $request->file('file'),
+            $request->input('name')
         );
 
         return redirect()
             ->route('fileman.folder.index', $parent->id);
     }
 
-    public function edit(Folder $parent, File $file)
+    public function edit(Folder $parent, File $file): View
     {
-        $method = 'put';
-        $action = route('fileman.file.update', [$parent->id, $file->id]);
-        $directory = FolderService::getDirectoryStructure();
-        $path = $parent->getPath();
-
         return view('fileman::file.edit')
             ->with([
                 'file' => $file,
                 'parent' => $parent,
-                'directory' => $directory,
-                'path' => $path,
-                'action' => $action,
-                'method' => $method,
+                'directory' =>  FolderService::getDirectoryStructure(),
+                'path' =>  $parent->getPath(),
+                'action' => route('fileman.file.update', [$parent->id, $file->id]),
+                'method' => 'put',
             ]);
     }
 
-    public function update(Folder $parent, File $file)
+    public function update(Folder $parent, File $file): RedirectResponse
     {
         $file->rename(request()->input('name'));
 
@@ -87,7 +69,7 @@ class FileController extends BaseController
             ->route('fileman.folder.index', $parent->id);
     }
 
-    public function destroy(Folder $parent, File $file)
+    public function destroy(Folder $parent, File $file): RedirectResponse
     {
         $file->delete();
 

@@ -2,34 +2,42 @@
 
 namespace DcodeGroup\Fileman\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Folder extends Node
 {
     use SoftDeletes;
 
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var string[]|bool
+     */
     protected $guarded = [
         'id'
     ];
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'fm_folders';
 
-    /*
-     * Relationships
-     */
 
-    public function parent()
+    public function parent(): BelongsTo
     {
         return $this->belongsTo(Folder::class, 'parent_id');
     }
 
-    public function children()
+    public function children(): HasMany
     {
         return $this->hasMany(Folder::class, 'parent_id');
     }
 
-    public function files()
+    public function files(): HasMany
     {
         return $this->hasMany(File::class);
     }
@@ -58,7 +66,7 @@ class Folder extends Node
 
     public static function getRoot()
     {
-        return Folder::whereNull('parent_id')->first();
+        return Folder::query()->whereNull('parent_id')->first();
     }
 
 }
