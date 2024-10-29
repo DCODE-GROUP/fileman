@@ -17,6 +17,8 @@ class FolderController extends BaseController
             $folder = Folder::getRoot();
         }
 
+        $folder->loadMissing(['files.folder']);
+
         return view('fileman::index')
             ->with([
                 'folder' => $folder,
