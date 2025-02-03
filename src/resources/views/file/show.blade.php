@@ -18,6 +18,8 @@
     <div class="file-show">
         @if ($file->hasPreview())
             <div class="image" style="background-image: url({{ $file->getPreview() }})"></div>
+        @else
+            <div class="image" style="background-image: url({{ $file->getUrl() }})"></div>
         @endif
         <table>
             <tr>

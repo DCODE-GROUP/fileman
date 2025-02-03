@@ -13,7 +13,7 @@ class FilemanService
      */
     public static function import()
     {
-        $folderPaths = Storage::disk('s3')->allDirectories();
+        $folderPaths = FileService::getDisk()->allDirectories();
 
         $root = Folder::firstOrCreate([
             'parent_id' => null,
@@ -36,7 +36,7 @@ class FilemanService
                     ]);
                 }
 
-                $filePaths = Storage::disk('s3')->files($folderPath);
+                $filePaths = FileService::getDisk()->files($folderPath);
 
                 foreach ($filePaths as $filePath) {
                     FileService::newFileFromS3($folder, Storage::getMetaData($filePath));

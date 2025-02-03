@@ -60,6 +60,16 @@ class Folder extends Node
         return array_reverse($array);
     }
 
+
+    public function getFolderPath() : string
+    {
+        $path = $this->getPath();
+        array_shift($path);
+        return collect($path)->map(function($item){
+            return $item['name'];
+        })->implode('/');
+
+    }
     /*
      * Static Methods
      */

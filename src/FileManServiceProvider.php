@@ -33,6 +33,9 @@ class FileManServiceProvider extends ServiceProvider
                 $this->publishes([
                     __DIR__.'/../database/migrations/create_filemanager_tables.php.stub' => database_path('migrations/'.$timestamp.'_create_filemanager_tables.php'),
                 ], 'migrations');
+                $this->publishes([
+                    __DIR__.'/../database/migrations/insert_fileman_root_folder.php.stub' => database_path('migrations/'.$timestamp.'_insert_fileman_root_folder.php'),
+                ], 'migrations');
             }
 
         }

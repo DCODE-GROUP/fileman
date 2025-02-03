@@ -13,9 +13,11 @@ class FileService
     {
         $path = 'fileman';
         $name = $name ?: $file->getClientOriginalName();
-        $filename = uniqid().'-'.$name;
-        $source = Storage::disk('s3')->putFileAs($path, $file, $filename);
-
+        $filename = uniqid().'-' . str_replace(' ', '_', $name);
+        if(count($parent->getPath()) > 1){
+            $path = $path.'/'.$parent->getFolderPath();
+        }
+        $source = FileService::getDisk()->putFileAs($path, $file, $filename);
         return File::updateOrCreate([
             'folder_id' => $parent->id,
             'name' => $name,
@@ -37,4 +39,10 @@ class FileService
             'size' => $metaData['size'],
         ]);
     }
+
+    public static function getDisk() : \Illuminate\Contracts\Filesystem\Filesystem
+    {
+        return Storage::disk(env('FILESYSTEM_DISK', 'local'));
+    }
+
 }

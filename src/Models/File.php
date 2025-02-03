@@ -2,6 +2,7 @@
 
 namespace DcodeGroup\Fileman\Models;
 
+use DcodeGroup\Fileman\Services\FileService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -51,7 +52,7 @@ class File extends Node
         if (config('filesystems.disks.s3.url')) {
             return config('filesystems.disks.s3.url').'/'.$this->source;
         }
-        return Storage::disk('s3')->url($this->source);
+        return FileService::getDisk()->url($this->source);
     }
 
     public function getSignedUrl()
@@ -63,7 +64,15 @@ class File extends Node
         //    'Key' => $this->source,
         //]);
         //return $client->createPresignedRequest($command, $expiry)->getUri();
-        return Storage::disk('s3')->temporaryUrl($this->source, now()->addMinutes(10));
+        // has temporaryUrl
+
+        try {
+            $url = FileService::getDisk()->temporaryUrl($this->source, now()->addMinutes(10));
+        } catch (\Exception $e) {
+            $url = FileService::getDisk()->url($this->source);
+        }
+
+        return $url;
     }
 
     private static function getImageMimes(): Collection
