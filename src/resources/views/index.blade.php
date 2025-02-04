@@ -4,11 +4,11 @@
     <div class="actions">
         <a class="button" href="{{ route('fileman.folder.create', $folder) }}">
             <i class="fas fa-folder-plus"></i>
-            <span>New Folder</span>
+            <span>{{__('fileman.buttons.new_folder')}}</span>
         </a>
         <a class="button" href="{{ route('fileman.file.create', $folder) }}">
             <i class="fas fa-file-import"></i>
-            <span>New File</span>
+            <span>{{__('fileman.buttons.new_file')}}</span>
         </a>
     </div>
     <div class="grid">

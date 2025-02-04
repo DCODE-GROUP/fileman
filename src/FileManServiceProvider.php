@@ -37,6 +37,16 @@ class FileManServiceProvider extends ServiceProvider
                     __DIR__.'/../database/migrations/insert_fileman_root_folder.php.stub' => database_path('migrations/'.$timestamp.'_insert_fileman_root_folder.php'),
                 ], 'migrations');
             }
+            // views
+            $this->publishes([
+                __DIR__.'/resources/views' => resource_path('views/vendor/fileman'),
+            ], 'views');
+
+            // lang
+            $this->publishes([
+                __DIR__.'/../lang' => $this->app->langPath(),
+            ], 'fileman');
+
 
         }
 

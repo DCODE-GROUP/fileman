@@ -1,8 +1,9 @@
 @component('fileman::layouts.components.html')
     @slot('body')
-        <div class="page">
+        <div class="page bg-white">
             <div class="side">
-                @include('fileman::components.path', [
+                @include('fileman::components.side.header')
+                @include('fileman::components.side.path', [
                     'path' => $path,
                 ])
                 <div class="directory">

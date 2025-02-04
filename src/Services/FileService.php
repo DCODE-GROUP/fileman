@@ -45,4 +45,18 @@ class FileService
         return Storage::disk(env('FILESYSTEM_DISK', 'local'));
     }
 
+    public static function countFolder(?Folder $folder = null) : int{
+        return File::query()
+            ->when($folder, function($query) use ($folder){
+                return $query->where('folder_id', $folder->id);
+            })
+            ->count();
+    }
+
+    public static function countAllFiles() : int
+    {
+        return self::countFolder(null);
+    }
+
+
 }
