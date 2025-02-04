@@ -24,7 +24,8 @@ class FolderController extends BaseController
                 'folder' => $folder,
                 'directory' => FolderService::getDirectoryStructure($folder),
                 'path' =>  $folder->getPath(),
-                'files' => $folder->files
+                'files' => $folder->files,
+                'folders' => $folder->children,
             ]);
     }
 

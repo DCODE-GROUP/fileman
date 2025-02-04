@@ -4,7 +4,7 @@
             <div class="w-60 border border-gray-200">
                 @include('fileman::components.side.header')
                 <div class="directory">
-                    @include('fileman::components.directory', [
+                    @include('fileman::components.side.directory', [
                         'directory' => $directory,
                         'folder' => $folder,
                     ])

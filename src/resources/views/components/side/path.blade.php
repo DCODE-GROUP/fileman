@@ -12,7 +12,8 @@
                 <path d="M9 18L15 12L9 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         @else
-            <div class="text-gray-700  bg-gray-50 rounded-md text-sm font-semibold  px-2">{{ $pathLine['name'] }}</div>
+            <div
+                class="text-gray-700  bg-gray-50 rounded-md text-sm font-semibold  px-2">{{ $pathLine['name'] }}</div>
         @endif
     @endforeach
 </div>

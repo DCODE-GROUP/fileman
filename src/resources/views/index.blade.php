@@ -1,21 +1,17 @@
 @extends('fileman::layouts.page')
 
 @section('main')
-    <div class="py-5 px-6">
-        {{--    filters--}}
-
-
-        @include('fileman::components.side.path', [
+    <div>
+        {{--   including breadcrumbs, filters     --}}
+        @include('fileman::components.page.header', [
             'path' => $path,
         ])
 
-
-        {{--    Folder name--}}
         {{--    Folders --}}
+        @include('fileman::components.page.folder', [
+            'folders' => $folders,
+        ])
         {{--    Files --}}
-
-
-
     </div>
 {{--    <div class="actions">--}}
 {{--        <a class="button" href="{{ route('fileman.folder.create', $folder) }}">--}}
