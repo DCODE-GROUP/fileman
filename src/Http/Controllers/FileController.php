@@ -19,8 +19,9 @@ class FileController extends BaseController
             ->with([
                 'file' => $file,
                 'parent' => $parent,
-                'directory' => FolderService::getDirectoryStructure(),
+                'directory' => FolderService::getDirectoryStructure($parent),
                 'path' => $parent->getPath(),
+                'folder'=> $parent,
             ]);
     }
 
@@ -29,10 +30,11 @@ class FileController extends BaseController
         return view('fileman::file.edit')
             ->with([
                 'parent' => $parent,
-                'directory' => FolderService::getDirectoryStructure(),
+                'directory' => FolderService::getDirectoryStructure($parent),
                 'path' =>  $parent->getPath(),
                 'action' => route('fileman.file.store', $parent->id),
                 'method' => 'post',
+                'folder'=> $parent,
             ]);
     }
 
@@ -54,10 +56,11 @@ class FileController extends BaseController
             ->with([
                 'file' => $file,
                 'parent' => $parent,
-                'directory' =>  FolderService::getDirectoryStructure(),
+                'directory' =>  FolderService::getDirectoryStructure($parent),
                 'path' =>  $parent->getPath(),
                 'action' => route('fileman.file.update', [$parent->id, $file->id]),
                 'method' => 'put',
+                'folder'=> $parent,
             ]);
     }
 

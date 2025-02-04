@@ -1,18 +1,16 @@
 @component('fileman::layouts.components.html')
     @slot('body')
         <div class="page bg-white">
-            <div class="side">
+            <div class="w-60 border border-gray-200">
                 @include('fileman::components.side.header')
-                @include('fileman::components.side.path', [
-                    'path' => $path,
-                ])
                 <div class="directory">
                     @include('fileman::components.directory', [
                         'directory' => $directory,
+                        'folder' => $folder,
                     ])
                 </div>
             </div>
-            <div class="main">
+            <div class="main !w-[calc(100%-15rem)] ">
                 @yield('main')
             </div>
         </div>

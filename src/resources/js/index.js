@@ -4,8 +4,8 @@ window.Vue = Vue;
 
 const app = window.Vue.createApp({});
 
-import Test from "./components/Test.vue";
+import DirectoryList from "./components/DirectoryList.vue";
 
-app.component("FilemanTest", Test);
+app.component("DirectoryList", DirectoryList);
 
 app.mount("#fileman");

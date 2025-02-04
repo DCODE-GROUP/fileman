@@ -12,6 +12,13 @@ Install the package via composer:
 composer require dcodegroup/fileman
 ```
 
+```bash
+npm install @vitejs/plugin-vue
+npm install vue
+npm install vite-svg-loader
+```
+
+
 Publish the migrations:
 
 ```php

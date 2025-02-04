@@ -22,7 +22,7 @@ class FolderController extends BaseController
         return view('fileman::index')
             ->with([
                 'folder' => $folder,
-                'directory' => FolderService::getDirectoryStructure(),
+                'directory' => FolderService::getDirectoryStructure($folder),
                 'path' =>  $folder->getPath(),
                 'files' => $folder->files
             ]);
@@ -32,7 +32,7 @@ class FolderController extends BaseController
     {
         return view('fileman::folder.edit')
             ->with([
-                'directory' => FolderService::getDirectoryStructure(),
+                'directory' => FolderService::getDirectoryStructure($parent),
                 'path' => $parent->getPath(),
                 'method' => 'post',
                 'action' => route('fileman.folder.store', $parent),
