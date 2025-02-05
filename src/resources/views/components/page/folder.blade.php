@@ -6,6 +6,7 @@
         <div class="text-xs font-medium border border-gray-300 rounded-md h-5 leading-5 px-1.5 bg-gray-50">
             {{count($folders)}} {{__('fileman.words.folders')}}
         </div>
+        <fileman-add-folder-popup class="ml-auto" :folder="{{$folder}}"></fileman-add-folder-popup>
     </div>
     <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-4 mt-3 !px-0">
         @foreach ($folders as $folder)

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="w-full flex gap-2 text-sm font-semibold py-2 justify-between pr-9 pl-2 " :class="{'bg-gray-200 rounded-md':(directoryList.id === folder)}">
+        <div class="w-full flex gap-2 text-sm font-semibold py-2 justify-between pr-9 pl-2 " :class="{'bg-gray-200 rounded-md':(directoryList.id ===  folder)}">
             <div class="flex gap-2 w-full" >
                 <Folder class="w-5 h-5 stroke-gray-500" v-if="directoryList.childrenCount <= 0 " />
                 <template v-else>
@@ -31,11 +31,11 @@ export default {
     components: {ChevronRight, Folder},
     props: {
         directory: {
-            type: Array,
+            type: Object,
             required: true,
         },
         folder: {
-            type: String,
+            type: Number,
             required: false,
         }
     },
