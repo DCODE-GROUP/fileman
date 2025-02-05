@@ -49,6 +49,10 @@ export default {
                     id: null
                 }
             }
+        },
+        createFolderUrl: {
+            type: String,
+            default: ''
         }
     },
     data() {
@@ -60,7 +64,7 @@ export default {
     },
     methods: {
         addFolder() {
-            axios.post('/folder/'+this.id, {
+            axios.post(this.createFolderUrl, {
                 name: this.folderName,
             }).then(response => {
                 this.closePopup();

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="w-full flex gap-2 text-sm font-semibold py-2 justify-between pr-9 pl-2 " :class="{'bg-gray-200 rounded-md':(directoryList.id ===  folder)}">
+        <div class="w-full flex gap-2 text-sm font-semibold py-2 justify-between pr-9 pl-2 hover:bg-gray-100 rounded-md" :class="{'bg-gray-200 rounded-md':(directoryList.id ===  folder)}">
             <div class="flex gap-2 w-full" >
                 <Folder class="w-5 h-5 stroke-gray-500" v-if="directoryList.childrenCount <= 0 " />
                 <template v-else>
