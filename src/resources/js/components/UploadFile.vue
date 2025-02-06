@@ -2,7 +2,7 @@
     <div>
         <!-- Drag-and-Drop Upload Area -->
         <div
-            class="flex flex-col items-center justify-center h-full border border-gray-200 rounded-lg px-6 py-4"
+            class="flex flex-col items-center justify-center h-full border border-gray-200 rounded-lg px-6 py-4 aspect-square"
             @dragover.prevent="onDragOver"
             @dragleave.prevent="onDragLeave"
             @drop.prevent="onDrop"

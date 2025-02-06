@@ -22,6 +22,13 @@ class File extends Node
         'id'
     ];
 
+    protected $appends = [
+        'is_image',
+        'file_type',
+        'file_type_color',
+        'file_extension'
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -87,5 +94,30 @@ class File extends Node
             'image/png',
             'image/svg',
         ]);
+    }
+
+
+    public function getIsImageAttribute(): bool
+    {
+        return $this->fileType === 'Images';
+    }
+
+    public function getFileTypeAttribute(): string
+    {
+
+         return collect(config('fileman.fileFormats'))->filter(function ($valueArray,$key) {
+            //use mime type and config('fileman.fileFormats') to get the type of file
+            return in_array($this->type, $valueArray);
+        })->keys()->first();
+    }
+
+    public function getFileTypeColorAttribute(): array
+    {
+        return config('fileman.colors.'.$this->fileType);
+    }
+
+    public function getFileExtensionAttribute(): string
+    {
+        return strtoupper(explode('/', $this->type)[1]);
     }
 }

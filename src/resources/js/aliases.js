@@ -3,4 +3,6 @@ export const aliases = {
     'ComponentsAddFolderPopup': 'AddFolderPopup',
     'ComponentsPopupLayout': 'PopupLayout',
     'ComponentsUploadFile': 'UploadFile',
+    'ComponentsFileDetail': 'FileDetail',
+    'ComponentsFileCell': 'FileCell',
 };
