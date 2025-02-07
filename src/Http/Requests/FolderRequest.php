@@ -2,6 +2,7 @@
 
 namespace DcodeGroup\Fileman\Http\Requests;
 
+use DcodeGroup\Fileman\Http\Rules\ValidFolderName;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FolderRequest extends FormRequest
@@ -24,7 +25,12 @@ class FolderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string'],
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                new ValidFolderName
+            ],
         ];
     }
 }

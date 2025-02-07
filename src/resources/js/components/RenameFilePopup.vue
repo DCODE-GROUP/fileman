@@ -31,7 +31,7 @@
             <button
                 @click="renameFile"
                 :disabled="!checkIfValidFileName(fileName)"
-                class="bg-blue-500 text-white rounded-md px-4 py-2"
+                class="bg-brand-primary text-white rounded-md px-4 py-2"
             >
                 {{ $t('fileman.buttons.confirm') }}
             </button>
@@ -68,7 +68,6 @@ export default {
                 console.log(response);
                 this.closePopup();
                 if(response.data.data.redirect != null){
-
                     console.log(response.data.data.redirect);
                     window.location.href = response.data.data.redirect;
                 }else{

@@ -71,6 +71,7 @@ export default {
                 // refresh the page
                 location.reload();
             }).catch(error => {
+                alert(error.response.data.message)
             });
         },
         showPopup() {

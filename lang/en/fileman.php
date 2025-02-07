@@ -17,9 +17,12 @@ return [
         'format' => 'PNG, JPG, PDFs, docx, xlsx (max. 2MB)',
         'rename_file' => 'Rename File',
         'rename_file_subtitle' => 'Please enter the new name for the file',
+        'rename_file_placeholder' => 'Enter new file name',
         'file_name' => 'File Name',
         'no_folder' => 'No Folder',
         'no_file' => 'No File',
+        'invalid_file_name' => 'Invalid file name',
+        'invalid_folder_name' => 'Invalid folder name'
     ],
     'fields' => [
         'url' => 'URL',
