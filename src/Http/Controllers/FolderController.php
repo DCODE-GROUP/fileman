@@ -3,6 +3,7 @@
 namespace DcodeGroup\Fileman\Http\Controllers;
 
 use DcodeGroup\Fileman\Http\Requests\FolderRequest;
+use DcodeGroup\Fileman\Http\Resources\FileCollection;
 use DcodeGroup\Fileman\Models\Folder;
 use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Contracts\View\View;
@@ -24,7 +25,7 @@ class FolderController extends BaseController
                 'folder' => $folder,
                 'directory' => FolderService::getDirectoryStructure($folder),
                 'path' =>  $folder->getPath(),
-                'files' => $folder->files,
+                'files' => (new FileCollection($folder->files))->toArray(request()),
                 'folders' => $folder->children,
             ]);
     }

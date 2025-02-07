@@ -32,8 +32,9 @@ php artisan vendor:publish --provider="DcodeGroup\Fileman\FilemanServiceProvider
 ```
 
 Add the package routes to your web.php file:
+
 ```php
-\DcodeGroup\Fileman\Routes::get();
+\DcodeGroup\Fileman\Routes\Routes::get();
 ```
 
 Fileman will connect to the applications S3 bucket automatically. You'll need to have fileman index the bucket first before it can be used. To index the S3 bucket run:

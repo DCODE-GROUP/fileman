@@ -57,4 +57,25 @@ class FolderService
         return false;
     }
 
+    function isValidFolderName($folderName) : bool
+    {
+        // Check if folder name is empty or consists only of spaces
+        if (empty($folderName) || strlen(trim($folderName)) === 0) {
+            return false;
+        }
+
+        // Check if folder name exceeds the maximum length
+        if (strlen($folderName) > config('fileman.maxFileNameLength')) {
+            return false;
+        }
+
+        // Check if folder name contains invalid characters
+        if (preg_match(config('fileman.validCharacters'), $folderName)) {
+            return false;
+        }
+
+        return true;
+
+    }
+
 }

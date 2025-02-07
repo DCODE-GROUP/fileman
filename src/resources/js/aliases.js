@@ -5,4 +5,5 @@ export const aliases = {
     'ComponentsUploadFile': 'UploadFile',
     'ComponentsFileDetail': 'FileDetail',
     'ComponentsFileCell': 'FileCell',
+    'ComponentsRenameFilePopup': 'RenameFilePopup',
 };

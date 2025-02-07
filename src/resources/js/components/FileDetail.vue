@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showModal" class="w-[34rem] pt-5 px-6 border-l border-gray-200 ">
+    <div v-if="showModal" class="w-[34rem] pt-5 px-6 border-l border-gray-200 h-screen">
         <div class="flex flex-row">
             <div class="text-gray-900 text-md font-semibold flex-1 gap-3">
                 {{$t("fileman.headings.preview")}}
@@ -9,7 +9,7 @@
 
         <section class="mt-3 w-full flex items-center justify-center">
             <div class=" border-gray-200 border rounded-2xl w-[32rem] h-[25rem]" @click="downloadUrl">
-                <img :src="url" alt="file" class="w-full h-full object-cover rounded-2xl" v-if="file.is_image"/>
+                <img :src="url" alt="file" class="w-full h-full rounded-2xl" v-if="file.is_image"/>
                 <div class="flex flex-col items-center justify-center h-full w-full relative" v-else>
                     <div class="h-20 w-20 relative">
                         <file-page class="h-20 w-16 ml-auto"></file-page>
@@ -25,9 +25,9 @@
 
         <section class="flex flex-col mt-6 ">
             <!--   name         -->
-            <div class="flex flex-row text-lg font-semibold gap-2 justify-start items-center  cursor-pointer h-11">
+            <div class="flex flex-row text-lg font-semibold gap-2 justify-start items-center  cursor-pointer h-11" @click="renameFile">
                 {{file.name}}
-                <pencil class="w-5 h-5 stroke-gray-700"></pencil>
+                <pencil class="w-5 h-5 stroke-gray-700" ></pencil>
             </div>
 
             <div class="flex flex-row text-sm font-normal text-gray-600 gap-2 justify-start items-center mt-4">
@@ -46,14 +46,7 @@
                 <span class="text-sm font-normal text-gray-900 w-24">{{$t("fileman.fields.file_size")}}</span>
                 <span class="flex-1">{{formatBytes(file.size) }}</span>
             </div>
-
-
         </section>
-
-
-<!--        {{file}}{{this.url}}-->
-
-
     </div>
 </template>
 <script>
@@ -99,15 +92,16 @@ export default {
         copy() {
             navigator.clipboard.writeText(this.url)
         },
+        renameFile() {
+            console.log("rename file");
+            this.bus.$emit("renameFile", this.file);
+        },
         formatBytes(bytes, decimals = 2) {
             if (bytes === 0) return "0 Bytes";
-
             const k = 1024;
             const dm = decimals < 0 ? 0 : decimals;
             const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
             const i = Math.floor(Math.log(bytes) / Math.log(k));
-
             return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
         },
     },

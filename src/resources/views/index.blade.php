@@ -15,10 +15,11 @@
             {{--    Files --}}
             @include('fileman::components.page.file', [
                 'folder' => $folder,
+                'files' => $files,
             ])
         </div>
-
         <fileman-file-detail></fileman-file-detail>
+        <fileman-rename-file-popup></fileman-rename-file-popup>
     </div>
 
 @endsection

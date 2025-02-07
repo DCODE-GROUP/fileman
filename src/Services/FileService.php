@@ -59,4 +59,31 @@ class FileService
     }
 
 
+    public function isValidFileNames($fileName) : bool
+    {
+        // Check for null, empty, or whitespace-only strings
+        if (empty($fileName) || strlen(trim($fileName)) === 0) {
+            return false;
+        }
+        // Trim whitespace and check the length
+        $trimmedName = trim($fileName);
+        if (strlen($trimmedName) > config('fileman.maxFileNameLength')) {
+            return false;
+        }
+        // Check for invalid characters
+        if (preg_match(config('fileman.validCharacters'), $trimmedName)) {
+            return false;
+        }
+        // Check for reserved names (case-insensitive)
+        if (in_array(strtoupper($trimmedName), config('fileman.reservedNames'))) {
+            return false;
+        }
+        // Check if the file has a valid extension (optional)
+        $extension = strtolower(pathinfo($trimmedName, PATHINFO_EXTENSION)); // Extracts the extension
+        if (!empty($extension) && !in_array($extension, config('fileman.validExtensions'))) {
+            return false;
+        }
+        return true;
+    }
+
 }
