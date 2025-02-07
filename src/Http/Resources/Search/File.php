@@ -1,6 +1,6 @@
 <?php
 
-namespace DcodeGroup\Fileman\Http\Resources;
+namespace DcodeGroup\Fileman\Http\Resources\Search;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -28,8 +28,6 @@ class File extends JsonResource
                     ],
                 ]
             ]
-
         );
-
     }
 }

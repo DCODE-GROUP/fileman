@@ -78,4 +78,12 @@ class FolderService
 
     }
 
+    public function searchFolders($search) : Collection
+    {
+        return Folder::query()
+            ->where('name', 'like', "%$search%")
+            ->take(config('fileman.searchLimit.folders'))
+            ->orderBy('updated_at', 'desc')
+            ->get();
+    }
 }

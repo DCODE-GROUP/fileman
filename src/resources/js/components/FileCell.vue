@@ -4,7 +4,7 @@
        :data-url="url"
          @click="showFileDetail"
     >
-        <div class="thumbnail !h-4/5" :style="{backgroundImage:'url('+file.previewUrl+')'}" v-if="file.is_image"></div>
+        <img :src="file.previewUrl" class="thumbnail !h-4/5 object-contain"  :alt="file.name" v-if="file.is_image">
         <div class="flex flex-col items-center justify-center h-full w-full relative" v-else>
             <div class="h-20 w-20 relative">
                 <file-page class="h-20 w-16 ml-auto"></file-page>

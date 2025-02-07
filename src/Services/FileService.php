@@ -6,6 +6,7 @@ use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Collection;
 
 class FileService
 {
@@ -84,6 +85,23 @@ class FileService
             return false;
         }
         return true;
+    }
+
+    public function searchFiles($search, $folderId, bool $current = false) : Collection
+    {
+        return File::query()->with('folder')
+            ->when($current, function($query) use ($folderId){
+                return $query->where('folder_id', $folderId)->take(config('fileman.searchLimit.current'));
+            })
+            ->when(!$current, function($query) use ($folderId){
+                return $query->where('folder_id', "!=", $folderId)->take(config('fileman.searchLimit.other'));
+            })
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%")
+                    ->orWhere('source', 'like', "%$search%");
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
     }
 
 }

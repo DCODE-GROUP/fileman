@@ -11,7 +11,7 @@
                                   :folder="{{$folder}}">
         </fileman-add-folder-popup>
     </div>
-    <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-4 mt-3 !px-0">
+    <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-4 mt-3 !px-0 max-h-36 overflow-y-auto">
         @if(count($folders) > 0)
             @foreach ($folders as $folder)
                 <a href="{{route('fileman.folder.index',$folder->id)  }}">

@@ -1,6 +1,6 @@
 @component('fileman::layouts.components.html')
     @slot('body')
-        <div class="page bg-white">
+        <div class="page bg-white max-h-screen">
             <div class="w-80 border border-gray-200">
                 @include('fileman::components.side.header')
                 <div class="directory">
@@ -10,7 +10,7 @@
                     ])
                 </div>
             </div>
-            <div class="main !w-[calc(100%-20rem)] ">
+            <div class="main !w-[calc(100%-20rem)] max-h-screen overflow-y-auto ">
                 @yield('main')
             </div>
         </div>

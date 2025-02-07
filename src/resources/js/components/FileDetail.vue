@@ -9,7 +9,7 @@
 
         <section class="mt-3 w-full flex items-center justify-center">
             <div class=" border-gray-200 border rounded-2xl w-[32rem] h-[25rem]" @click="downloadUrl">
-                <img :src="url" alt="file" class="w-full h-full rounded-2xl" v-if="file.is_image"/>
+                <img :src="url" alt="file" class="w-full h-full rounded-2xl object-contain " v-if="file.is_image"/>
                 <div class="flex flex-col items-center justify-center h-full w-full relative" v-else>
                     <div class="h-20 w-20 relative">
                         <file-page class="h-20 w-16 ml-auto"></file-page>
