@@ -24,6 +24,9 @@ return [
         'invalid_file_name' => 'Invalid file name',
         'invalid_folder_name' => 'Invalid folder name'
     ],
+    "placeholders" => [
+        'search' => 'Search file manager',
+    ],
     'fields' => [
         'url' => 'URL',
         'file_type' => 'File Type',
