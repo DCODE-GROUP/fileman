@@ -10,7 +10,7 @@
                     ])
                 </div>
             </div>
-            <div class="main !w-[calc(100%-20rem)] max-h-screen overflow-y-auto ">
+            <div class="main !w-[calc(100%-20rem)] max-h-screen overflow-y-auto scroll-smooth">
                 @yield('main')
             </div>
         </div>

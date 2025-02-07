@@ -6,4 +6,5 @@ export const aliases = {
     'ComponentsFileDetail': 'FileDetail',
     'ComponentsFileCell': 'FileCell',
     'ComponentsRenameFilePopup': 'RenameFilePopup',
+    'ComponentsSearch': 'Search',
 };

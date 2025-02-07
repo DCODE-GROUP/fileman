@@ -25,8 +25,9 @@
 
         <section class="flex flex-col mt-6 ">
             <!--   name         -->
-            <div class="flex flex-row text-lg font-semibold gap-2 justify-start items-center  cursor-pointer h-11" @click="renameFile">
-                {{file.name}}
+            <div class="flex flex-row text-lg font-semibold gap-2 justify-start items-center  cursor-pointer h-11 w-full" @click="renameFile">
+
+                <p class="break-all">{{file.name}}</p>
                 <pencil class="w-5 h-5 stroke-gray-700" ></pencil>
             </div>
 

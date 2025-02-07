@@ -90,15 +90,19 @@ class FileService
     public function searchFiles($search, $folderId, bool $current = false) : Collection
     {
         return File::query()->with('folder')
-            ->when($current, function($query) use ($folderId){
-                return $query->where('folder_id', $folderId)->take(config('fileman.searchLimit.current'));
+            ->when($current, function($query) use ($folderId ,$search){
+                return $query->where('folder_id', $folderId)
+                    ->where(function ($query) use ($search) {
+                        $query->where('name', 'like', "%$search%");
+                    })
+                    ->take(config('fileman.searchLimit.current'));
             })
-            ->when(!$current, function($query) use ($folderId){
-                return $query->where('folder_id', "!=", $folderId)->take(config('fileman.searchLimit.other'));
-            })
-            ->where(function ($query) use ($search) {
-                $query->where('name', 'like', "%$search%")
-                    ->orWhere('source', 'like', "%$search%");
+            ->when(!$current, function($query) use ($folderId,$search){
+                return $query->where('folder_id', "!=", $folderId)
+                    ->where(function ($query) use ($search) {
+                        $query->where('name', 'like', "%$search%");
+                    })
+                    ->take(config('fileman.searchLimit.other'));
             })
             ->orderBy('updated_at', 'desc')
             ->get();

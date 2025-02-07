@@ -1,7 +1,7 @@
 <template>
     <div class="file h-full bg-gray-50 hover:bg-gray-100 rounded-md"
        :data-file="JSON.stringify(file)"
-       :data-url="url"
+       :data-url="file.url"
          @click="showFileDetail"
     >
         <img :src="file.previewUrl" class="thumbnail !h-4/5 object-contain"  :alt="file.name" v-if="file.is_image">

@@ -18,7 +18,7 @@
             </div>
         @else
             @foreach ($files as $file)
-                <div class="aspect-square">
+                <div class="aspect-square" id="{{'file_'.data_get($file,'id')}}">
                     @include('fileman::components.file', [
                         'file' => $file,
                     ])

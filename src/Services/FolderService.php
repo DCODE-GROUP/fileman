@@ -78,9 +78,11 @@ class FolderService
 
     }
 
-    public function searchFolders($search) : Collection
+    public function searchFolders($search,$folderId) : Collection
     {
         return Folder::query()
+            ->withCount('files')
+            ->where('id', '!=', $folderId)
             ->where('name', 'like', "%$search%")
             ->take(config('fileman.searchLimit.folders'))
             ->orderBy('updated_at', 'desc')

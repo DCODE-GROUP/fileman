@@ -2,32 +2,22 @@
 
 namespace DcodeGroup\Fileman\Http\Resources\Search;
 
+use DcodeGroup\Fileman\Enum\FileType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class File extends JsonResource
 {
     public function toArray($request): array
     {
-        return array_merge(
-            parent::toArray($request),
-            [
-                'url' => $this->resource->getUrl(),
-                'previewUrl' => $this->resource->hasPreview()?$this->resource->getPreview():$this->resource->getUrl(),
-                'actions' =>[
-                    'delete' => [
-                        'url' => route('api.fileman.file.destroy', [
-                            'parent' => $this->folder_id,
-                            'file' => $this->id,
-                        ]),
-                    ],
-                    'update' => [
-                        'url' => route('api.fileman.file.update', [
-                            'parent' => $this->folder_id,
-                            'file' => $this->id,
-                        ]),
-                    ],
-                ]
-            ]
-        );
+        return [
+            'name' => $this->name,
+            'path' => $this->source,
+            'url' => route('fileman.folder.index', $this->folder->id).'#file_'.$this->id,
+            'preview' => $this->hasPreview() ? $this->getPreview() : $this->getUrl(),
+            'source' => $this->source,
+            'type' => FileType::FILE->value,
+            'id' => $this->id,
+        ];
+
     }
 }
