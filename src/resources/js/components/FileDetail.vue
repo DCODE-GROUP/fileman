@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showModal" class="w-[34rem] pt-5 px-6 border-l border-gray-200 h-screen">
+    <div v-if="showModal" class=" w-[30%] max-w-[34rem] pt-5 px-6 border-l border-gray-200 h-screen">
         <div class="flex flex-row">
             <div class="text-gray-900 text-md font-semibold flex-1 gap-3">
                 {{$t("fileman.headings.preview")}}

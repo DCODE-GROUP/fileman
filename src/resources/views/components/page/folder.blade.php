@@ -11,7 +11,7 @@
                                   :folder="{{$folder}}">
         </fileman-add-folder>
     </div>
-    <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-4 mt-3 !px-0 ">
+    <div class="grid grid-cols-4 gap-4 mt-3 !px-0 ">
         @if(count($folders) > 0)
             @foreach ($folders as $folder)
                 <div class="flex flex-row gap-2 py-4 px-3 bg-gray-50 rounded-xl hover:bg-gray-100 group">

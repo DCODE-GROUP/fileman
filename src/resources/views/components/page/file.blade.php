@@ -7,7 +7,7 @@
             {{count($files)}} {{__('fileman.words.files')}}
         </div>
     </div>
-    <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-4 mt-3 !px-0">
+    <div class="grid grid-cols-4 gap-4 mt-3 !px-0">
         <fileman-upload-file
             upload-url="{{route('fileman.file.store',['parent'=>$folder->id])}}"
         >
