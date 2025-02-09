@@ -16,6 +16,10 @@ composer require dcodegroup/fileman
 npm install @vitejs/plugin-vue
 npm install vue
 npm install vite-svg-loader
+npm install lodash
+npm install vite-plugin-laravel-translations
+npm install vue-i18n
+npm install vue3-click-away
 ```
 
 
@@ -31,10 +35,44 @@ Publish the vendor front-end resources:
 php artisan vendor:publish --provider="DcodeGroup\Fileman\FilemanServiceProvider" --tag="styles"
 ```
 
+Add the following to your providers.php file:
+```php
+DcodeGroup\Fileman\FilemanServiceProvider::class,
+
+return [
+    App\Providers\AppServiceProvider::class,
+    \DcodeGroup\Fileman\FileManServiceProvider::class,
+];
+```
+
 Add the package routes to your web.php file:
 
 ```php
-\DcodeGroup\Fileman\Routes\Routes::get();
+in web.php
+\DcodeGroup\Fileman\Routes\Web::get();
+
+in api.php
+\DcodeGroup\Fileman\Routes\Api::get();
+```
+
+JS
+Add the following alias to vite.config.js
+
+```js
+
+resolve: {
+  alias: {
+      "@fileman": path.resolve(__dirname, "./vendor/dcodegroup/fileman"),
+
+```
+
+Seem to need this in tailwind.config.js, Update the module exports under content:
+```php
+content: [
+  ...
+    "./vendor/dcodegroup/**/*.{blade.php,vue,js,ts}",
+  ...
+],
 ```
 
 Fileman will connect to the applications S3 bucket automatically. You'll need to have fileman index the bucket first before it can be used. To index the S3 bucket run:

@@ -1,109 +1,284 @@
 <?php
-
 return [
     "fileFormats" => [
         "Text" => [
-            "text/plain", "application/rtf", "application/msword",
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/pdf", "text/x-tex",
+            "text/plain",
+            "application/rtf",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/pdf",
+            "text/x-tex",
             "application/vnd.wordperfect"
         ],
         "Spreadsheet" => [
-            "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            "application/vnd.oasis.opendocument.spreadsheet", "text/csv", "text/tab-separated-values"
+            "application/vnd.ms-excel",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/vnd.oasis.opendocument.spreadsheet",
+            "text/csv",
+            "text/tab-separated-values"
         ],
         "Presentation" => [
             "application/vnd.ms-powerpoint",
             "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-            "application/vnd.oasis.opendocument.presentation", "application/x-iwork-keynote-sffkey"
+            "application/vnd.oasis.opendocument.presentation",
+            "application/x-iwork-keynote-sffkey"
         ],
         "Markup" => [
-            "text/html", "application/xml", "application/xhtml+xml", "application/json", "text/yaml",
+            "text/html",
+            "application/xml",
+            "application/xhtml+xml",
+            "application/json",
+            "text/yaml",
             "application/x-yaml"
         ],
         "Ebooks" => [
-            "application/epub+zip", "application/vnd.amazon.ebook", "application/x-mobipocket-ebook",
+            "application/epub+zip",
+            "application/vnd.amazon.ebook",
+            "application/x-mobipocket-ebook",
             "application/x-ms-reader"
         ],
         "Images" => [
-            "image/bmp", "image/png", "image/jpeg", "image/tiff", "image/gif", "image/webp", // Raster
-            "image/svg+xml", "application/postscript", "application/pdf", "application/vnd.adobe.photoshop", // Vector
-            "image/x-raw", "image/x-canon-cr2", "image/x-nikon-nef", "image/x-olympus-orf", "image/x-sony-arw",
-            "image/vnd.adobe.dng", "image/x-fuji-raf" // Raw
+            "image/bmp",
+            "image/png",
+            "image/jpeg",
+            "image/tiff",
+            "image/gif",
+            "image/webp",
+            // Raster
+            "image/svg+xml",
+            "application/postscript",
+            "application/pdf",
+            "application/vnd.adobe.photoshop",
+            // Vector
+            "image/x-raw",
+            "image/x-canon-cr2",
+            "image/x-nikon-nef",
+            "image/x-olympus-orf",
+            "image/x-sony-arw",
+            "image/vnd.adobe.dng",
+            "image/x-fuji-raf" // Raw
         ],
         "Audio" => [
-            "audio/wav", "audio/x-aiff", "application/octet-stream", // Uncompressed
-            "audio/mpeg", "audio/aac", "audio/ogg", "audio/x-ms-wma", // Lossy
-            "audio/flac", "audio/alac", "application/x-ape" // Lossless
+            "audio/wav",
+            "audio/x-aiff",
+            "application/octet-stream", // Uncompressed
+            "audio/mpeg",
+            "audio/aac",
+            "audio/ogg",
+            "audio/x-ms-wma", // Lossy
+            "audio/flac",
+            "audio/alac",
+            "application/x-ape" // Lossless
         ],
         "Video" => [
-            "video/mp4", "video/x-matroska", "video/x-msvideo", "video/quicktime", "video/x-ms-wmv", "video/x-flv",
-            "video/mpeg", "video/x-mpeg2", "application/x-mp4-mux", "video/webm"
+            "video/mp4",
+            "video/x-matroska",
+            "video/x-msvideo",
+            "video/quicktime",
+            "video/x-ms-wmv",
+            "video/x-flv",
+            "video/mpeg",
+            "video/x-mpeg2",
+            "application/x-mp4-mux",
+            "video/webm"
         ],
         "Archives" => [
-            "application/zip", "application/x-rar-compressed", "application/x-7z-compressed", "application/x-tar",
-            "application/x-gzip", "application/x-xz", "application/x-bzip2", "application/x-iso9660-image"
+            "application/zip",
+            "application/x-rar-compressed",
+            "application/x-7z-compressed",
+            "application/x-tar",
+            "application/x-gzip",
+            "application/x-xz",
+            "application/x-bzip2",
+            "application/x-iso9660-image"
         ],
         "Database" => [
-            "application/sql", "application/x-sqlite3", "application/vnd.ms-access", "application/json", "text/csv"
+            "application/sql",
+            "application/x-sqlite3",
+            "application/vnd.ms-access",
+            "application/json",
+            "text/csv"
         ],
         "Executables" => [
-            "application/vnd.microsoft.portable-executable", "application/x-msdos-program", "application/x-msi",
-            "application/octet-stream", "application/x-sh"
+            "application/vnd.microsoft.portable-executable",
+            "application/x-msdos-program",
+            "application/x-msi",
+            "application/octet-stream",
+            "application/x-sh"
         ],
         "Scripts" => [
-            "text/x-python", "application/javascript", "text/x-perl", "application/x-php", "application/x-ruby",
-            "text/x-java-source", "text/x-cpp"
+            "text/x-python",
+            "application/javascript",
+            "text/x-perl",
+            "application/x-php",
+            "application/x-ruby",
+            "text/x-java-source",
+            "text/x-cpp"
         ],
         "Fonts" => [
-            "font/ttf", "font/otf", "application/font-woff", "application/font-woff2", "application/vnd.ms-fontobject"
+            "font/ttf",
+            "font/otf",
+            "application/font-woff",
+            "application/font-woff2",
+            "application/vnd.ms-fontobject"
         ],
-        "Frontend" => ["text/html", "text/css", "application/javascript", "application/x-php"],
-        "Server Configs" => ["text/x-env", "text/x-htaccess", "application/octet-stream"],
-        "Configs" => ["text/x-ini", "text/x-config", "text/x-plist"],
+        "Frontend" => [
+            "text/html",
+            "text/css",
+            "application/javascript",
+            "application/x-php"
+        ],
+        "Server Configs" => [
+            "text/x-env",
+            "text/x-htaccess",
+            "application/octet-stream"
+        ],
+        "Configs" => [
+            "text/x-ini",
+            "text/x-config",
+            "text/x-plist"
+        ],
         "Disk Images" => [
-            "application/x-iso9660-image", "application/octet-stream", "application/x-apple-diskimage",
+            "application/x-iso9660-image",
+            "application/octet-stream",
+            "application/x-apple-diskimage",
             "application/x-vmdk"
         ],
-        "Logs" => ["text/plain"],
+        "Logs" => [
+            "text/plain"
+        ],
         "3D Models" => [
-            "application/x-tgif", "application/octect-stream", "model/obj", "model/fbx", "model/stl",
+            "application/x-tgif",
+            "application/octect-stream",
+            "model/obj",
+            "model/fbx",
+            "model/stl",
             "model/vnd.collada+xml"
         ],
-        "Game Data" => ["application/x-gamepack", "application/vnd.ms-savegame"]
+        "Game Data" => [
+            "application/x-gamepack",
+            "application/vnd.ms-savegame"
+        ]
     ],
     "colors" => [
-        "Text" => ["text" => "#ffffff", "background" => "#1f77b4"], // White on Blue
-        "Spreadsheet" => ["text" => "#000000", "background" => "#ff7f0e"], // Black on Orange
-        "Presentation" => ["text" => "#ffffff", "background" => "#2ca02c"], // White on Green
-        "Markup" => ["text" => "#000000", "background" => "#d62728"], // Black on Red
-        "Ebooks" => ["text" => "#ffffff", "background" => "#9467bd"], // White on Purple
-        "Images" => ["text" => "#000000", "background" => "#8c564b"], // Black on Brown
+        "Text" => [
+            "text" => "#ffffff",
+            "background" => "#1f77b4"
+        ], // White on Blue
+        "Spreadsheet" => [
+            "text" => "#000000",
+            "background" => "#ff7f0e"
+        ], // Black on Orange
+        "Presentation" => [
+            "text" => "#ffffff",
+            "background" => "#2ca02c"
+        ], // White on Green
+        "Markup" => [
+            "text" => "#000000",
+            "background" => "#d62728"
+        ], // Black on Red
+        "Ebooks" => [
+            "text" => "#ffffff",
+            "background" => "#9467bd"
+        ], // White on Purple
+        "Images" => [
+            "text" => "#000000",
+            "background" => "#8c564b"
+        ], // Black on Brown
         "Audio" => [
-            "Uncompressed" => ["text" => "#ffffff", "background" => "#e377c2"], // White on Pink
-            "Lossy" => ["text" => "#ffffff", "background" => "#7f7f7f"], // White on Gray
-            "Lossless" => ["text" => "#ffffff", "background" => "#bcbd22"] // White on Yellow-Green
+            "Uncompressed" => [
+                "text" => "#ffffff",
+                "background" => "#e377c2"
+            ], // White on Pink
+            "Lossy" => [
+                "text" => "#ffffff",
+                "background" => "#7f7f7f"
+            ], // White on Gray
+            "Lossless" => [
+                "text" => "#ffffff",
+                "background" => "#bcbd22"
+            ] // White on Yellow-Green
         ],
-        "Video" => ["text" => "#ffffff", "background" => "#17becf"], // White on Cyan
-        "Archives" => ["text" => "#000000", "background" => "#2ca02c"], // Black on Green
-        "Database" => ["text" => "#ffffff", "background" => "#d62728"], // White on Red
-        "Executables" => ["text" => "#ffffff", "background" => "#bcbd22"], // White on Yellow-Green
-        "Scripts" => ["text" => "#000000", "background" => "#ff7f0e"], // Black on Orange
-        "Fonts" => ["text" => "#000000", "background" => "#17becf"], // Black on Cyan
-        "Frontend" => ["text" => "#ffffff", "background" => "#9467bd"], // White on Purple
-        "Server Configs" => ["text" => "#ffffff", "background" => "#8c564b"], // White on Brown
-        "Configs" => ["text" => "#ffffff", "background" => "#7f7f7f"], // White on Gray
-        "Disk Images" => ["text" => "#ffffff", "background" => "#e377c2"], // White on Pink
-        "Logs" => ["text" => "#000000", "background" => "#bcbd22"], // Black on Yellow-Green
-        "3D Models" => ["text" => "#000000", "background" => "#1f77b4"], // Black on Blue
-        "Game Data" => ["text" => "#ffffff", "background" => "#ff7f0e"] // White on Orange
+        "Video" => [
+            "text" => "#ffffff",
+            "background" => "#17becf"
+        ], // White on Cyan
+        "Archives" => [
+            "text" => "#000000",
+            "background" => "#2ca02c"
+        ], // Black on Green
+        "Database" => [
+            "text" => "#ffffff",
+            "background" => "#d62728"
+        ], // White on Red
+        "Executables" => [
+            "text" => "#ffffff",
+            "background" => "#bcbd22"
+        ], // White on Yellow-Green
+        "Scripts" => [
+            "text" => "#000000",
+            "background" => "#ff7f0e"
+        ], // Black on Orange
+        "Fonts" => [
+            "text" => "#000000",
+            "background" => "#17becf"
+        ], // Black on Cyan
+        "Frontend" => [
+            "text" => "#ffffff",
+            "background" => "#9467bd"
+        ], // White on Purple
+        "Server Configs" => [
+            "text" => "#ffffff",
+            "background" => "#8c564b"
+        ], // White on Brown
+        "Configs" => [
+            "text" => "#ffffff",
+            "background" => "#7f7f7f"
+        ], // White on Gray
+        "Disk Images" => [
+            "text" => "#ffffff",
+            "background" => "#e377c2"
+        ], // White on Pink
+        "Logs" => [
+            "text" => "#000000",
+            "background" => "#bcbd22"
+        ], // Black on Yellow-Green
+        "3D Models" => [
+            "text" => "#000000",
+            "background" => "#1f77b4"
+        ], // Black on Blue
+        "Game Data" => [
+            "text" => "#ffffff",
+            "background" => "#ff7f0e"
+        ] // White on Orange
     ],
     'reservedNames' => [
-        'CON', 'PRN', 'AUX', 'NUL', 'COM1', 'COM2', 'COM3', 'COM4', 'COM5', 'COM6', 'COM7', 'COM8', 'COM9', 'LPT1',
-        'LPT2', 'LPT3', 'LPT4', 'LPT5', 'LPT6', 'LPT7', 'LPT8', 'LPT9'
+        'CON',
+        'PRN',
+        'AUX',
+        'NUL',
+        'COM1',
+        'COM2',
+        'COM3',
+        'COM4',
+        'COM5',
+        'COM6',
+        'COM7',
+        'COM8',
+        'COM9',
+        'LPT1',
+        'LPT2',
+        'LPT3',
+        'LPT4',
+        'LPT5',
+        'LPT6',
+        'LPT7',
+        'LPT8',
+        'LPT9'
     ],
     'maxFileNameLength' => 255,
     'validCharacters' => '/[\/:*?"<>|]/',
-    'validExtensions' =>[
+    'validExtensions' => [
         "txt",
         "rtf",
         "doc",

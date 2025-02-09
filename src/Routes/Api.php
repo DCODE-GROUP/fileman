@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 
 class Api
 {
-
     public static function get()
     {
         Route::group([
@@ -26,5 +25,4 @@ class Api
 
         });
     }
-
 }

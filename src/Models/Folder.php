@@ -83,6 +83,4 @@ class Folder extends Node
     {
         return is_null($this->parent_id);
     }
-
-
 }

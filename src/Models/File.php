@@ -104,7 +104,6 @@ class File extends Node
 
     public function getFileTypeAttribute(): string
     {
-
          return collect(config('fileman.fileFormats'))->filter(function ($valueArray,$key) {
             //use mime type and config('fileman.fileFormats') to get the type of file
             return in_array($this->type, $valueArray);

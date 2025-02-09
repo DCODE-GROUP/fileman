@@ -10,7 +10,7 @@ return [
     'words' => [
         'files' => 'files',
         'folders' => 'folders',
-        'folder_name'=>'Folder Name',
+        'folder_name' => 'Folder Name',
         'add_folder' => 'Add Folder',
         'rename_folder' => 'Rename Folder',
         'rename_folder_subtitle' => 'Please enter the new name for the folder',

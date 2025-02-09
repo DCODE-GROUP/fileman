@@ -17,7 +17,5 @@ class Folder extends JsonResource
             'type' => FileType::FOLDER->value,
             'id' => $this->id,
         ];
-
     }
-
 }
