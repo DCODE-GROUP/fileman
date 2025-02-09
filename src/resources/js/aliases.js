@@ -1,10 +1,16 @@
 export const aliases = {
     'ComponentsDirectoryList': 'DirectoryList',
     'ComponentsAddFolderPopup': 'AddFolderPopup',
+    'ComponentsDeleteFilePopup': 'DeleteFilePopup',
+    'ComponentsDeleteFolderPopup': 'DeleteFolderPopup',
     'ComponentsPopupLayout': 'PopupLayout',
     'ComponentsUploadFile': 'UploadFile',
     'ComponentsFileDetail': 'FileDetail',
     'ComponentsFileCell': 'FileCell',
     'ComponentsRenameFilePopup': 'RenameFilePopup',
     'ComponentsSearch': 'Search',
+    'ComponentsMenu': 'Menu',
+    'ComponentsMenuItem': 'MenuItem',
+    'ComponentsAddFolder': 'AddFolder',
+    'ComponentsRenameFolderPopup': 'RenameFolderPopup',
 };

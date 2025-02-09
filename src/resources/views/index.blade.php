@@ -20,6 +20,11 @@
         </div>
         <fileman-file-detail></fileman-file-detail>
         <fileman-rename-file-popup></fileman-rename-file-popup>
+        <fileman-delete-file-popup></fileman-delete-file-popup>
+        <fileman-add-folder-popup></fileman-add-folder-popup>
+        <fileman-rename-folder-popup></fileman-rename-folder-popup>
+        <fileman-delete-folder-popup></fileman-delete-folder-popup>
+
     </div>
 
 @endsection

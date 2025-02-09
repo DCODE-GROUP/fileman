@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="w-full flex gap-2 text-sm font-semibold py-2 justify-between pr-9 pl-2 hover:bg-gray-100 rounded-md" :class="{'bg-gray-200 rounded-md':(directoryList.id ===  folder)}">
+        <div class="w-full flex gap-2 text-sm font-semibold py-2 justify-between pr-3 pl-2 hover:bg-gray-100 rounded-md group" :class="{'bg-gray-200 rounded-md':(directoryList.id ===  folder)}">
             <div class="flex gap-2 w-full" >
                 <Folder class="w-5 h-5 stroke-gray-500" v-if="directoryList.childrenCount <= 0 " />
                 <template v-else>
@@ -10,9 +10,14 @@
                 <a :href="directoryList.url" class="w-[calc(100%-2rem)]">{{ directoryList.name }}</a>
 
             </div>
-            <div class="text-xs font-medium border border-gray-300 rounded-md h-5 leading-5 px-1.5">
-                {{ directoryList.count }}
+
+            <div class="flex flex-row gap-2">
+                <div class="text-xs font-medium border border-gray-300 rounded-md h-5 leading-5 px-1.5">
+                    {{ directoryList.count }}
+                </div>
+                <fileman-menu :object="directoryList" class="invisible group-hover:visible" ></fileman-menu>
             </div>
+
         </div>
         <ul v-if="directoryList.open">
             <li v-for="subDirectory in directoryList.children">

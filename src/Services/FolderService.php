@@ -29,6 +29,29 @@ class FolderService
                     'children' => self::buildTree($folders, $folder->id, $currentFolder),
                     'childrenCount' => count($folder->children),
                     'id' => $folder->id,
+                    'actions' => [
+                        'create'=>[
+                            'url'=>route('api.fileman.folder.store', [
+                                'parent' => $folder->id
+                            ]),
+                            'label'=>__('fileman.buttons.add_folder'),
+                            'icon'=>'plus',
+                            'action'=>'createFolder'
+                        ],
+                        'update'=>[
+                            'url'=>route('api.fileman.folder.update', $folder->id),
+                            'label'=>__('fileman.buttons.rename_folder'),
+                            'icon'=>'pencil',
+                            'action'=>'renameFolder'
+                        ],
+                        'delete'=>[
+                            'url'=>route('api.fileman.folder.destroy', $folder->id),
+                            'label'=>__('fileman.buttons.delete'),
+                            'icon'=>'trash',
+                            'action'=>'deleteFolder',
+                            'hidden' => $folder->isRoot()
+                        ]
+                    ]
                 ];
             }
         }

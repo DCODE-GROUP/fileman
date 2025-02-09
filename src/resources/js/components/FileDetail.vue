@@ -94,7 +94,6 @@ export default {
             navigator.clipboard.writeText(this.url)
         },
         renameFile() {
-            console.log("rename file");
             this.bus.$emit("renameFile", this.file);
         },
         formatBytes(bytes, decimals = 2) {

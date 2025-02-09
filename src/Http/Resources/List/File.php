@@ -14,18 +14,25 @@ class File extends JsonResource
                 'url' => $this->resource->getUrl(),
                 'previewUrl' => $this->resource->hasPreview()?$this->resource->getPreview():$this->resource->getUrl(),
                 'actions' =>[
-                    'delete' => [
-                        'url' => route('api.fileman.file.destroy', [
-                            'parent' => $this->folder_id,
-                            'file' => $this->id,
-                        ]),
-                    ],
                     'update' => [
                         'url' => route('api.fileman.file.update', [
                             'parent' => $this->folder_id,
                             'file' => $this->id,
                         ]),
+                        'label' => __('fileman.buttons.rename_file'),
+                        'icon' => 'Pencil',
+                        'action' => 'renameFile',
                     ],
+                    'delete' => [
+                        'url' => route('api.fileman.file.destroy', [
+                            'parent' => $this->folder_id,
+                            'file' => $this->id,
+                        ]),
+                        'label' => __('fileman.buttons.delete'),
+                        'icon' => 'Trash',
+                        'action' => 'deleteFile',
+                    ],
+
                 ]
             ]
         );

@@ -4,18 +4,18 @@
         @close="closePopup"
     >
         <template #title>
-            {{$t('fileman.words.rename_file')}}
+            {{$t('fileman.words.rename_folder')}}
         </template>
         <template #subtitle>
-            {{$t('fileman.words.rename_file_subtitle')}}
+            {{$t('fileman.words.rename_folder_subtitle')}}
         </template>
         <template #content>
             <div class="mt-4">
                 <input
-                    v-model="fileName"
+                    v-model="name"
                     type="text"
                     class="w-full border border-gray-300 rounded-md p-2"
-                    :placeholder="$t('fileman.words.rename_file_placeholder')"
+                    :placeholder="$t('fileman.words.rename_folder_placeholder')"
                 >
             </div>
         </template>
@@ -30,7 +30,7 @@
         <template #right-btn>
             <button
                 @click="renameFile"
-                :disabled="!checkIfValidFileName(fileName)"
+                :disabled="!checkIfValidFileName(name)"
                 class="bg-brand-primary text-white rounded-md px-4 py-2"
             >
                 {{ $t('fileman.buttons.confirm') }}
@@ -45,14 +45,14 @@ export default {
     data() {
         return {
             isVisible: false,
-            fileName: null,
+            name: null,
             url: null,
         };
     },
     created() {
-        this.bus.$on("renameFile", (data) => {
+        this.bus.$on("renameFolder", (data) => {
             console.log(data);
-            this.fileName = data.name;
+            this.name = data.name;
             this.url = data.actions.update.url;
             this.showPopup();
         });
@@ -64,7 +64,7 @@ export default {
         },
         renameFile() {
             axios.put(this.url, {
-                name: this.fileName,
+                name: this.name,
             }).then(response => {
                 console.log(response);
                 this.closePopup();

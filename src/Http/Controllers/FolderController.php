@@ -4,6 +4,7 @@ namespace DcodeGroup\Fileman\Http\Controllers;
 
 use DcodeGroup\Fileman\Http\Requests\FolderRequest;
 use DcodeGroup\Fileman\Http\Resources\List\FileCollection;
+use DcodeGroup\Fileman\Http\Resources\List\FolderCollection;
 use DcodeGroup\Fileman\Models\Folder;
 use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Contracts\View\View;
@@ -18,7 +19,7 @@ class FolderController extends BaseController
             $folder = Folder::getRoot();
         }
 
-        $folder->loadMissing(['files.folder']);
+        $folder->loadMissing(['files.folder', 'children']);
 
         return view('fileman::index')
             ->with([
@@ -26,7 +27,7 @@ class FolderController extends BaseController
                 'directory' => FolderService::getDirectoryStructure($folder),
                 'path' =>  $folder->getPath(),
                 'files' => (new FileCollection($folder->files))->toArray(request()),
-                'folders' => $folder->children,
+                'folders' => (new FolderCollection($folder->children))->toArray(request()),
             ]);
     }
 

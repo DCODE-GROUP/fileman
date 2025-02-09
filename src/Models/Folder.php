@@ -79,4 +79,10 @@ class Folder extends Node
         return Folder::query()->whereNull('parent_id')->first();
     }
 
+    public function isRoot() : bool
+    {
+        return is_null($this->parent_id);
+    }
+
+
 }

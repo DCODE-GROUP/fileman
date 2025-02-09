@@ -1,11 +1,11 @@
 <template>
-    <div class="file h-full bg-gray-50 hover:bg-gray-100 rounded-md"
+    <div class="file h-full bg-gray-50 hover:bg-gray-100 rounded-md relative group"
        :data-file="JSON.stringify(file)"
        :data-url="file.url"
-         @click="showFileDetail"
+
     >
-        <img :src="file.previewUrl" class="thumbnail !h-4/5 object-contain"  :alt="file.name" v-if="file.is_image">
-        <div class="flex flex-col items-center justify-center h-full w-full relative" v-else>
+        <img :src="file.previewUrl" class="thumbnail !h-4/5 object-contain"  :alt="file.name" v-if="file.is_image" @click="showFileDetail">
+        <div class="flex flex-col items-center justify-center h-full w-full relative" @click="showFileDetail" v-else>
             <div class="h-20 w-20 relative">
                 <file-page class="h-20 w-16 ml-auto"></file-page>
                 <div :style="{background:file.file_type_color.background,color:file.file_type_color.text}"
@@ -15,7 +15,13 @@
                 </div>
             </div>
         </div>
-        <span class="text-sm font-normal mt-2">{{ file.name }}</span>
+        <div class="flex flex-row mt-2 p-2 items-center">
+            <div class="text-sm font-normal flex-1 ">{{ file.name }}</div>
+            <fileman-menu  :object="file" class="invisible group-hover:visible" ></fileman-menu>
+        </div>
+
+
+
     </div>
 
 </template>
