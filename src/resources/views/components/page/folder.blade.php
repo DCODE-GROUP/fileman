@@ -7,7 +7,7 @@
             {{count($folders)}} {{__('fileman.words.folders')}}
         </div>
         <fileman-add-folder class="ml-auto"
-                                  create-folder-url="{{route('fileman.folder.store',['parent'=>$folder->id])}}"
+                                  create-folder-url="{{route('api.fileman.folder.store',['parent'=>$folder->id])}}"
                                   :folder="{{$folder}}">
         </fileman-add-folder>
     </div>
