@@ -19,11 +19,7 @@
             <div class="text-sm font-normal flex-1 ">{{ file.name }}</div>
             <fileman-menu  :object="file" class="invisible group-hover:visible" ></fileman-menu>
         </div>
-
-
-
     </div>
-
 </template>
 <script>
 import FilePage from "@fileman/src/resources/assets/img/svg/file-page.svg";

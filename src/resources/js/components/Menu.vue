@@ -4,7 +4,6 @@
         <div class="bg-white border border-gray-200 rounded-lg absolute z-10 p-1" v-if="isVisible">
             <fileman-menu-item :item="item" v-for="item in object.actions" :key="item.id" :object="object" :class="{'hidden':item.hidden}"></fileman-menu-item>
         </div>
-
     </div>
 </template>
 

@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 import Pencil from "@fileman/src/resources/assets/img/svg/pencil-01.svg";
 import Trash from "@fileman/src/resources/assets/img/svg/trash-01.svg";
 import Plus from "@fileman/src/resources/assets/img/svg/plus.svg";

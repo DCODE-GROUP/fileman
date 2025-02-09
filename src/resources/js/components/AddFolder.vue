@@ -1,7 +1,6 @@
 <template>
     <div>
         <Plus class="w-5 h-5" @click="showAddFolderPopup"></Plus>
-
     </div>
 </template>
 

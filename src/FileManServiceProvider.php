@@ -46,10 +46,7 @@ class FileManServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../lang' => $this->app->langPath(),
             ], 'fileman');
-
-
         }
-
         $this->loadViewsFrom(__DIR__.'/resources/views', 'fileman');
     }
 
