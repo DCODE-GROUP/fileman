@@ -12,7 +12,7 @@
         <template #left-btn>
             <button
                 @click="closePopup"
-                class="bg-gray-300 text-gray-700 rounded-md px-4 py-2"
+                class="py-2.5 w-full border border-gray-300 rounded-full"
             >
                 {{ $t('fileman.buttons.cancel') }}
             </button>
@@ -20,7 +20,7 @@
         <template #right-btn>
             <button
                 @click="destroy"
-                class="bg-error-600 text-white rounded-md px-4 py-2"
+                class="py-2.5 rounded-full w-full text-white bg-error-600 disabled:bg-gray-200 disabled:text-gray-400"
             >
                 {{ $t('fileman.buttons.delete') }}
             </button>
