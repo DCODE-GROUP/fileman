@@ -380,7 +380,7 @@ return [
     'searchLimit' => [
         'current' => 10,
         'other' => 5,
-        'folders' => 5
+        'folders' => 5,
     ],
     // @phpstan-ignore-next-line
     'route_path' => env('LARAVEL_FILEMAN_PATH', 'fileman'),
