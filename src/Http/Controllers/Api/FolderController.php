@@ -37,7 +37,7 @@ class FolderController extends BaseController
             // return 403
             return response()->json([
                 'success' => false,
-                'message' => 'Cannot delete root folder',
+                'message' => __('Cannot delete root folder'),
             ], 403);
         }
 

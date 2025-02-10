@@ -22,25 +22,21 @@ class FolderController extends BaseController
         $folder->loadMissing(['files.folder', 'children']);
 
         return view('fileman::index')
-            ->with([
-                'folder' => $folder,
-                'directory' => FolderService::getDirectoryStructure($folder),
-                'path' => $folder->getPath(),
-                'files' => (new FileCollection($folder->files))->toArray(request()),
-                'folders' => (new FolderCollection($folder->children))->toArray(request()),
-            ]);
+            ->with('folder', $folder)
+            ->with('directory', FolderService::getDirectoryStructure($folder))
+            ->with('path', $folder->getPath())
+            ->with('files', (new FileCollection($folder->files))->toArray(request()))
+            ->with('folders', (new FolderCollection($folder->children))->toArray(request()));
     }
 
     public function create(Folder $parent): View
     {
         return view('fileman::folder.edit')
-            ->with([
-                'directory' => FolderService::getDirectoryStructure($parent),
-                'path' => $parent->getPath(),
-                'method' => 'post',
-                'action' => route('fileman.folder.store', $parent),
-                'parent' => $parent,
-            ]);
+            ->with('directory', FolderService::getDirectoryStructure($parent))
+            ->with('path', $parent->getPath())
+            ->with('method', 'post')
+            ->with('action', route('fileman.folder.store', $parent))
+            ->with('parent', $parent);
     }
 
     public function store(FolderRequest $request, Folder $parent): RedirectResponse

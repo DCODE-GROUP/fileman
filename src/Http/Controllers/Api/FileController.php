@@ -18,7 +18,6 @@ class FileController extends BaseController
             'success' => true,
             'redirect' => route('fileman.folder.index', $parent->id),
         ]);
-
     }
 
     public function destroy(Folder $parent, File $file): JsonResource
@@ -29,6 +28,5 @@ class FileController extends BaseController
             'success' => true,
             'redirect' => route('fileman.folder.index', $parent->id),
         ]);
-
     }
 }
