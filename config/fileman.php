@@ -204,7 +204,7 @@ return [
         'model/stl',
         'model/vnd.collada+xml',
         'application/x-gamepack',
-        'application/vnd.ms-savegame'
+        'application/vnd.ms-savegame',
     ],
     'colors' => [
         'Text' => [
