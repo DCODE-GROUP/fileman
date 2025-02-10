@@ -4,18 +4,20 @@ namespace DcodeGroup\Fileman\Models;
 
 use DcodeGroup\Fileman\Services\FileService;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 
 class File extends Node
 {
     use SoftDeletes;
 
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'name',
+        'folder_id',
+        'source',
+        'type',
+        'size',
     ];
 
     protected $appends = [

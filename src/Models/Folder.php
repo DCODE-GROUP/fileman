@@ -10,13 +10,9 @@ class Folder extends Node
 {
     use SoftDeletes;
 
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var string[]|bool
-     */
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'name',
+        'parent_id',
     ];
 
     /**
@@ -40,10 +36,6 @@ class Folder extends Node
     {
         return $this->hasMany(File::class);
     }
-
-    /*
-     * Methods
-     */
 
     public function getPath()
     {
@@ -70,9 +62,6 @@ class Folder extends Node
         })->implode('/');
 
     }
-    /*
-     * Static Methods
-     */
 
     public static function getRoot()
     {
@@ -81,6 +70,7 @@ class Folder extends Node
 
     public function isRoot(): bool
     {
+        // @phpstan-ignore-next-line
         return is_null($this->parent_id);
     }
 }

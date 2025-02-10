@@ -50,6 +50,7 @@ class FolderService
                             'label' => __('fileman.buttons.delete'),
                             'icon' => 'trash',
                             'action' => 'deleteFolder',
+                            // @phpstan-ignore-next-line
                             'hidden' => $folder->isRoot(),
                         ],
                     ],

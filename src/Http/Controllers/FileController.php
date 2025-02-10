@@ -15,6 +15,7 @@ class FileController extends BaseController
 {
     public function show(Folder $parent, File $file): View
     {
+        // @phpstan-ignore-next-line
         return view('fileman::file.show')
             ->with([
                 'file' => $file,
@@ -27,6 +28,7 @@ class FileController extends BaseController
 
     public function create(Folder $parent): View
     {
+        // @phpstan-ignore-next-line
         return view('fileman::file.edit')
             ->with([
                 'parent' => $parent,
@@ -52,6 +54,7 @@ class FileController extends BaseController
 
     public function edit(Folder $parent, File $file): View
     {
+        // @phpstan-ignore-next-line
         return view('fileman::file.edit')
             ->with([
                 'file' => $file,

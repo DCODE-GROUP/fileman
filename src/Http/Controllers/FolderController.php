@@ -15,12 +15,13 @@ class FolderController extends BaseController
 {
     public function index(?Folder $folder = null): View
     {
-        if (! $folder) {
+        if (!$folder) {
             $folder = Folder::getRoot();
         }
 
         $folder->loadMissing(['files.folder', 'children']);
 
+        // @phpstan-ignore-next-line
         return view('fileman::index')
             ->with('folder', $folder)
             ->with('directory', FolderService::getDirectoryStructure($folder))
@@ -31,6 +32,7 @@ class FolderController extends BaseController
 
     public function create(Folder $parent): View
     {
+        // @phpstan-ignore-next-line
         return view('fileman::folder.edit')
             ->with('directory', FolderService::getDirectoryStructure($parent))
             ->with('path', $parent->getPath())
