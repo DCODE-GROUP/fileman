@@ -9,10 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class SearchController extends BaseController
 {
-
-    public function __construct(protected SearchService $searchService)
-    {
-    }
+    public function __construct(protected SearchService $searchService) {}
 
     public function __invoke(Folder $parent)
     {
