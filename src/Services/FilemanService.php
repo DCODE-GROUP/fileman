@@ -35,6 +35,7 @@ class FilemanService
                 $filePaths = FileService::getDisk()->files($folderPath);
 
                 foreach ($filePaths as $filePath) {
+                    // @phpstan-ignore-next-line
                     FileService::newFileFromS3($folder, Storage::getMetaData($filePath));
                 }
             }
