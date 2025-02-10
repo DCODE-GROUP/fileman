@@ -6,7 +6,6 @@ use DcodeGroup\Fileman\Http\Controllers\FileController;
 use DcodeGroup\Fileman\Http\Controllers\FolderController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::post('folder/{parent}/file', [FileController::class, 'store'])->name('file.store');
 Route::get('folder/{parent}/file/create', [FileController::class, 'create'])->name('file.create');
 Route::get('folder/{parent}/file/{file}', [FileController::class, 'show'])->name('file.show');
