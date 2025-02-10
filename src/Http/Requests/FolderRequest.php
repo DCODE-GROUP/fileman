@@ -29,7 +29,7 @@ class FolderRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                new ValidFolderName
+                new ValidFolderName,
             ],
         ];
     }

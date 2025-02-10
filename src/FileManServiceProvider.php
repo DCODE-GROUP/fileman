@@ -28,7 +28,7 @@ class FileManServiceProvider extends ServiceProvider
                 __DIR__.'/../dist/' => public_path('vendor/fileman'),
             ], 'styles');
 
-            if (!class_exists('CreateFileManagerTables')) {
+            if (! class_exists('CreateFileManagerTables')) {
                 $timestamp = date('Y_m_d_His', time());
                 $this->publishes([
                     __DIR__.'/../database/migrations/create_filemanager_tables.php.stub' => database_path('migrations/'.$timestamp.'_create_filemanager_tables.php'),
@@ -55,7 +55,5 @@ class FileManServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-    }
+    public function register() {}
 }

@@ -8,9 +8,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class ValidFolderName implements ValidationRule
 {
-    public function validate(string $attribute, mixed $value, Closure $fail) : void
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(!resolve(FolderService::class)->isValidFolderName($value)){
+        if (! resolve(FolderService::class)->isValidFolderName($value)) {
             $fail(__('fileman.words.invalid_folder_name'));
         }
     }

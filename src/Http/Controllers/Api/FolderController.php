@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class FolderController extends BaseController
 {
-    public function store(FolderRequest $request, Folder $parent) : JsonResource
+    public function store(FolderRequest $request, Folder $parent): JsonResource
     {
         return new JsonResource([
             'success' => true,
@@ -21,7 +21,7 @@ class FolderController extends BaseController
         ]);
     }
 
-    public function update(FolderRequest $request, Folder $folder) : JsonResource
+    public function update(FolderRequest $request, Folder $folder): JsonResource
     {
         $folder->update($request->validated());
 
@@ -31,9 +31,9 @@ class FolderController extends BaseController
         ]);
     }
 
-    public function destroy(Folder $folder) : JsonResource|JsonResponse
+    public function destroy(Folder $folder): JsonResource|JsonResponse
     {
-        if($folder->isRoot()){
+        if ($folder->isRoot()) {
             // return 403
             return response()->json([
                 'success' => false,
@@ -48,5 +48,4 @@ class FolderController extends BaseController
             'redirect' => route('fileman.folder.index', $folder->parent_id),
         ]);
     }
-
 }

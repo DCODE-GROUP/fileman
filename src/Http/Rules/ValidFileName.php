@@ -16,7 +16,7 @@ class ValidFileName implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
 
-        if(!resolve(FileService::class)->isValidFileNames($value)){
+        if (! resolve(FileService::class)->isValidFileNames($value)) {
             $fail(__('fileman.words.invalid_file_name'));
         }
     }

@@ -12,8 +12,8 @@ class File extends JsonResource
             parent::toArray($request),
             [
                 'url' => $this->resource->getUrl(),
-                'previewUrl' => $this->resource->hasPreview()?$this->resource->getPreview():$this->resource->getUrl(),
-                'actions' =>[
+                'previewUrl' => $this->resource->hasPreview() ? $this->resource->getPreview() : $this->resource->getUrl(),
+                'actions' => [
                     'update' => [
                         'url' => route('api.fileman.file.update', [
                             'parent' => $this->folder_id,
@@ -33,7 +33,7 @@ class File extends JsonResource
                         'action' => 'deleteFile',
                     ],
 
-                ]
+                ],
             ]
         );
     }

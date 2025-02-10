@@ -2,7 +2,7 @@
 
 return [
     'headings' => [
-        "title" => "File Manager",
+        'title' => 'File Manager',
         'folders' => 'Folders',
         'files' => 'Files',
         'preview' => 'Preview and edit file',
@@ -28,9 +28,9 @@ return [
         'no_folder' => 'No Folder',
         'no_file' => 'No File',
         'invalid_file_name' => 'Invalid file name',
-        'invalid_folder_name' => 'Invalid folder name'
+        'invalid_folder_name' => 'Invalid folder name',
     ],
-    "placeholders" => [
+    'placeholders' => [
         'search' => 'Search file manager',
     ],
     'fields' => [
