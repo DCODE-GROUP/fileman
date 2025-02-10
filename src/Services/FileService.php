@@ -4,6 +4,7 @@ namespace DcodeGroup\Fileman\Services;
 
 use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,7 @@ class FileService
         $path = 'fileman';
         $name = $name ?: $file->getClientOriginalName();
         $filename = uniqid().'-'.str_replace(' ', '_', $name);
+
         if (count($parent->getPath()) > 1) {
             $path = $path.'/'.$parent->getFolderPath();
         }
@@ -42,7 +44,7 @@ class FileService
         ]);
     }
 
-    public static function getDisk(): \Illuminate\Contracts\Filesystem\Filesystem
+    public static function getDisk(): Filesystem
     {
         return Storage::disk(config('filesystems.default'));
     }
@@ -67,19 +69,23 @@ class FileService
         if (empty($fileName) || strlen(trim($fileName)) === 0) {
             return false;
         }
+
         // Trim whitespace and check the length
         $trimmedName = trim($fileName);
         if (strlen($trimmedName) > config('fileman.maxFileNameLength')) {
             return false;
         }
+
         // Check for invalid characters
         if (preg_match(config('fileman.validCharacters'), $trimmedName)) {
             return false;
         }
+
         // Check for reserved names (case-insensitive)
         if (in_array(strtoupper($trimmedName), config('fileman.reservedNames'))) {
             return false;
         }
+
         // Check if the file has a valid extension (optional)
         $extension = strtolower(pathinfo($trimmedName, PATHINFO_EXTENSION)); // Extracts the extension
         if (! empty($extension) && ! in_array($extension, config('fileman.validExtensions'))) {
