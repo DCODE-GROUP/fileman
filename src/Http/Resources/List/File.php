@@ -14,7 +14,7 @@ class File extends JsonResource
                 'url' => $this->resource->getUrl(),
                 'previewUrl' => $this->resource->hasPreview() ? $this->resource->getPreview() : $this->resource->getUrl(),
                 'actions' => [
-                    "view" => [
+                    'view' => [
                         'label' => __('fileman.buttons.view_file'),
                         'icon' => 'eye',
                         'action' => 'fileDetail',
