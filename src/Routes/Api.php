@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 class Api
 {
-    public static function get()
+    public static function get(): void
     {
         Route::group([
             'as' => 'api.fileman.',
@@ -22,7 +22,6 @@ class Api
             Route::post('folder/{parent}/folder', [FolderController::class, 'store'])->name('folder.store');
             Route::put('folder/{folder}', [FolderController::class, 'update'])->name('folder.update');
             Route::delete('folder/{folder}', [FolderController::class, 'destroy'])->name('folder.destroy');
-
         });
     }
 }
