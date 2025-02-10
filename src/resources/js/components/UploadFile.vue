@@ -108,7 +108,6 @@ export default {
                 const response = await axios.post(this.uploadUrl, formData, {
                     headers: { "Content-Type": "multipart/form-data" },
                     onUploadProgress: (progressEvent) => {
-                        console.log(progressEvent);
                         const total = progressEvent.total || 1; // Avoid division by 0
                         this.progress = (progressEvent.loaded / total) * 100;
                     },

@@ -9,7 +9,7 @@
 
         <section class="mt-3 w-full flex items-center justify-center">
             <div class=" border-gray-200 border rounded-2xl w-[32rem] h-[25rem]" @click="downloadUrl">
-                <img :src="url" alt="file" class="w-full h-full rounded-2xl object-contain " v-if="file.is_image"/>
+                <img :src="file.url" alt="file" class="w-full h-full rounded-2xl object-contain " v-if="file.is_image"/>
                 <div class="flex flex-col items-center justify-center h-full w-full relative" v-else>
                     <div class="h-20 w-20 relative">
                         <file-page class="h-20 w-16 ml-auto"></file-page>
@@ -33,7 +33,7 @@
 
             <div class="flex flex-row text-sm font-normal text-gray-600 gap-2 justify-start items-center mt-4">
                 <span class="text-sm font-normal text-gray-900 min-w-24">{{$t("fileman.fields.url")}}</span>
-                <span class="flex-1 break-all ">{{url}}</span>
+                <span class="flex-1 break-all ">{{file.url}}</span>
                 <copy class="w-5 h-5 stroke-gray-700 cursor-pointer min-w-5" @click="copy"></copy>
             </div>
             <!-- File Type -->
@@ -69,14 +69,11 @@ export default {
         return {
             showModal: false,
             file: {},
-            url: "",
         };
     },
     created() {
         this.bus.$on("fileDetail", (data) => {
-            console.log(data);
-            this.file = data.file;
-            this.url = data.url;
+            this.file = data;
             this.showModal = true;
         });
     },
@@ -85,13 +82,13 @@ export default {
             this.showModal = false;
         },
         downloadUrl() {
-            window.open(this.replaceHttpWithHttps(this.url), "_blank");
+            window.open(this.replaceHttpWithHttps(this.file.url), "_blank");
         },
         replaceHttpWithHttps(url) {
             return url.replace("http://", "https://");
         },
         copy() {
-            navigator.clipboard.writeText(this.url)
+            navigator.clipboard.writeText(this.file.url)
         },
         renameFile() {
             this.bus.$emit("renameFile", this.file);

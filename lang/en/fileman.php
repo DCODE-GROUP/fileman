@@ -41,6 +41,7 @@ return [
     'buttons' => [
         'new_folder' => 'New Folder',
         'new_file' => 'New File',
+        'view_file' => 'View File',
         'cancel' => 'Cancel',
         'confirm' => 'Confirm',
         'save' => 'Save',

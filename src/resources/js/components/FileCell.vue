@@ -36,10 +36,19 @@ export default {
     },
     methods: {
         showFileDetail() {
-            this.bus.$emit("fileDetail", {
-                file : this.file,
-                url :  this.file.url,
-            });
+            if (window.opener && typeof window.opener.fileman_callback === "function") {
+                event.preventDefault();
+                window.opener.fileman_callback({
+                    filename: this.file.name,
+                    source: this.file.source,
+                    size: this.file.size,
+                    type: this.file.type,
+                    url: this.url,
+                });
+                window.close();
+            }else {
+                this.bus.$emit("fileDetail",this.file);
+            }
         }
     }
 }

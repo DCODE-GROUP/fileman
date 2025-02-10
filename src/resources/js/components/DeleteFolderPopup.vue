@@ -55,7 +55,6 @@ export default {
                 .then((response) => {
                     this.closePopup();
                     if(response.data.data.redirect != null){
-                        console.log(response.data.data.redirect);
                         window.location.href = response.data.data.redirect;
                     }else{
                         location.reload();

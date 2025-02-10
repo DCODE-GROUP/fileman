@@ -51,7 +51,6 @@ export default {
     },
     created() {
         this.bus.$on("renameFolder", (data) => {
-            console.log(data);
             this.name = data.name;
             this.url = data.actions.update.url;
             this.showPopup();
@@ -66,10 +65,8 @@ export default {
             axios.put(this.url, {
                 name: this.name,
             }).then(response => {
-                console.log(response);
                 this.closePopup();
                 if(response.data.data.redirect != null){
-                    console.log(response.data.data.redirect);
                     window.location.href = response.data.data.redirect;
                 }else{
                     location.reload();
