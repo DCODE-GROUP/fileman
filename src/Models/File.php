@@ -53,9 +53,9 @@ class File extends Node
 
     public function getUrl(): string
     {
-//        if (config('filesystems.disks.s3.url')) {
-//            return config('filesystems.disks.s3.url').'/'.$this->source;
-//        }
+        //        if (config('filesystems.disks.s3.url')) {
+        //            return config('filesystems.disks.s3.url').'/'.$this->source;
+        //        }
 
         return FileService::getDisk()->url($this->source);
     }
