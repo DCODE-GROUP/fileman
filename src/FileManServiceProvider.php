@@ -3,8 +3,9 @@
 namespace DcodeGroup\Fileman;
 
 use DcodeGroup\Fileman\Commands\ImportFiles;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+
 class FileManServiceProvider extends ServiceProvider
 {
     /**
@@ -58,8 +59,7 @@ class FileManServiceProvider extends ServiceProvider
      */
     public function register() {}
 
-
-    public function registerRoutes() : void
+    public function registerRoutes(): void
     {
         Route::group([
             'as' => 'fileman.',
