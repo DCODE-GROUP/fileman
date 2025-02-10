@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 
 class FilemanService
 {
-
     public static function import(): void
     {
         $folderPaths = FileService::getDisk()->allDirectories();
