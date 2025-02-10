@@ -6,7 +6,7 @@ use DcodeGroup\Fileman\Http\Controllers\FileController;
 use DcodeGroup\Fileman\Http\Controllers\FolderController;
 use Illuminate\Support\Facades\Route;
 
-class Routes
+class Web
 {
     public static function get()
     {
