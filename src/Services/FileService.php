@@ -4,21 +4,22 @@ namespace DcodeGroup\Fileman\Services;
 
 use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Collection;
 
 class FileService
 {
-    public static function newFile(Folder $parent, UploadedFile $file, String $name = null)
+    public static function newFile(Folder $parent, UploadedFile $file, ?string $name = null)
     {
         $path = 'fileman';
         $name = $name ?: $file->getClientOriginalName();
-        $filename = uniqid().'-' . str_replace(' ', '_', $name);
-        if(count($parent->getPath()) > 1){
+        $filename = uniqid().'-'.str_replace(' ', '_', $name);
+        if (count($parent->getPath()) > 1) {
             $path = $path.'/'.$parent->getFolderPath();
         }
         $source = FileService::getDisk()->putFileAs($path, $file, $filename);
+
         return File::updateOrCreate([
             'folder_id' => $parent->id,
             'name' => $name,
@@ -29,7 +30,7 @@ class FileService
         ]);
     }
 
-    public static function newFileFromS3(Folder $parent, Array $metaData)
+    public static function newFileFromS3(Folder $parent, array $metaData)
     {
         File::updateOrCreate([
             'folder_id' => $parent->id,
@@ -41,26 +42,26 @@ class FileService
         ]);
     }
 
-    public static function getDisk() : \Illuminate\Contracts\Filesystem\Filesystem
+    public static function getDisk(): \Illuminate\Contracts\Filesystem\Filesystem
     {
         return Storage::disk(env('FILESYSTEM_DISK', 'local'));
     }
 
-    public static function countFolder(?Folder $folder = null) : int{
+    public static function countFolder(?Folder $folder = null): int
+    {
         return File::query()
-            ->when($folder, function($query) use ($folder){
+            ->when($folder, function ($query) use ($folder) {
                 return $query->where('folder_id', $folder->id);
             })
             ->count();
     }
 
-    public static function countAllFiles() : int
+    public static function countAllFiles(): int
     {
         return self::countFolder(null);
     }
 
-
-    public function isValidFileNames($fileName) : bool
+    public function isValidFileNames($fileName): bool
     {
         // Check for null, empty, or whitespace-only strings
         if (empty($fileName) || strlen(trim($fileName)) === 0) {
@@ -81,24 +82,25 @@ class FileService
         }
         // Check if the file has a valid extension (optional)
         $extension = strtolower(pathinfo($trimmedName, PATHINFO_EXTENSION)); // Extracts the extension
-        if (!empty($extension) && !in_array($extension, config('fileman.validExtensions'))) {
+        if (! empty($extension) && ! in_array($extension, config('fileman.validExtensions'))) {
             return false;
         }
+
         return true;
     }
 
-    public function searchFiles($search, $folderId, bool $current = false) : Collection
+    public function searchFiles($search, $folderId, bool $current = false): Collection
     {
         return File::query()->with('folder')
-            ->when($current, function($query) use ($folderId ,$search){
+            ->when($current, function ($query) use ($folderId, $search) {
                 return $query->where('folder_id', $folderId)
                     ->where(function ($query) use ($search) {
                         $query->where('name', 'like', "%$search%");
                     })
                     ->take(config('fileman.searchLimit.current'));
             })
-            ->when(!$current, function($query) use ($folderId,$search){
-                return $query->where('folder_id', "!=", $folderId)
+            ->when(! $current, function ($query) use ($folderId, $search) {
+                return $query->where('folder_id', '!=', $folderId)
                     ->where(function ($query) use ($search) {
                         $query->where('name', 'like', "%$search%");
                     })
@@ -107,5 +109,4 @@ class FileService
             ->orderBy('updated_at', 'desc')
             ->get();
     }
-
 }

@@ -1,256 +1,257 @@
 <?php
+
 return [
-    "fileFormats" => [
-        "Text" => [
-            "text/plain",
-            "application/rtf",
-            "application/msword",
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            "application/pdf",
-            "text/x-tex",
-            "application/vnd.wordperfect"
+    'fileFormats' => [
+        'Text' => [
+            'text/plain',
+            'application/rtf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/pdf',
+            'text/x-tex',
+            'application/vnd.wordperfect',
         ],
-        "Spreadsheet" => [
-            "application/vnd.ms-excel",
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            "application/vnd.oasis.opendocument.spreadsheet",
-            "text/csv",
-            "text/tab-separated-values"
+        'Spreadsheet' => [
+            'application/vnd.ms-excel',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/vnd.oasis.opendocument.spreadsheet',
+            'text/csv',
+            'text/tab-separated-values',
         ],
-        "Presentation" => [
-            "application/vnd.ms-powerpoint",
-            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-            "application/vnd.oasis.opendocument.presentation",
-            "application/x-iwork-keynote-sffkey"
+        'Presentation' => [
+            'application/vnd.ms-powerpoint',
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+            'application/vnd.oasis.opendocument.presentation',
+            'application/x-iwork-keynote-sffkey',
         ],
-        "Markup" => [
-            "text/html",
-            "application/xml",
-            "application/xhtml+xml",
-            "application/json",
-            "text/yaml",
-            "application/x-yaml"
+        'Markup' => [
+            'text/html',
+            'application/xml',
+            'application/xhtml+xml',
+            'application/json',
+            'text/yaml',
+            'application/x-yaml',
         ],
-        "Ebooks" => [
-            "application/epub+zip",
-            "application/vnd.amazon.ebook",
-            "application/x-mobipocket-ebook",
-            "application/x-ms-reader"
+        'Ebooks' => [
+            'application/epub+zip',
+            'application/vnd.amazon.ebook',
+            'application/x-mobipocket-ebook',
+            'application/x-ms-reader',
         ],
-        "Images" => [
-            "image/bmp",
-            "image/png",
-            "image/jpeg",
-            "image/tiff",
-            "image/gif",
-            "image/webp",
+        'Images' => [
+            'image/bmp',
+            'image/png',
+            'image/jpeg',
+            'image/tiff',
+            'image/gif',
+            'image/webp',
             // Raster
-            "image/svg+xml",
-            "application/postscript",
-            "application/pdf",
-            "application/vnd.adobe.photoshop",
+            'image/svg+xml',
+            'application/postscript',
+            'application/pdf',
+            'application/vnd.adobe.photoshop',
             // Vector
-            "image/x-raw",
-            "image/x-canon-cr2",
-            "image/x-nikon-nef",
-            "image/x-olympus-orf",
-            "image/x-sony-arw",
-            "image/vnd.adobe.dng",
-            "image/x-fuji-raf" // Raw
+            'image/x-raw',
+            'image/x-canon-cr2',
+            'image/x-nikon-nef',
+            'image/x-olympus-orf',
+            'image/x-sony-arw',
+            'image/vnd.adobe.dng',
+            'image/x-fuji-raf', // Raw
         ],
-        "Audio" => [
-            "audio/wav",
-            "audio/x-aiff",
-            "application/octet-stream", // Uncompressed
-            "audio/mpeg",
-            "audio/aac",
-            "audio/ogg",
-            "audio/x-ms-wma", // Lossy
-            "audio/flac",
-            "audio/alac",
-            "application/x-ape" // Lossless
+        'Audio' => [
+            'audio/wav',
+            'audio/x-aiff',
+            'application/octet-stream', // Uncompressed
+            'audio/mpeg',
+            'audio/aac',
+            'audio/ogg',
+            'audio/x-ms-wma', // Lossy
+            'audio/flac',
+            'audio/alac',
+            'application/x-ape', // Lossless
         ],
-        "Video" => [
-            "video/mp4",
-            "video/x-matroska",
-            "video/x-msvideo",
-            "video/quicktime",
-            "video/x-ms-wmv",
-            "video/x-flv",
-            "video/mpeg",
-            "video/x-mpeg2",
-            "application/x-mp4-mux",
-            "video/webm"
+        'Video' => [
+            'video/mp4',
+            'video/x-matroska',
+            'video/x-msvideo',
+            'video/quicktime',
+            'video/x-ms-wmv',
+            'video/x-flv',
+            'video/mpeg',
+            'video/x-mpeg2',
+            'application/x-mp4-mux',
+            'video/webm',
         ],
-        "Archives" => [
-            "application/zip",
-            "application/x-rar-compressed",
-            "application/x-7z-compressed",
-            "application/x-tar",
-            "application/x-gzip",
-            "application/x-xz",
-            "application/x-bzip2",
-            "application/x-iso9660-image"
+        'Archives' => [
+            'application/zip',
+            'application/x-rar-compressed',
+            'application/x-7z-compressed',
+            'application/x-tar',
+            'application/x-gzip',
+            'application/x-xz',
+            'application/x-bzip2',
+            'application/x-iso9660-image',
         ],
-        "Database" => [
-            "application/sql",
-            "application/x-sqlite3",
-            "application/vnd.ms-access",
-            "application/json",
-            "text/csv"
+        'Database' => [
+            'application/sql',
+            'application/x-sqlite3',
+            'application/vnd.ms-access',
+            'application/json',
+            'text/csv',
         ],
-        "Executables" => [
-            "application/vnd.microsoft.portable-executable",
-            "application/x-msdos-program",
-            "application/x-msi",
-            "application/octet-stream",
-            "application/x-sh"
+        'Executables' => [
+            'application/vnd.microsoft.portable-executable',
+            'application/x-msdos-program',
+            'application/x-msi',
+            'application/octet-stream',
+            'application/x-sh',
         ],
-        "Scripts" => [
-            "text/x-python",
-            "application/javascript",
-            "text/x-perl",
-            "application/x-php",
-            "application/x-ruby",
-            "text/x-java-source",
-            "text/x-cpp"
+        'Scripts' => [
+            'text/x-python',
+            'application/javascript',
+            'text/x-perl',
+            'application/x-php',
+            'application/x-ruby',
+            'text/x-java-source',
+            'text/x-cpp',
         ],
-        "Fonts" => [
-            "font/ttf",
-            "font/otf",
-            "application/font-woff",
-            "application/font-woff2",
-            "application/vnd.ms-fontobject"
+        'Fonts' => [
+            'font/ttf',
+            'font/otf',
+            'application/font-woff',
+            'application/font-woff2',
+            'application/vnd.ms-fontobject',
         ],
-        "Frontend" => [
-            "text/html",
-            "text/css",
-            "application/javascript",
-            "application/x-php"
+        'Frontend' => [
+            'text/html',
+            'text/css',
+            'application/javascript',
+            'application/x-php',
         ],
-        "Server Configs" => [
-            "text/x-env",
-            "text/x-htaccess",
-            "application/octet-stream"
+        'Server Configs' => [
+            'text/x-env',
+            'text/x-htaccess',
+            'application/octet-stream',
         ],
-        "Configs" => [
-            "text/x-ini",
-            "text/x-config",
-            "text/x-plist"
+        'Configs' => [
+            'text/x-ini',
+            'text/x-config',
+            'text/x-plist',
         ],
-        "Disk Images" => [
-            "application/x-iso9660-image",
-            "application/octet-stream",
-            "application/x-apple-diskimage",
-            "application/x-vmdk"
+        'Disk Images' => [
+            'application/x-iso9660-image',
+            'application/octet-stream',
+            'application/x-apple-diskimage',
+            'application/x-vmdk',
         ],
-        "Logs" => [
-            "text/plain"
+        'Logs' => [
+            'text/plain',
         ],
-        "3D Models" => [
-            "application/x-tgif",
-            "application/octect-stream",
-            "model/obj",
-            "model/fbx",
-            "model/stl",
-            "model/vnd.collada+xml"
+        '3D Models' => [
+            'application/x-tgif',
+            'application/octect-stream',
+            'model/obj',
+            'model/fbx',
+            'model/stl',
+            'model/vnd.collada+xml',
         ],
-        "Game Data" => [
-            "application/x-gamepack",
-            "application/vnd.ms-savegame"
-        ]
+        'Game Data' => [
+            'application/x-gamepack',
+            'application/vnd.ms-savegame',
+        ],
     ],
-    "colors" => [
-        "Text" => [
-            "text" => "#ffffff",
-            "background" => "#1f77b4"
+    'colors' => [
+        'Text' => [
+            'text' => '#ffffff',
+            'background' => '#1f77b4',
         ], // White on Blue
-        "Spreadsheet" => [
-            "text" => "#000000",
-            "background" => "#ff7f0e"
+        'Spreadsheet' => [
+            'text' => '#000000',
+            'background' => '#ff7f0e',
         ], // Black on Orange
-        "Presentation" => [
-            "text" => "#ffffff",
-            "background" => "#2ca02c"
+        'Presentation' => [
+            'text' => '#ffffff',
+            'background' => '#2ca02c',
         ], // White on Green
-        "Markup" => [
-            "text" => "#000000",
-            "background" => "#d62728"
+        'Markup' => [
+            'text' => '#000000',
+            'background' => '#d62728',
         ], // Black on Red
-        "Ebooks" => [
-            "text" => "#ffffff",
-            "background" => "#9467bd"
+        'Ebooks' => [
+            'text' => '#ffffff',
+            'background' => '#9467bd',
         ], // White on Purple
-        "Images" => [
-            "text" => "#000000",
-            "background" => "#8c564b"
+        'Images' => [
+            'text' => '#000000',
+            'background' => '#8c564b',
         ], // Black on Brown
-        "Audio" => [
-            "Uncompressed" => [
-                "text" => "#ffffff",
-                "background" => "#e377c2"
+        'Audio' => [
+            'Uncompressed' => [
+                'text' => '#ffffff',
+                'background' => '#e377c2',
             ], // White on Pink
-            "Lossy" => [
-                "text" => "#ffffff",
-                "background" => "#7f7f7f"
+            'Lossy' => [
+                'text' => '#ffffff',
+                'background' => '#7f7f7f',
             ], // White on Gray
-            "Lossless" => [
-                "text" => "#ffffff",
-                "background" => "#bcbd22"
-            ] // White on Yellow-Green
+            'Lossless' => [
+                'text' => '#ffffff',
+                'background' => '#bcbd22',
+            ], // White on Yellow-Green
         ],
-        "Video" => [
-            "text" => "#ffffff",
-            "background" => "#17becf"
+        'Video' => [
+            'text' => '#ffffff',
+            'background' => '#17becf',
         ], // White on Cyan
-        "Archives" => [
-            "text" => "#000000",
-            "background" => "#2ca02c"
+        'Archives' => [
+            'text' => '#000000',
+            'background' => '#2ca02c',
         ], // Black on Green
-        "Database" => [
-            "text" => "#ffffff",
-            "background" => "#d62728"
+        'Database' => [
+            'text' => '#ffffff',
+            'background' => '#d62728',
         ], // White on Red
-        "Executables" => [
-            "text" => "#ffffff",
-            "background" => "#bcbd22"
+        'Executables' => [
+            'text' => '#ffffff',
+            'background' => '#bcbd22',
         ], // White on Yellow-Green
-        "Scripts" => [
-            "text" => "#000000",
-            "background" => "#ff7f0e"
+        'Scripts' => [
+            'text' => '#000000',
+            'background' => '#ff7f0e',
         ], // Black on Orange
-        "Fonts" => [
-            "text" => "#000000",
-            "background" => "#17becf"
+        'Fonts' => [
+            'text' => '#000000',
+            'background' => '#17becf',
         ], // Black on Cyan
-        "Frontend" => [
-            "text" => "#ffffff",
-            "background" => "#9467bd"
+        'Frontend' => [
+            'text' => '#ffffff',
+            'background' => '#9467bd',
         ], // White on Purple
-        "Server Configs" => [
-            "text" => "#ffffff",
-            "background" => "#8c564b"
+        'Server Configs' => [
+            'text' => '#ffffff',
+            'background' => '#8c564b',
         ], // White on Brown
-        "Configs" => [
-            "text" => "#ffffff",
-            "background" => "#7f7f7f"
+        'Configs' => [
+            'text' => '#ffffff',
+            'background' => '#7f7f7f',
         ], // White on Gray
-        "Disk Images" => [
-            "text" => "#ffffff",
-            "background" => "#e377c2"
+        'Disk Images' => [
+            'text' => '#ffffff',
+            'background' => '#e377c2',
         ], // White on Pink
-        "Logs" => [
-            "text" => "#000000",
-            "background" => "#bcbd22"
+        'Logs' => [
+            'text' => '#000000',
+            'background' => '#bcbd22',
         ], // Black on Yellow-Green
-        "3D Models" => [
-            "text" => "#000000",
-            "background" => "#1f77b4"
+        '3D Models' => [
+            'text' => '#000000',
+            'background' => '#1f77b4',
         ], // Black on Blue
-        "Game Data" => [
-            "text" => "#ffffff",
-            "background" => "#ff7f0e"
-        ] // White on Orange
+        'Game Data' => [
+            'text' => '#ffffff',
+            'background' => '#ff7f0e',
+        ], // White on Orange
     ],
     'reservedNames' => [
         'CON',
@@ -274,106 +275,106 @@ return [
         'LPT6',
         'LPT7',
         'LPT8',
-        'LPT9'
+        'LPT9',
     ],
     'maxFileNameLength' => 255,
     'validCharacters' => '/[\/:*?"<>|]/',
     'validExtensions' => [
-        "txt",
-        "rtf",
-        "doc",
-        "docx",
-        "pdf",
-        "tex",
-        "wpd",
-        "xls",
-        "xlsx",
-        "ods",
-        "csv",
-        "tsv",
-        "ppt",
-        "pptx",
-        "odp",
-        "key",
-        "html",
-        "xml",
-        "xhtml",
-        "json",
-        "yaml",
-        "epub",
-        "azw",
-        "mobi",
-        "lit",
-        "bmp",
-        "png",
-        "jpg",
-        "tiff",
-        "gif",
-        "webp",
-        "svg",
-        "ps",
-        "psd",
-        "raw",
-        "cr2",
-        "nef",
-        "orf",
-        "arw",
-        "dng",
-        "raf",
-        "wav",
-        "aiff",
-        "bin",
-        "mp3",
-        "aac",
-        "ogg",
-        "wma",
-        "flac",
-        "alac",
-        "ape",
-        "mp4",
-        "mkv",
-        "avi",
-        "mov",
-        "wmv",
-        "flv",
-        "mpeg",
-        "mpg",
-        "webm",
-        "zip",
-        "rar",
-        "7z",
-        "tar",
-        "gz",
-        "xz",
-        "bz2",
-        "iso",
-        "sql",
-        "sqlite",
-        "mdb",
-        "py",
-        "js",
-        "pl",
-        "php",
-        "rb",
-        "java",
-        "cpp",
-        "ttf",
-        "otf",
-        "woff",
-        "woff2",
-        "eot",
-        "env",
-        "htaccess",
-        "ini",
-        "config",
-        "plist",
-        "dmg",
-        "vmdk",
-        "obj",
-        "fbx",
-        "stl",
-        "dae",
-        "gamepack",
-        "savegame"
-    ]
+        'txt',
+        'rtf',
+        'doc',
+        'docx',
+        'pdf',
+        'tex',
+        'wpd',
+        'xls',
+        'xlsx',
+        'ods',
+        'csv',
+        'tsv',
+        'ppt',
+        'pptx',
+        'odp',
+        'key',
+        'html',
+        'xml',
+        'xhtml',
+        'json',
+        'yaml',
+        'epub',
+        'azw',
+        'mobi',
+        'lit',
+        'bmp',
+        'png',
+        'jpg',
+        'tiff',
+        'gif',
+        'webp',
+        'svg',
+        'ps',
+        'psd',
+        'raw',
+        'cr2',
+        'nef',
+        'orf',
+        'arw',
+        'dng',
+        'raf',
+        'wav',
+        'aiff',
+        'bin',
+        'mp3',
+        'aac',
+        'ogg',
+        'wma',
+        'flac',
+        'alac',
+        'ape',
+        'mp4',
+        'mkv',
+        'avi',
+        'mov',
+        'wmv',
+        'flv',
+        'mpeg',
+        'mpg',
+        'webm',
+        'zip',
+        'rar',
+        '7z',
+        'tar',
+        'gz',
+        'xz',
+        'bz2',
+        'iso',
+        'sql',
+        'sqlite',
+        'mdb',
+        'py',
+        'js',
+        'pl',
+        'php',
+        'rb',
+        'java',
+        'cpp',
+        'ttf',
+        'otf',
+        'woff',
+        'woff2',
+        'eot',
+        'env',
+        'htaccess',
+        'ini',
+        'config',
+        'plist',
+        'dmg',
+        'vmdk',
+        'obj',
+        'fbx',
+        'stl',
+        'dae',
+        'gamepack',
+        'savegame',
+    ],
 ];

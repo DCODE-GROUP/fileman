@@ -3,8 +3,8 @@
 namespace DcodeGroup\Fileman\Routes;
 
 use DcodeGroup\Fileman\Http\Controllers\Api\FileController;
-use DcodeGroup\Fileman\Http\Controllers\Api\SearchController;
 use DcodeGroup\Fileman\Http\Controllers\Api\FolderController;
+use DcodeGroup\Fileman\Http\Controllers\Api\SearchController;
 use Illuminate\Support\Facades\Route;
 
 class Api

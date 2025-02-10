@@ -19,14 +19,14 @@ class File extends Node
      * @var string[]|bool
      */
     protected $guarded = [
-        'id'
+        'id',
     ];
 
     protected $appends = [
         'is_image',
         'file_type',
         'file_type_color',
-        'file_extension'
+        'file_extension',
     ];
 
     /**
@@ -51,6 +51,7 @@ class File extends Node
         if ($this->hasPreview()) {
             return $this->getSignedUrl();
         }
+
         return null;
     }
 
@@ -59,18 +60,19 @@ class File extends Node
         if (config('filesystems.disks.s3.url')) {
             return config('filesystems.disks.s3.url').'/'.$this->source;
         }
+
         return FileService::getDisk()->url($this->source);
     }
 
     public function getSignedUrl()
     {
-        //$client = Storage::disk('s3')->getDriver()->getAdapter()->getClient();
-        //$expiry = "+10 minutes";
-        //$command = $client->getCommand('GetObject', [
+        // $client = Storage::disk('s3')->getDriver()->getAdapter()->getClient();
+        // $expiry = "+10 minutes";
+        // $command = $client->getCommand('GetObject', [
         //    'Bucket' => config('filesystems.disks.s3.bucket'),
         //    'Key' => $this->source,
-        //]);
-        //return $client->createPresignedRequest($command, $expiry)->getUri();
+        // ]);
+        // return $client->createPresignedRequest($command, $expiry)->getUri();
         // has temporaryUrl
 
         try {
@@ -96,7 +98,6 @@ class File extends Node
         ]);
     }
 
-
     public function getIsImageAttribute(): bool
     {
         return $this->fileType === 'Images';
@@ -104,8 +105,8 @@ class File extends Node
 
     public function getFileTypeAttribute(): string
     {
-         return collect(config('fileman.fileFormats'))->filter(function ($valueArray,$key) {
-            //use mime type and config('fileman.fileFormats') to get the type of file
+        return collect(config('fileman.fileFormats'))->filter(function ($valueArray, $key) {
+            // use mime type and config('fileman.fileFormats') to get the type of file
             return in_array($this->type, $valueArray);
         })->keys()->first();
     }

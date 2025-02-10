@@ -15,13 +15,13 @@ class FileController extends BaseController
 {
     public function show(Folder $parent, File $file): View
     {
-          return view('fileman::file.show')
+        return view('fileman::file.show')
             ->with([
                 'file' => $file,
                 'parent' => $parent,
                 'directory' => FolderService::getDirectoryStructure($parent),
                 'path' => $parent->getPath(),
-                'folder'=> $parent,
+                'folder' => $parent,
             ]);
     }
 
@@ -31,10 +31,10 @@ class FileController extends BaseController
             ->with([
                 'parent' => $parent,
                 'directory' => FolderService::getDirectoryStructure($parent),
-                'path' =>  $parent->getPath(),
+                'path' => $parent->getPath(),
                 'action' => route('fileman.file.store', $parent->id),
                 'method' => 'post',
-                'folder'=> $parent,
+                'folder' => $parent,
             ]);
     }
 
@@ -56,11 +56,11 @@ class FileController extends BaseController
             ->with([
                 'file' => $file,
                 'parent' => $parent,
-                'directory' =>  FolderService::getDirectoryStructure($parent),
-                'path' =>  $parent->getPath(),
+                'directory' => FolderService::getDirectoryStructure($parent),
+                'path' => $parent->getPath(),
                 'action' => route('fileman.file.update', [$parent->id, $file->id]),
                 'method' => 'put',
-                'folder'=> $parent,
+                'folder' => $parent,
             ]);
     }
 

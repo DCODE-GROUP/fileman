@@ -2,7 +2,6 @@
 
 namespace DcodeGroup\Fileman\Services;
 
-use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
 use Illuminate\Support\Facades\Storage;
 

@@ -27,7 +27,7 @@ class UpdateFileRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                new ValidFileName
+                new ValidFileName,
             ],
         ];
     }

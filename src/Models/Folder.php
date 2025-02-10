@@ -16,7 +16,7 @@ class Folder extends Node
      * @var string[]|bool
      */
     protected $guarded = [
-        'id'
+        'id',
     ];
 
     /**
@@ -25,7 +25,6 @@ class Folder extends Node
      * @var string
      */
     protected $table = 'fm_folders';
-
 
     public function parent(): BelongsTo
     {
@@ -57,15 +56,16 @@ class Folder extends Node
             ];
             $folder = $folder->parent;
         }
+
         return array_reverse($array);
     }
 
-
-    public function getFolderPath() : string
+    public function getFolderPath(): string
     {
         $path = $this->getPath();
         array_shift($path);
-        return collect($path)->map(function($item){
+
+        return collect($path)->map(function ($item) {
             return $item['name'];
         })->implode('/');
 
@@ -79,7 +79,7 @@ class Folder extends Node
         return Folder::query()->whereNull('parent_id')->first();
     }
 
-    public function isRoot() : bool
+    public function isRoot(): bool
     {
         return is_null($this->parent_id);
     }

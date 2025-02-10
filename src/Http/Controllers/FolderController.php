@@ -13,9 +13,9 @@ use Illuminate\Routing\Controller as BaseController;
 
 class FolderController extends BaseController
 {
-    public function index(Folder $folder = null): View
+    public function index(?Folder $folder = null): View
     {
-        if (!$folder) {
+        if (! $folder) {
             $folder = Folder::getRoot();
         }
 
@@ -25,7 +25,7 @@ class FolderController extends BaseController
             ->with([
                 'folder' => $folder,
                 'directory' => FolderService::getDirectoryStructure($folder),
-                'path' =>  $folder->getPath(),
+                'path' => $folder->getPath(),
                 'files' => (new FileCollection($folder->files))->toArray(request()),
                 'folders' => (new FolderCollection($folder->children))->toArray(request()),
             ]);
