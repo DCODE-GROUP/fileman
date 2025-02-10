@@ -97,7 +97,7 @@ class FileService
 
     public function isValidFileTypes($fileType): bool
     {
-        return !in_array($fileType, config('fileman.restrictedFileFormats'));
+        return ! in_array($fileType, config('fileman.restrictedFileFormats'));
     }
 
     public function searchFiles($search, $folderId, bool $current = false): Collection

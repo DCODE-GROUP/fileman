@@ -28,7 +28,7 @@ class FileRequest extends FormRequest
             'file' => [
                 'required',
                 'file',
-                new ValidFileType()
+                new ValidFileType,
             ],
         ];
     }
