@@ -10,14 +10,13 @@ class File extends JsonResource
     public function toArray($request): array
     {
         return [
-            'name' => $this->name,
-            'path' => $this->source,
-            'url' => route('fileman.folder.index', $this->folder->id).'#file_'.$this->id,
-            'preview' => $this->hasPreview() ? $this->getPreview() : $this->getUrl(),
-            'source' => $this->source,
+            'name' => $this->resource->name,
+            'path' => $this->resource->source,
+            'url' => route('fileman.folder.index', $this->resource->folder->id).'#file_'.$this->resource->id,
+            'preview' => $this->resource->hasPreview() ? $this->resource->getPreview() : $this->resource->getUrl(),
+            'source' => $this->resource->source,
             'type' => FileType::FILE->value,
-            'id' => $this->id,
+            'id' => $this->resource->id,
         ];
-
     }
 }

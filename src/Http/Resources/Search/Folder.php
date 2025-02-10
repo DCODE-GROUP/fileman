@@ -10,12 +10,12 @@ class Folder extends JsonResource
     public function toArray($request): array
     {
         return [
-            'name' => $this->name,
-            'path' => $this->getFolderPath(),
-            'url' => route('fileman.folder.index', $this->id),
-            'filesCount' => $this->files_count,
+            'name' => $this->resource->name,
+            'path' => $this->resource->getFolderPath(),
+            'url' => route('fileman.folder.index', $this->resource->id),
+            'filesCount' => $this->resource->files_count,
             'type' => FileType::FOLDER->value,
-            'id' => $this->id,
+            'id' => $this->resource->id,
         ];
     }
 }

@@ -16,8 +16,8 @@ class File extends JsonResource
                 'actions' => [
                     'update' => [
                         'url' => route('api.fileman.file.update', [
-                            'parent' => $this->folder_id,
-                            'file' => $this->id,
+                            'parent' => $this->resource->folder_id,
+                            'file' => $this->resource->id,
                         ]),
                         'label' => __('fileman.buttons.rename_file'),
                         'icon' => 'Pencil',
@@ -25,14 +25,13 @@ class File extends JsonResource
                     ],
                     'delete' => [
                         'url' => route('api.fileman.file.destroy', [
-                            'parent' => $this->folder_id,
-                            'file' => $this->id,
+                            'parent' => $this->resource->folder_id,
+                            'file' => $this->resource->id,
                         ]),
                         'label' => __('fileman.buttons.delete'),
                         'icon' => 'Trash',
                         'action' => 'deleteFile',
                     ],
-
                 ],
             ]
         );
