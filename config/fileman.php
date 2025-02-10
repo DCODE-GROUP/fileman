@@ -382,8 +382,12 @@ return [
         'other' => 5,
         'folders' => 5
     ],
+    // @phpstan-ignore-next-line
     'route_path' => env('LARAVEL_FILEMAN_PATH', 'fileman'),
+    // @phpstan-ignore-next-line
     'route_name' => env('LARAVEL_FILEMAN_NAME', 'fileman'),
+    // @phpstan-ignore-next-line
     'api_route_name' => env('LARAVEL_FILEMAN_API_PATH', 'fileman.api'),
+    // @phpstan-ignore-next-line
     'api_route_path' => env('LARAVEL_FILEMAN_API_NAME', 'fileman'),
 ];
