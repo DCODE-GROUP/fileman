@@ -28,6 +28,7 @@ return [
         'no_folder' => 'No Folder',
         'no_file' => 'No File',
         'invalid_file_name' => 'Invalid file name',
+        'invalid_file_type' => ':type is invalid',
         'invalid_folder_name' => 'Invalid folder name',
     ],
     'placeholders' => [
