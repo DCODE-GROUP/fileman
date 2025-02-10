@@ -1,7 +1,7 @@
 <template>
     <div class="relative w-full h-10 flex flex-row py-2 px-3 gap-2 border border-gray-300 rounded-lg hover:border hover:border-brand-300 hover:shadow-brand-primary/200">
         <search-lg class="w-5 h-5"/>
-        <input class="flex-1 outline-none" v-model="keyword"
+        <input class="flex-1 border-0 outline-none" v-model="keyword"
                @keydown.down.prevent="navigateDown"
                @keydown.up.prevent="navigateUp"
                @keydown.enter.prevent="selectItem()"

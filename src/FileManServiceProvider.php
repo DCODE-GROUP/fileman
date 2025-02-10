@@ -4,7 +4,7 @@ namespace DcodeGroup\Fileman;
 
 use DcodeGroup\Fileman\Commands\ImportFiles;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Route;
 class FileManServiceProvider extends ServiceProvider
 {
     /**
@@ -47,6 +47,7 @@ class FileManServiceProvider extends ServiceProvider
                 __DIR__.'/../lang' => $this->app->langPath(),
             ], 'fileman');
         }
+        $this->registerRoutes();
         $this->loadViewsFrom(__DIR__.'/resources/views', 'fileman');
     }
 
@@ -56,4 +57,20 @@ class FileManServiceProvider extends ServiceProvider
      * @return void
      */
     public function register() {}
+
+
+    public function registerRoutes() : void
+    {
+        Route::group([
+            'as' => 'fileman.',
+        ], function () {
+            $this->loadRoutesFrom(__DIR__.'/Routes/Web.php');
+        });
+
+        Route::group([
+            'as' => 'api.fileman.',
+        ], function () {
+            $this->loadRoutesFrom(__DIR__.'/Routes/Api.php');
+        });
+    }
 }
