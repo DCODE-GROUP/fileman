@@ -15,7 +15,7 @@ class FileService
     {
         $path = 'fileman';
         $name = $name ?: $file->getClientOriginalName();
-        $filename = uniqid().'-'.str_replace(' ', '_', $name);
+        $filename = uniqid().'-'.$name;
 
         if (count($parent->getPath()) > 1) {
             $path = $path.'/'.$parent->getFolderPath();

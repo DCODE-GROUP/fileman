@@ -15,7 +15,7 @@ class FolderController extends BaseController
         return new JsonResource([
             'success' => true,
             'redirect' => route('fileman.folder.index', Folder::create([
-                'name' => $request->name,
+                'name' => $request->input('name'),
                 'parent_id' => $parent->id,
             ])),
         ]);

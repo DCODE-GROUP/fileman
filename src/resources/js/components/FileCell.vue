@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="flex flex-row mt-2 p-2 items-center">
-            <div class="text-sm font-normal flex-1 ">{{ file.name }}</div>
+            <div class="text-sm font-normal flex-1 break-all line-clamp-2">{{ file.name }}</div>
             <fileman-menu  :object="file" class="invisible group-hover:visible" ></fileman-menu>
         </div>
     </div>

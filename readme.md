@@ -25,7 +25,7 @@ npm install vue3-click-away
 
 Publish the migrations:
 
-```php
+```bash
 php artisan vendor:publish --provider="DcodeGroup\Fileman\FilemanServiceProvider" --tag="migrations"
 ```
 
