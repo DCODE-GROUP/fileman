@@ -34,7 +34,7 @@ class FileController extends BaseController
                 'parent' => $parent,
                 'directory' => FolderService::getDirectoryStructure($parent),
                 'path' => $parent->getPath(),
-                'action' => route('fileman.file.store', $parent->id),
+                'action' => route(config('fileman.route_name').'.file.store', $parent->id),
                 'method' => 'post',
                 'folder' => $parent,
             ]);
@@ -49,7 +49,7 @@ class FileController extends BaseController
         );
 
         return redirect()
-            ->route('fileman.folder.index', $parent->id);
+            ->route(config('fileman.route_name').'.folder.index', $parent->id);
     }
 
     public function edit(Folder $parent, File $file): View
@@ -61,7 +61,7 @@ class FileController extends BaseController
                 'parent' => $parent,
                 'directory' => FolderService::getDirectoryStructure($parent),
                 'path' => $parent->getPath(),
-                'action' => route('fileman.file.update', [$parent->id, $file->id]),
+                'action' => route(config('fileman.route_name').'.file.update', [$parent->id, $file->id]),
                 'method' => 'put',
                 'folder' => $parent,
             ]);
@@ -72,7 +72,7 @@ class FileController extends BaseController
         $file->rename(request()->input('name'));
 
         return redirect()
-            ->route('fileman.folder.index', $parent->id);
+            ->route(config('fileman.route_name').'.folder.index', $parent->id);
     }
 
     public function destroy(Folder $parent, File $file): RedirectResponse
@@ -80,6 +80,6 @@ class FileController extends BaseController
         $file->delete();
 
         return redirect()
-            ->route('fileman.folder.index', $parent->id);
+            ->route(config('fileman.route_name').'.folder.index', $parent->id);
     }
 }

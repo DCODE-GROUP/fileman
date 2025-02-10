@@ -14,7 +14,7 @@ class FolderController extends BaseController
     {
         return new JsonResource([
             'success' => true,
-            'redirect' => route('fileman.folder.index', Folder::create([
+            'redirect' => route(config('fileman.route_name').'.folder.index', Folder::create([
                 'name' => $request->input('name'),
                 'parent_id' => $parent->id,
             ])),
@@ -27,7 +27,7 @@ class FolderController extends BaseController
 
         return new JsonResource([
             'success' => true,
-            'redirect' => route('fileman.folder.index', $folder->id),
+            'redirect' => route(config('fileman.route_name').'.folder.index', $folder->id),
         ]);
     }
 
@@ -45,7 +45,7 @@ class FolderController extends BaseController
 
         return new JsonResource([
             'success' => true,
-            'redirect' => route('fileman.folder.index', $folder->parent_id),
+            'redirect' => route(config('fileman.route_name').'.folder.index', $folder->parent_id),
         ]);
     }
 }

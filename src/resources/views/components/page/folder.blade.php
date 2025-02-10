@@ -7,7 +7,7 @@
             {{count($folders)}} {{__('fileman.words.folders')}}
         </div>
         <fileman-add-folder class="ml-auto"
-                                  create-folder-url="{{route('api.fileman.folder.store',['parent'=>$folder->id])}}"
+                                  create-folder-url="{{route(config('fileman.api_route_name').'.folder.store',['parent'=>$folder->id])}}"
                                   :folder="{{$folder}}">
         </fileman-add-folder>
     </div>
@@ -15,7 +15,7 @@
         @if(count($folders) > 0)
             @foreach ($folders as $folder)
                 <div class="flex flex-row gap-2 py-4 px-3 bg-gray-50 rounded-xl hover:bg-gray-100 group">
-                    <a href="{{route('fileman.folder.index', data_get($folder,'id'))  }}" class="flex flex-1 gap-2 items-center">
+                    <a href="{{route(config('fileman.route_name').'.folder.index', data_get($folder,'id'))  }}" class="flex flex-1 gap-2 items-center">
                         <svg stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                              class="w-5 h-5 stroke-gray-500">
                             <path

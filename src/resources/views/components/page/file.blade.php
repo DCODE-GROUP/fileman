@@ -9,7 +9,7 @@
     </div>
     <div class="grid grid-cols-4 gap-4 mt-3 !px-0">
         <fileman-upload-file
-            upload-url="{{route('fileman.file.store',['parent'=>$folder->id])}}"
+            upload-url="{{route(config('fileman.route_name').'.file.store',['parent'=>$folder->id])}}"
         >
         </fileman-upload-file>
         @if(count($files) == 0)

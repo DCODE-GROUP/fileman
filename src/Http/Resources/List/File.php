@@ -15,7 +15,7 @@ class File extends JsonResource
                 'previewUrl' => $this->resource->hasPreview() ? $this->resource->getPreview() : $this->resource->getUrl(),
                 'actions' => [
                     'update' => [
-                        'url' => route('api.fileman.file.update', [
+                        'url' => route(config('fileman.api_route_name').'.file.update', [
                             'parent' => $this->resource->folder_id,
                             'file' => $this->resource->id,
                         ]),
@@ -24,7 +24,7 @@ class File extends JsonResource
                         'action' => 'renameFile',
                     ],
                     'delete' => [
-                        'url' => route('api.fileman.file.destroy', [
+                        'url' => route(config('fileman.api_route_name').'.file.destroy', [
                             'parent' => $this->resource->folder_id,
                             'file' => $this->resource->id,
                         ]),

@@ -377,4 +377,13 @@ return [
         'gamepack',
         'savegame',
     ],
+    'searchLimit' => [
+        'current' => 10,
+        'other' => 5,
+        'folders' => 5
+    ],
+    'route_path' => env('LARAVEL_FILEMAN_PATH', 'fileman'),
+    'route_name' => env('LARAVEL_FILEMAN_NAME', 'fileman'),
+    'api_route_name' => env('LARAVEL_FILEMAN_API_PATH', 'fileman.api'),
+    'api_route_path' => env('LARAVEL_FILEMAN_API_NAME', 'fileman'),
 ];

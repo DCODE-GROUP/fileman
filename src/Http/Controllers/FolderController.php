@@ -37,14 +37,14 @@ class FolderController extends BaseController
             ->with('directory', FolderService::getDirectoryStructure($parent))
             ->with('path', $parent->getPath())
             ->with('method', 'post')
-            ->with('action', route('fileman.folder.store', $parent))
+            ->with('action', route( config('fileman.route_name').'.folder.store', $parent))
             ->with('parent', $parent);
     }
 
     public function store(FolderRequest $request, Folder $parent): RedirectResponse
     {
         return redirect()
-            ->route('fileman.folder.index', Folder::create([
+            ->route(config('fileman.route_name').'.folder.index', Folder::create([
                 'name' => $request->input('name'),
                 'parent_id' => $parent->id,
             ]));

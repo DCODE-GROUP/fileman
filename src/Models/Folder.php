@@ -44,7 +44,7 @@ class Folder extends Node
         while ($folder) {
             $array[] = [
                 'name' => $folder->name,
-                'url' => route('fileman.folder.index', $folder->id),
+                'url' => route(config('fileman.route_name').'.folder.index', $folder->id),
             ];
             $folder = $folder->parent;
         }

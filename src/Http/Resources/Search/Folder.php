@@ -12,7 +12,7 @@ class Folder extends JsonResource
         return [
             'name' => $this->resource->name,
             'path' => $this->resource->getFolderPath(),
-            'url' => route('fileman.folder.index', $this->resource->id),
+            'url' => route(config('fileman.route_name').'.folder.index', $this->resource->id),
             'filesCount' => $this->resource->files_count,
             'type' => FileType::FOLDER->value,
             'id' => $this->resource->id,

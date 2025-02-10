@@ -24,7 +24,7 @@ class FolderService
                 $folders->pull($index);
                 $tree[] = [
                     'name' => $folder->name,
-                    'url' => route('fileman.folder.index', $folder->id),
+                    'url' => route(config('fileman.route_name').'.folder.index', $folder->id),
                     'count' => $folder->files_count,
                     'open' => self::shouldOpenTheFolder($folder, $currentFolder),
                     'children' => self::buildTree($folders, $folder->id, $currentFolder),
@@ -32,7 +32,7 @@ class FolderService
                     'id' => $folder->id,
                     'actions' => [
                         'create' => [
-                            'url' => route('api.fileman.folder.store', [
+                            'url' => route(config('fileman.api_route_name').'.folder.store', [
                                 'parent' => $folder->id,
                             ]),
                             'label' => __('fileman.buttons.add_folder'),
@@ -40,13 +40,13 @@ class FolderService
                             'action' => 'createFolder',
                         ],
                         'update' => [
-                            'url' => route('api.fileman.folder.update', $folder->id),
+                            'url' => route(config('fileman.api_route_name').'.folder.update', $folder->id),
                             'label' => __('fileman.buttons.rename_folder'),
                             'icon' => 'pencil',
                             'action' => 'renameFolder',
                         ],
                         'delete' => [
-                            'url' => route('api.fileman.folder.destroy', $folder->id),
+                            'url' => route(config('fileman.api_route_name').'.folder.destroy', $folder->id),
                             'label' => __('fileman.buttons.delete'),
                             'icon' => 'trash',
                             'action' => 'deleteFolder',

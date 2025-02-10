@@ -2,11 +2,11 @@
 
 @section('main')
     <div class="actions">
-        <a class="button" href="{{ route('fileman.file.edit', [$parent, $file]) }}">
+        <a class="button" href="{{ route(config('fileman.route_name').'.file.edit', [$parent, $file]) }}">
             <i class="fas fa-folder-plus"></i>
             <span>Rename</span>
         </a>
-        <form action="{{ route('fileman.file.destroy', [$parent, $file]) }}" method="post">
+        <form action="{{ route(config('fileman.route_name').'.file.destroy', [$parent, $file]) }}" method="post">
             @csrf
             @method('delete')
             <button type="submit" class="button danger">

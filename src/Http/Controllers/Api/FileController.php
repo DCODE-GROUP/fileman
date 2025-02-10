@@ -16,7 +16,7 @@ class FileController extends BaseController
 
         return new JsonResource([
             'success' => true,
-            'redirect' => route('fileman.folder.index', $parent->id),
+            'redirect' => route(config('fileman.route_name').'.folder.index', $parent->id),
         ]);
     }
 
@@ -26,7 +26,7 @@ class FileController extends BaseController
 
         return new JsonResource([
             'success' => true,
-            'redirect' => route('fileman.folder.index', $parent->id),
+            'redirect' => route(config('fileman.route_name').'.folder.index', $parent->id),
         ]);
     }
 }
