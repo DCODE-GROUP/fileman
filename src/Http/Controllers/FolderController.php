@@ -15,7 +15,7 @@ class FolderController extends BaseController
 {
     public function index(?Folder $folder = null): View
     {
-        if (!$folder) {
+        if (! $folder) {
             $folder = Folder::getRoot();
         }
 
