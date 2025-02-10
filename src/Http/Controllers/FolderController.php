@@ -37,7 +37,7 @@ class FolderController extends BaseController
             ->with('directory', FolderService::getDirectoryStructure($parent))
             ->with('path', $parent->getPath())
             ->with('method', 'post')
-            ->with('action', route( config('fileman.route_name').'.folder.store', $parent))
+            ->with('action', route(config('fileman.route_name').'.folder.store', $parent))
             ->with('parent', $parent);
     }
 
