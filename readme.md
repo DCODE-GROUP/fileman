@@ -67,13 +67,21 @@ resolve: {
 ```
 
 Seem to need this in tailwind.config.js, Update the module exports under content:
-```php
+```js
 content: [
   ...
     "./vendor/dcodegroup/**/*.{blade.php,vue,js,ts}",
   ...
 ],
 ```
+
+in the app.js file or other file where you are registering your vue components add the following:
+```js
+import { registerFileman } from "@fileman/src/resources/js";
+registerFileman(app);
+```
+
+
 
 Fileman will connect to the applications S3 bucket automatically. You'll need to have fileman index the bucket first before it can be used. To index the S3 bucket run:
 ```php
