@@ -44,7 +44,7 @@ class FileService
 
     public static function getDisk(): \Illuminate\Contracts\Filesystem\Filesystem
     {
-        return Storage::disk(env('FILESYSTEM_DISK', 'local'));
+        return Storage::disk(config('filesystems.default'));
     }
 
     public static function countFolder(?Folder $folder = null): int

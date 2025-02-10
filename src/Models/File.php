@@ -3,6 +3,7 @@
 namespace DcodeGroup\Fileman\Models;
 
 use DcodeGroup\Fileman\Services\FileService;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,11 +14,6 @@ class File extends Node
 {
     use SoftDeletes;
 
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var string[]|bool
-     */
     protected $guarded = [
         'id',
     ];
@@ -55,11 +51,11 @@ class File extends Node
         return null;
     }
 
-    public function getUrl()
+    public function getUrl(): string
     {
-        if (config('filesystems.disks.s3.url')) {
-            return config('filesystems.disks.s3.url').'/'.$this->source;
-        }
+//        if (config('filesystems.disks.s3.url')) {
+//            return config('filesystems.disks.s3.url').'/'.$this->source;
+//        }
 
         return FileService::getDisk()->url($this->source);
     }
@@ -77,7 +73,7 @@ class File extends Node
 
         try {
             $url = FileService::getDisk()->temporaryUrl($this->source, now()->addMinutes(10));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $url = FileService::getDisk()->url($this->source);
         }
 
