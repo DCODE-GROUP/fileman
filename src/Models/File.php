@@ -44,19 +44,6 @@ class File extends Node
         return FileService::getDisk()->url($this->source);
     }
 
-    private static function getImageMimes(): Collection
-    {
-        return collect([
-            'image/bmp',
-            'image/x-windows-bmp',
-            'image/gif',
-            'image/x-icon',
-            'image/jpeg',
-            'image/pjpeg',
-            'image/png',
-            'image/svg',
-        ]);
-    }
 
     public function getIsImageAttribute(): bool
     {
