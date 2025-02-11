@@ -3,7 +3,6 @@
 namespace DcodeGroup\Fileman\Models;
 
 use DcodeGroup\Fileman\Services\FileService;
-use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
