@@ -39,47 +39,9 @@ class File extends Node
         return $this->belongsTo(Folder::class);
     }
 
-    public function hasPreview()
-    {
-        return self::getImageMimes()->contains($this->type) && $this->source;
-    }
-
-    public function getPreview()
-    {
-        if ($this->hasPreview()) {
-            return $this->getSignedUrl();
-        }
-
-        return null;
-    }
-
     public function getUrl(): string
     {
-        //        if (config('filesystems.disks.s3.url')) {
-        //            return config('filesystems.disks.s3.url').'/'.$this->source;
-        //        }
-
         return FileService::getDisk()->url($this->source);
-    }
-
-    public function getSignedUrl()
-    {
-        // $client = Storage::disk('s3')->getDriver()->getAdapter()->getClient();
-        // $expiry = "+10 minutes";
-        // $command = $client->getCommand('GetObject', [
-        //    'Bucket' => config('filesystems.disks.s3.bucket'),
-        //    'Key' => $this->source,
-        // ]);
-        // return $client->createPresignedRequest($command, $expiry)->getUri();
-        // has temporaryUrl
-
-        try {
-            $url = FileService::getDisk()->temporaryUrl($this->source, now()->addMinutes(10));
-        } catch (Exception $e) {
-            $url = FileService::getDisk()->url($this->source);
-        }
-
-        return $url;
     }
 
     private static function getImageMimes(): Collection

@@ -15,7 +15,7 @@ class FileService
     {
         $path = 'fileman';
         $name = $name ?: $file->getClientOriginalName();
-        $filename = uniqid().'-'.$name;
+        $filename =  self::getSeoFriendlyName($name);
 
         if (count($parent->getPath()) > 1) {
             $path = $path.'/'.$parent->getFolderPath();
@@ -24,7 +24,7 @@ class FileService
 
         return File::updateOrCreate([
             'folder_id' => $parent->id,
-            'name' => $name,
+            'name' => $filename,
         ], [
             'source' => $source,
             'type' => $file->getMimeType(),
@@ -120,4 +120,14 @@ class FileService
             ->orderBy('updated_at', 'desc')
             ->get();
     }
+
+    public static function getSeoFriendlyName($fileName):String {
+        // Sanitize and make the file name SEO-friendly
+        $name = preg_replace('/[^a-zA-Z0-9\s\-]/', '', $fileName); // Remove special characters
+        $name = strtolower(trim($name)); // Convert to lowercase and trim whitespace
+        $name = preg_replace('/\s+/', '-', $name); // Replace spaces with hyphens
+        $name = preg_replace('/-+/', '-', $name); // Remove duplicate hyphens
+        return uniqid() . '-' . $name;
+    }
+
 }

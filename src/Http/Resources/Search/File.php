@@ -13,7 +13,7 @@ class File extends JsonResource
             'name' => $this->resource->name,
             'path' => $this->resource->source,
             'url' => route(config('fileman.route_name').'.folder.index', $this->resource->folder->id).'#file_'.$this->resource->id,
-            'preview' => $this->resource->hasPreview() ? $this->resource->getPreview() : $this->resource->getUrl(),
+            'preview' =>  $this->resource->getUrl(),
             'source' => $this->resource->source,
             'type' => FileType::FILE->value,
             'id' => $this->resource->id,
