@@ -5,7 +5,6 @@ namespace DcodeGroup\Fileman\Models;
 use DcodeGroup\Fileman\Services\FileService;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Collection;
 
 class File extends Node
 {
@@ -42,7 +41,6 @@ class File extends Node
     {
         return FileService::getDisk()->url($this->source);
     }
-
 
     public function getIsImageAttribute(): bool
     {
