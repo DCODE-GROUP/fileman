@@ -12,7 +12,7 @@ class File extends JsonResource
             parent::toArray($request),
             [
                 'url' => $this->resource->getUrl(),
-                'previewUrl' =>  $this->resource->getUrl(),
+                'previewUrl' => $this->resource->getUrl(),
                 'actions' => [
                     'view' => [
                         'label' => __('fileman.buttons.view_file'),
