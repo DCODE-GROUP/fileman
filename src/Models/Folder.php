@@ -10,13 +10,9 @@ class Folder extends Node
 {
     use SoftDeletes;
 
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var string[]|bool
-     */
-    protected $guarded = [
-        'id'
+    protected $fillable = [
+        'name',
+        'parent_id',
     ];
 
     /**
@@ -25,7 +21,6 @@ class Folder extends Node
      * @var string
      */
     protected $table = 'fm_folders';
-
 
     public function parent(): BelongsTo
     {
@@ -42,10 +37,6 @@ class Folder extends Node
         return $this->hasMany(File::class);
     }
 
-    /*
-     * Methods
-     */
-
     public function getPath()
     {
         $folder = $this;
@@ -53,20 +44,33 @@ class Folder extends Node
         while ($folder) {
             $array[] = [
                 'name' => $folder->name,
-                'url' => route('fileman.folder.index', $folder->id),
+                'url' => route(config('fileman.route_name').'.folder.index', $folder->id),
             ];
             $folder = $folder->parent;
         }
+
         return array_reverse($array);
     }
 
-    /*
-     * Static Methods
-     */
+    public function getFolderPath(): string
+    {
+        $path = $this->getPath();
+        array_shift($path);
+
+        return collect($path)->map(function ($item) {
+            return $item['name'];
+        })->implode('/');
+
+    }
 
     public static function getRoot()
     {
         return Folder::query()->whereNull('parent_id')->first();
     }
 
+    public function isRoot(): bool
+    {
+        // @phpstan-ignore-next-line
+        return is_null($this->parent_id);
+    }
 }

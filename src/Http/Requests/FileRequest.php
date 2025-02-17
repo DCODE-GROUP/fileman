@@ -2,6 +2,7 @@
 
 namespace DcodeGroup\Fileman\Http\Requests;
 
+use DcodeGroup\Fileman\Http\Rules\ValidFileType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FileRequest extends FormRequest
@@ -24,7 +25,11 @@ class FileRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => ['required','file'],
+            'file' => [
+                'required',
+                'file',
+                new ValidFileType,
+            ],
         ];
     }
 }

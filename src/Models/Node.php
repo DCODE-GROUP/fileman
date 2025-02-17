@@ -6,11 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Node extends Model
 {
-    /*
-     * Methods
-     */
-
-    public function rename(String $name)
+    public function rename(string $name): void
     {
         $this->update([
             'name' => $name,

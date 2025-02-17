@@ -2,18 +2,14 @@
 
 namespace DcodeGroup\Fileman\Services;
 
-use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
 use Illuminate\Support\Facades\Storage;
 
 class FilemanService
 {
-    /**
-     * @return bool
-     */
-    public static function import()
+    public static function import(): void
     {
-        $folderPaths = Storage::disk('s3')->allDirectories();
+        $folderPaths = FileService::getDisk()->allDirectories();
 
         $root = Folder::firstOrCreate([
             'parent_id' => null,
@@ -36,9 +32,10 @@ class FilemanService
                     ]);
                 }
 
-                $filePaths = Storage::disk('s3')->files($folderPath);
+                $filePaths = FileService::getDisk()->files($folderPath);
 
                 foreach ($filePaths as $filePath) {
+                    // @phpstan-ignore-next-line
                     FileService::newFileFromS3($folder, Storage::getMetaData($filePath));
                 }
             }

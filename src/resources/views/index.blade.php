@@ -1,23 +1,30 @@
 @extends('fileman::layouts.page')
 
 @section('main')
-    <div class="actions">
-        <a class="button" href="{{ route('fileman.folder.create', $folder) }}">
-            <i class="fas fa-folder-plus"></i>
-            <span>New Folder</span>
-        </a>
-        <a class="button" href="{{ route('fileman.file.create', $folder) }}">
-            <i class="fas fa-file-import"></i>
-            <span>New File</span>
-        </a>
+    <div class="flex">
+        <div class="flex-1">
+            {{--   including breadcrumbs, filters     --}}
+            @include('fileman::components.page.header', [
+                'path' => $path,
+            ])
+            {{--    Folders --}}
+            @include('fileman::components.page.folder', [
+                'folders' => $folders,
+            ])
+
+            {{--    Files --}}
+            @include('fileman::components.page.file', [
+                'folder' => $folder,
+                'files' => $files,
+            ])
+        </div>
+        <fileman-file-detail></fileman-file-detail>
+        <fileman-rename-file-popup></fileman-rename-file-popup>
+        <fileman-delete-file-popup></fileman-delete-file-popup>
+        <fileman-add-folder-popup></fileman-add-folder-popup>
+        <fileman-rename-folder-popup></fileman-rename-folder-popup>
+        <fileman-delete-folder-popup></fileman-delete-folder-popup>
+
     </div>
-    <div class="grid">
-        @foreach ($folder->files as $file)
-            <div class="cell">
-                @include('fileman::components.file', [
-                    'file' => $file,
-                ])
-            </div>
-        @endforeach
-    </div>
+
 @endsection

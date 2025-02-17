@@ -1,5 +1,8 @@
-.idea/
-node_modules/
+.idea
+.vscode
+node_modules
 mix-manifest.json
 vendor
 composer.lock
+pint.cache
+build

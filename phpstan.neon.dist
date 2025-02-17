@@ -1,0 +1,26 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - src
+        - config
+        - database
+    tmpDir: build/phpstan
+
+    checkOctaneCompatibility: true
+    checkModelProperties: true
+    reportUnmatchedIgnoredErrors: false
+
+    ignoreErrors:
+        - '#Class App\\Models\\User not found#'
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$parent_id#'
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$name#'
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$id#'
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$files_count#'
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$children#'
+        - '#Access to an undefined property DcodeGroup\\Fileman\\Models\\File::\$source#'
+        - '#Access to an undefined property DcodeGroup\\Fileman\\Models\\File::\$type#'
+        - '#Access to an undefined property DcodeGroup\\Fileman\\Models\\Folder::\$parent_id#'
+        - '#Class DcodeGroup\\Fileman\\Http\\Controllers\\Api\SearchController extends unknown class App\\Http\\Controllers\\Controller.#'

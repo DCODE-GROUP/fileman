@@ -2,23 +2,27 @@
 
 namespace DcodeGroup\Fileman\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use DcodeGroup\Fileman\Services\FileService;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 
 class File extends Node
 {
     use SoftDeletes;
 
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var string[]|bool
-     */
-    protected $guarded = [
-        'id'
+    protected $fillable = [
+        'name',
+        'folder_id',
+        'source',
+        'type',
+        'size',
+    ];
+
+    protected $appends = [
+        'is_image',
+        'file_type',
+        'file_type_color',
+        'file_extension',
     ];
 
     /**
@@ -33,50 +37,31 @@ class File extends Node
         return $this->belongsTo(Folder::class);
     }
 
-    public function hasPreview()
+    public function getUrl(): string
     {
-        return self::getImageMimes()->contains($this->type) && $this->source;
+        return FileService::getDisk()->url($this->source);
     }
 
-    public function getPreview()
+    public function getIsImageAttribute(): bool
     {
-        if ($this->hasPreview()) {
-            return $this->getSignedUrl();
-        }
-        return null;
+        return $this->fileType === 'Images';
     }
 
-    public function getUrl()
+    public function getFileTypeAttribute(): string
     {
-        if (config('filesystems.disks.s3.url')) {
-            return config('filesystems.disks.s3.url').'/'.$this->source;
-        }
-        return Storage::disk('s3')->url($this->source);
+        return collect(config('fileman.fileFormats'))->filter(function ($valueArray, $key) {
+            // use mime type and config('fileman.fileFormats') to get the type of file
+            return in_array($this->type, $valueArray);
+        })->keys()->first();
     }
 
-    public function getSignedUrl()
+    public function getFileTypeColorAttribute(): array
     {
-        //$client = Storage::disk('s3')->getDriver()->getAdapter()->getClient();
-        //$expiry = "+10 minutes";
-        //$command = $client->getCommand('GetObject', [
-        //    'Bucket' => config('filesystems.disks.s3.bucket'),
-        //    'Key' => $this->source,
-        //]);
-        //return $client->createPresignedRequest($command, $expiry)->getUri();
-        return Storage::disk('s3')->temporaryUrl($this->source, now()->addMinutes(10));
+        return config('fileman.colors.'.$this->fileType);
     }
 
-    private static function getImageMimes(): Collection
+    public function getFileExtensionAttribute(): string
     {
-        return collect([
-            'image/bmp',
-            'image/x-windows-bmp',
-            'image/gif',
-            'image/x-icon',
-            'image/jpeg',
-            'image/pjpeg',
-            'image/png',
-            'image/svg',
-        ]);
+        return strtoupper(explode('/', $this->type)[1]);
     }
 }
