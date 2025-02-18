@@ -27,7 +27,7 @@ class FolderController extends BaseController
             ->with('directory', FolderService::getDirectoryStructure($folder))
             ->with('path', $folder->getPath())
             ->with('files', (new FileCollection($folder->files))->toArray(request()))
-            ->with('folders', (new FolderCollection($folder->children))->toArray(request()));
+            ->with('folders', (new FolderCollection($folder->loadMissing('children')->children))->toArray(request()));
     }
 
     public function create(Folder $parent): View

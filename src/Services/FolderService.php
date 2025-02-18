@@ -28,7 +28,7 @@ class FolderService
                     'count' => $folder->files_count,
                     'open' => self::shouldOpenTheFolder($folder, $currentFolder),
                     'children' => self::buildTree($folders, $folder->id, $currentFolder),
-                    'childrenCount' => count($folder->children),
+                    'childrenCount' => count($folder->loadMissing('children')->children),
                     'id' => $folder->id,
                     'actions' => [
                         'create' => [
@@ -75,7 +75,7 @@ class FolderService
             return true;
         }
 
-        foreach ($folder->children as $child) {
+        foreach ($folder->loadMissing('children')->children as $child) {
             if (self::shouldOpenTheFolder($child, $currentFolder)) {
                 return true;
             }
