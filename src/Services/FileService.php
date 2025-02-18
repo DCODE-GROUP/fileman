@@ -123,12 +123,13 @@ class FileService
 
     public static function getSeoFriendlyName($fileName): string
     {
+        // extension
+        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
         // Sanitize and make the file name SEO-friendly
-        $name = preg_replace('/[^a-zA-Z0-9\s\-]/', '', $fileName); // Remove special characters
+        $name = preg_replace('/[^a-zA-Z0-9\s\-]/', '', pathinfo($fileName, PATHINFO_FILENAME)); // Remove special characters
         $name = strtolower(trim($name)); // Convert to lowercase and trim whitespace
         $name = preg_replace('/\s+/', '-', $name); // Replace spaces with hyphens
         $name = preg_replace('/-+/', '-', $name); // Remove duplicate hyphens
-
-        return uniqid().'-'.$name;
+        return uniqid().'-'.$name.'.'.$extension;
     }
 }

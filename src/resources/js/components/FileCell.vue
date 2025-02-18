@@ -1,5 +1,5 @@
 <template>
-    <div class="file h-full bg-gray-50 hover:bg-gray-100 rounded-md relative group"
+    <div class="file h-full bg-gray-50 hover:bg-gray-100 rounded-md relative group flex flex-col items-center justify-center"
        :data-file="JSON.stringify(file)"
        :data-url="file.url"
 
