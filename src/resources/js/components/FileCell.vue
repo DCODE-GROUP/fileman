@@ -43,7 +43,7 @@ export default {
                     source: this.file.source,
                     size: this.file.size,
                     type: this.file.type,
-                    url: this.url,
+                    url: this.file.url,
                 });
                 window.close();
             }else {
