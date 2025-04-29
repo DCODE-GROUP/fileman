@@ -15,7 +15,7 @@ class FileService
     {
         $path = 'fileman';
         $name = $name ?: $file->getClientOriginalName();
-        $filename = self::getSeoFriendlyName($name);
+        $filename = self::getSeoFriendlyName($name,$parent);
 
         if (count($parent->getPath()) > 1) {
             $path = $path.'/'.$parent->getFolderPath();
@@ -121,7 +121,7 @@ class FileService
             ->get();
     }
 
-    public static function getSeoFriendlyName($fileName): string
+    public static function getSeoFriendlyName($fileName, Folder $folder): string
     {
         // extension
         $extension = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -130,6 +130,14 @@ class FileService
         $name = strtolower(trim($name)); // Convert to lowercase and trim whitespace
         $name = preg_replace('/\s+/', '-', $name); // Replace spaces with hyphens
         $name = preg_replace('/-+/', '-', $name); // Remove duplicate hyphens
-        return uniqid().'-'.$name.'.'.$extension;
+        return self::getUniqueName($name,$folder,$extension);
+    }
+
+    public static function getUniqueName($name, $folder, $extension): string{
+        if(File::query()->where('folder_id',$folder->id)
+            ->where('name',$name.'.'.$extension)->exists()){
+            return self::getUniqueName($name."_copy", $folder, $extension);
+        }
+        return $name.'.'.$extension;
     }
 }

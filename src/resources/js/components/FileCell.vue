@@ -4,7 +4,7 @@
        :data-url="file.url"
 
     >
-        <img :src="file.previewUrl" class="thumbnail !h-4/5 object-contain"  :alt="file.name" v-if="file.is_image" @click="showFileDetail">
+        <img :src="file.previewUrl" class="thumbnail !h-4/5 object-contain break-all"  :alt="file.name" v-if="file.is_image" @click="showFileDetail">
         <div class="flex flex-col items-center justify-center h-full w-full relative" @click="showFileDetail" v-else>
             <div class="h-20 w-20 relative">
                 <file-page class="h-20 w-16 ml-auto"></file-page>

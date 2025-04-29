@@ -20,7 +20,7 @@
 
             </div>
             <div v-else class="mt-auto">
-                <p>File Selected: {{ file.name }}</p>
+                <p class="break-all">File Selected: {{ file.name }}</p>
                 <p>File Size : {{formatBytes(file.size)}} </p>
 
             </div>
@@ -86,6 +86,7 @@ export default {
             if (files.length > 0) {
                 this.file = files[0];
             }
+            this.uploadFile();
         },
         onFileSelect(event) {
             const files = event.target.files;
