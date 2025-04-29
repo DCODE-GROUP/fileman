@@ -43,13 +43,13 @@ class FileController extends BaseController
 
     public function store(FileRequest $request, Folder $parent): RedirectResponse
     {
-        try{
+        try {
             FileService::newFile(
                 $parent,
                 $request->file('file'),
                 $request->input('name')
             );
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             Log::error($exception->getMessage());
         }
 
