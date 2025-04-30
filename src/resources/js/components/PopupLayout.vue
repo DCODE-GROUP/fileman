@@ -35,10 +35,5 @@ export default {
             folderName: ''
         };
     },
-    methods:{
-        closePopup() {
-            console.log('closepopup')
-        }
-    }
 };
 </script>
