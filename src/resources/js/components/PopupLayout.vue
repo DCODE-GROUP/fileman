@@ -5,7 +5,7 @@
                 <h3 class="text-lg font-semibold text-gray-900">
                     <slot name="title">Add Folder</slot>
                 </h3>
-                <x-close class="w-6 h-6 path--stroke-gray-400 cursor-pointer" @click="$emit('close')"></x-close>
+                <x-close class="w-6 h-6 path--stroke-gray-400 cursor-pointer z-10" @click="$emit('close')"></x-close>
             </div>
             <div class="text-sm font-normal text-gray-600 mt-3">
                 <slot name="subtitle"></slot>

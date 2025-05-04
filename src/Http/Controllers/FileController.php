@@ -10,6 +10,7 @@ use DcodeGroup\Fileman\Services\FolderService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Log;
 
 class FileController extends BaseController
 {
@@ -42,11 +43,15 @@ class FileController extends BaseController
 
     public function store(FileRequest $request, Folder $parent): RedirectResponse
     {
-        FileService::newFile(
-            $parent,
-            $request->file('file'),
-            $request->input('name')
-        );
+        try {
+            FileService::newFile(
+                $parent,
+                $request->file('file'),
+                $request->input('name')
+            );
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+        }
 
         return redirect()
             ->route(config('fileman.route_name').'.folder.index', $parent->id);
