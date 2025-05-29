@@ -10,6 +10,7 @@ return [
             'application/pdf',
             'text/x-tex',
             'application/vnd.wordperfect',
+            "application/x-empty",
         ],
         'Spreadsheet' => [
             'application/vnd.ms-excel',
