@@ -52,12 +52,12 @@ class File extends Node
         return collect(config('fileman.fileFormats'))->filter(function ($valueArray, $key) {
             // use mime type and config('fileman.fileFormats') to get the type of file
             return in_array($this->type, $valueArray);
-        })->keys()->first();
+        })->keys()->first() ?? 'Others';
     }
 
     public function getFileTypeColorAttribute(): array
     {
-        return config('fileman.colors.'.$this->fileType);
+        return config('fileman.colors.'.$this->fileType) ?? config('fileman.colors.Text');;
     }
 
     public function getFileExtensionAttribute(): string
