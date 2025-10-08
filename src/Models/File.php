@@ -57,7 +57,7 @@ class File extends Node
 
     public function getFileTypeColorAttribute(): array
     {
-        return config('fileman.colors.'.$this->fileType) ?? config('fileman.colors.Text');;
+        return config('fileman.colors.'.$this->fileType) ?? config('fileman.colors.Text');
     }
 
     public function getFileExtensionAttribute(): string
