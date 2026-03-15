@@ -143,4 +143,12 @@ class FileService
 
         return $name.'.'.$extension;
     }
+
+    public static function deleteFile(File $file)
+    {
+        if (FileService::getDisk()->exists($file->source)) {
+            FileService::getDisk()->delete($file->source);
+        }
+        $file->delete();
+    }
 }

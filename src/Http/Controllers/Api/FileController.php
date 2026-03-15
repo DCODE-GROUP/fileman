@@ -5,6 +5,7 @@ namespace DcodeGroup\Fileman\Http\Controllers\Api;
 use DcodeGroup\Fileman\Http\Requests\UpdateFileRequest;
 use DcodeGroup\Fileman\Models\File;
 use DcodeGroup\Fileman\Models\Folder;
+use DcodeGroup\Fileman\Services\FileService;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -22,7 +23,7 @@ class FileController extends BaseController
 
     public function destroy(Folder $parent, File $file): JsonResource
     {
-        $file->delete();
+        FileService::deleteFile($file);
 
         return new JsonResource([
             'success' => true,
