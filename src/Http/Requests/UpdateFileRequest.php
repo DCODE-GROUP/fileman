@@ -3,6 +3,7 @@
 namespace DcodeGroup\Fileman\Http\Requests;
 
 use DcodeGroup\Fileman\Http\Rules\ValidFileName;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateFileRequest extends FormRequest
@@ -18,7 +19,7 @@ class UpdateFileRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
